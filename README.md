@@ -60,8 +60,7 @@ FundGuard aligns with global Sustainable Development Goals:
 
 **Victor Kolawole Omojuwa**
 Peace Advocate | Public Health Professional | Anti-fraud Innovator
-📧 [vmgroupicn@gmail.com](mailto:fundguardafrica@gmail.com)
-📞 +234 805 252 4732
+📧 (mailto:fundguardafrica@gmail.com)
 🔗 [LinkedIn](https://linkedin.com/in/victor-kolawole-omojuwa)
 
 ---
