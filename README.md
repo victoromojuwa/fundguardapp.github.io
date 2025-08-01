@@ -49,7 +49,7 @@ FundGuard aligns with global Sustainable Development Goals:
 | Quarter | Milestone                            |
 | ------- | ------------------------------------ |
 | Q3 2025 | ✅ MVP Launch + Live Demo             |
-| Q4 2025 | ⏳ CBN, EFCC, NITDA Licensing         |
+| Q4 2025 | ⏳ CBN,NDPR, EFCC, NITDA Licensing         |
 | Q1 2026 | 🔐 Bank + Wallet API Integration     |
 | Q2 2026 | 🌍 Expansion to 10 African Countries |
 | Q3 2026 | 🧠 AI-Powered Predictive Risk Engine |
@@ -98,5 +98,5 @@ We welcome:
 ## 📜 License
 
 © 2025 FundGuard Africa Ltd. All rights reserved.
-NDPR Compliant — Built with ❤️ in Lagos, Nigeria.
+
 
