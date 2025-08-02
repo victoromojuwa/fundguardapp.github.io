@@ -1,4 +1,4 @@
-# 🌍 FundGuard Africa — Protecting Africa’s Digital Economy
+# 🌍 FundGuard Africa — Protecting Africa’s Digital Economy.
 
 ![GitHub Pages](https://img.shields.io/github/deployments/fundguardapp/fundguardapp.github.io/github-pages?label=Deployment\&logo=github)
 ![Visitors](https://komarev.com/ghpvc/?username=fundguardapp\&label=Visitors\&color=0e75b6\&style=flat)
