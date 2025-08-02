@@ -1,100 +1,140 @@
-# 🌍 FundGuard Africa — Protecting Africa’s Digital Economy.
+# 🌍 FundGuard Africa – Protecting Africa’s Digital Economy from Fraud
 
-![GitHub Pages](https://img.shields.io/github/deployments/fundguardapp/fundguardapp.github.io/github-pages?label=Deployment\&logo=github)
-![Visitors](https://komarev.com/ghpvc/?username=fundguardapp\&label=Visitors\&color=0e75b6\&style=flat)
+![FundGuard Banner](https://www.fundguardafrica.com/assets/images/banner.png)
 
-**FundGuard** is an AI-powered fraud detection and fund recovery platform built to combat financial crimes across Africa. We provide individuals, fintechs, and institutions with real-time fraud alerts, stolen funds tracking, and digital evidence management — all in one intuitive platform.
-
----
-
-## 🚀 Mission
-
-To protect Africa’s digital economy from scams, fraud, and financial crimes using innovative, accessible, and secure technology.
+**Website**: [www.fundguardafrica.com](https://www.fundguardafrica.com)  
+**Demo**: [Watch Demo](https://www.fundguardafrica.com/assets/videos/fundguard/demo.html)  
+**Contact**: fundguardafrica@gmail.com
 
 ---
 
-## 💡 Core Features
+## 🚀 About FundGuard
 
-* 🔐 **Fraud Detection Engine** — Detect scams in real-time across mobile money, banking, and crypto
-* 📍 **Fund Tracking & Monitoring** — Trace stolen or missing funds through account analysis
-* 📝 **Smart Case Management** — Submit, manage, and follow up on fraud cases easily
-* 📁 **Evidence Upload System** — Secure document upload and verification system
-* 📊 **Recovery Dashboard** — View blacklisted accounts, track investigations, and get updates
-* 🌐 **African Government Verification** — Check IDs, businesses & banks in 🇳🇬 🇬🇭 🇨🇲 🇿🇦 🇹🇿
-* 📧 **Secure Login System** — User role tiers (basic, premium, institutional) with Supabase auth
+FundGuard Africa is a **real-time fraud detection and fund recovery platform** built to protect individuals, financial institutions, and businesses from digital fraud, scams, and crypto theft in Africa. 
+
+With a bold mission to **secure Africa’s financial future**, FundGuard empowers users to detect, track, and recover stolen funds using AI-powered tools, legal support, and verified intelligence.
 
 ---
 
-## 🧪 Live MVP Access
+## 🛡️ Core Features
 
-🔗 [**FundGuard Website**](https://www.fundguardafrica.com)
-🎥 [**Demo Video Walkthrough**](https://www.fundguardafrica.com/demo.html)
-📝 [**Early Access Form**](https://www.fundguardafrica.com/early-access)
+- ✅ **Fraud Detection & Alerts**  
+  Real-time detection of suspicious transactions across mobile money, crypto, and banks.
 
----
+- 🔍 **Track & Recover Stolen Funds**  
+  Locate fraudulent accounts and initiate recovery steps automatically.
 
-## 🎯 Impact for SDGs
+- 📝 **Case Management Dashboard**  
+  Submit, manage, and monitor fund recovery cases via a secure user dashboard.
 
-FundGuard aligns with global Sustainable Development Goals:
+- 📁 **Evidence Upload & Secure Storage**  
+  Upload screenshots, statements, and fraud proofs directly into your case file.
 
-* **SDG 16.5**: Combat fraud, bribery & corruption
-* **SDG 9**: Foster innovation & financial infrastructure
-* **SDG 8.10**: Broaden access to secure financial services
-* **SDG 17.6**: Promote technology partnerships for governance
+- 🧠 **AI-Powered Identity Verification**  
+  Instantly validate government IDs across 5 African countries (Nigeria, Ghana, South Africa, Tanzania, Cameroon).
 
----
-
-## 🔭 Roadmap
-
-| Quarter | Milestone                            |
-| ------- | ------------------------------------ |
-| Q3 2025 | ✅ MVP Launch + Live Demo             |
-| Q4 2025 | ⏳ CBN,NDPR, EFCC, NITDA Licensing         |
-| Q1 2026 | 🔐 Bank + Wallet API Integration     |
-| Q2 2026 | 🌍 Expansion to 10 African Countries |
-| Q3 2026 | 🧠 AI-Powered Predictive Risk Engine |
+- 🕵🏾 **AML Screening & Global Business Check**  
+  Screen suspects, conduct background checks, and link fraud reports to blacklisted identities.
 
 ---
 
-## 👤 Founder
+## 🌱 Sustainability & Impact (SDGs)
 
-**Victor Kolawole Omojuwa**
-Peace Advocate | Public Health Professional | Anti-fraud Innovator
-📧 (mailto:fundguardafrica@gmail.com)
-🔗 [LinkedIn](https://linkedin.com/in/victor-kolawole-omojuwa)
+FundGuard aligns with the following UN Sustainable Development Goals:
 
----
-
-## ⚙️ Tech Stack
-
-* `Vue.js` + `Vite` SPA
-* `Supabase` (DB, Auth, Realtime, Storage)
-* `GitHub Pages` (Static hosting)
-* `Zoho SMTP` (Email delivery)
-* `Google Analytics` (Visitor tracking)
+- **SDG 16**: Promote Peace, Justice, and Strong Institutions  
+- **SDG 9**: Industry, Innovation, and Infrastructure  
+- **SDG 8**: Decent Work and Economic Growth  
+- **SDG 10**: Reduced Inequality
 
 ---
 
-## 📩 Partners & Contributors
+## 🧩 Tech Stack
 
-We welcome:
-
-* 💼 Angel Investors & VCs (Seed Round Open)
-* 👨‍💻 Developers / Product Designers
-* 🤝 Fintech / Legal / Telco Collaborators
-
----
-
-## 📎 Quick Links
-
-* 📥 [Download Pitch Deck (PDF)](#)
-* 💡 [Investor FAQ (PDF)](#)
-* 📘 [Company Profile (PDF)](#)
-* 🔐 [Compliance Report](#)
+- **Frontend**: HTML, Vue.js, Vite
+- **Backend**: Supabase (PostgreSQL + Edge Functions)
+- **Storage**: Supabase Secure Bucket
+- **Deployment**: GitHub Pages
+- **Analytics**: Google Analytics (G-KWVLWQG4B4)
+- **Email Auth**: Zoho Mail via SMTP
+- **Security**: RLS + OAuth tokens + CORS config
 
 ---
 
-## 📜 License
+## 📊 Traction
+
+- ✅ MVP fully deployed: [www.fundguardafrica.com](https://www.fundguardafrica.com)  
+- ✅ Functional dashboard, authentication, and reporting system  
+- ✅ Government ID verifications implemented  
+- ✅ Supabase backend + real-time fraud monitoring  
+- ✅ Over 120 successful GitHub workflows and builds  
+- ✅ Live demo video, testimonials, and early access form
+
+---
+
+## 🧠 Founder & Team
+
+👤 **Victor Kolawole Omojuwa**  
+Public Health Professional | Peace Ambassador | Tech Founder  
+Driven by personal experience and national urgency, Victor founded FundGuard to restore trust in Africa’s digital economy and protect innocent lives from financial trauma.
+
+---
+
+## 🌐 Licensing & Compliance
+
+FundGuard is committed to regulatory compliance and partnerships:
+
+- NDPR – Nigeria Data Protection Regulation  
+- CBN – Central Bank of Nigeria (pending registration)  
+- EFCC – Economic and Financial Crimes Commission collaboration  
+- NITDA – Tech innovation framework
+
+---
+
+## 🧪 Test the MVP
+
+Visit: **[www.fundguardafrica.com](https://www.fundguardafrica.com)**  
+Try login, register, file a case, and upload evidence.  
+Early Access Form: [Click Here](https://www.fundguardafrica.com/index-with-early-access.html)
+
+---
+
+## 📢 Support & Partnership
+
+We’re actively raising a **₦200M seed round**.  
+We welcome investors, accelerators, fintech partners, and government agencies.
+
+📬 **Email**: fundguardafrica@gmail.com  
+🔗 **LinkedIn**: [Victor Omojuwa](https://www.linkedin.com/in/victorkolawoleomojuwa/)  
+📄 **Pitch Deck**: Available on request  
+🧾 **Investor Data Room**: Secured & Available
+
+---
+
+## 💬 Testimonials
+
+> “I recovered my stolen ₦150,000 thanks to FundGuard in just 48 hours.”  
+> — *Early Beta Tester, Lagos, Nigeria*
+
+> “Finally, a solution for African fintech fraud. This is long overdue.”  
+> — *Legal Analyst, Abuja*
+
+---
+
+## 🙌 Contribute
+
+This project is open for collaboration. Want to contribute as a:
+
+- Frontend Developer?
+- Supabase/Backend Expert?
+- Legal/Fraud Advisor?
+
+Reach out today.
+
+---
+
+🔐 **Let’s protect Africa’s future, one fraud alert at a time.**
+
 
 © 2025 FundGuard Africa Ltd. All rights reserved.
 
