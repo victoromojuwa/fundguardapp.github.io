@@ -1,3 +1,42 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/fundguardapp/fundguardapp.github.io/main/assets/images/fundguard-banner.png" alt="FundGuard Banner" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://www.fundguardafrica.com" target="_blank">
+    <img src="https://img.shields.io/badge/🌐 Visit Website-1d72b8?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Visit Website Button">
+  </a>
+</p>
+
+---
+
+# FundGuard Africa 🌍🛡️  
+**Protecting Africa’s Digital Economy from Fraud, Scam & Financial Crime**
+
+FundGuard is an AI-powered fraud detection and fund-tracking platform designed to safeguard digital assets across Africa. From real-time scam detection to crypto fraud reporting, FundGuard empowers users to track, report, and recover lost funds using advanced technologies and regulatory integrations.
+
+## 🚀 Key Features
+- ✅ Real-time fund tracking and fraud alerts
+- 🔐 Smart case management & evidence upload
+- 🌐 Identity & document verification
+- 🧠 AI-powered fraud detection engine
+- 💼 Institutional dashboards and audit logs
+- 📲 Mobile-first design for easy access
+- ⚖️ Aligned with CBN, EFCC, NDPR, and NITDA guidelines
+
+## 🎯 SDG Impact
+- **SDG 16 (Peace, Justice & Strong Institutions)**
+- **SDG 9 (Industry, Innovation & Infrastructure)**
+- **SDG 8 (Decent Work & Economic Growth)**
+
+## 👨🏽‍💼 About the Founder
+**Victor Kolawole Omojuwa** – A Public Health Professional & Peace Advocate building Africa’s first digital defense platform against fraud.
+
+---
+
+> 💡 *Help us secure Africa’s digital future — one transaction at a time.*
+
+
 # 🌍 FundGuard Africa – Protecting Africa’s Digital Economy from Fraud
 
 ![FundGuard Banner](https://www.fundguardafrica.com/assets/images/banner.png)
