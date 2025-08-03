@@ -1,76 +1,148 @@
-<img src="assets/images/fundguard-banner.png" alt="FundGuard Africa Banner" style="width: 100%; max-width: 1200px; height: auto; border-radius: 10px;" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FundGuard Africa - Protecting Africa’s Digital Economy</title>
+  <link rel="stylesheet" href="styles.css"/>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 40px;
-      background-color: #f5f7fa;
-      color: #1c1c1c;
+      margin: 0;
+      line-height: 1.6;
+      background-color: #ffffff;
+    }
+
+    header {
+      background: #0b1c2c;
+      color: #fff;
+      padding: 2rem 1rem;
       text-align: center;
     }
-    nav a {
-      margin: 0 15px;
+
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0b1c2c;
+    }
+
+    .features, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .card {
+      background: #f2f2f2;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 260px;
+    }
+
+    .video-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .form-button {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #0b1c2c;
+      color: #fff;
+      border-radius: 5px;
       text-decoration: none;
-      color: #0077cc;
-      font-weight: bold;
+      margin-top: 1rem;
     }
-    h1 {
-      color: #1a202c;
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #0b1c2c;
+      color: white;
+      margin-top: 2rem;
     }
-    iframe {
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      margin-top: 30px;
+
+    a {
+      color: #ffdd57;
     }
+
   </style>
 </head>
 <body>
+
   <header>
-    <h1>🌍 FundGuard Africa</h1>
-    <p>Protecting Africa’s Digital Economy from Fraud, Scam, and Financial Crime.</p>
-    <nav>
-      <a href="demo.html">📹 Watch Demo</a>
-      <a href="early-access.html">📝 Get Early Access</a>
-    </nav>
+    <h1>FundGuard Africa</h1>
+    <p>Protecting Africa's Digital Economy from Fraud</p>
   </header>
 
   <section>
-    <h2>🚀 Why FundGuard?</h2>
-    <p>We use AI, data intelligence, and real-time alerts to detect and prevent fraud across Africa’s financial ecosystem.</p>
+    <h2>About FundGuard</h2>
+    <p>
+      FundGuard Africa is a mission-driven fintech platform focused on safeguarding Africa’s digital ecosystem. 
+      Our app empowers users, banks, and fintechs to fight fraud, recover stolen funds, and verify financial identities.
+    </p>
   </section>
 
-  <footer style="margin-top: 60px;">
-    <p>🔐 Secure. 🌐 Scalable. 🇳🇬 Built for Africa.</p>
-    <p><a href="mailto:fundguardafrica@gmail.com">Contact Us</a></p>
-    <!-- Testimonials Section -->
-<section id="testimonials" style="background-color:#f9f9f9; padding: 60px 20px;">
-  <div style="max-width: 1000px; margin: auto;">
-    <h2 style="text-align:center; font-size: 2rem; margin-bottom: 40px;">What Early Users Are Saying</h2>
+  <section>
+    <h2>Core Features</h2>
+    <div class="features">
+      <div class="card">🔍 Real-time Fraud Detection & Alerts</div>
+      <div class="card">📁 Secure Case Management System</div>
+      <div class="card">🛡️ Government & AML Verification Tools</div>
+      <div class="card">🔗 Bank & Crypto Wallet Monitoring</div>
+      <div class="card">💬 AI-powered Risk Messaging & Alerts</div>
+    </div>
+  </section>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
-      <div style="flex: 1 1 280px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-style: italic;">“FundGuard helped us trace a stolen mobile transfer within minutes. It’s a game changer for Africa!”</p>
-        <p style="text-align: right; font-weight: bold; margin-top: 10px;">— Chinedu A., Lagos</p>
+  <section class="video-container">
+    <h2>🎬 Watch Demo Video</h2>
+    <video width="90%" controls>
+      <source src="assets/videos/fundguard/demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <section>
+    <h2>📩 Get Early Access</h2>
+    <p>Join our early adopters to get exclusive access and test the platform.</p>
+    <a href="https://forms.gle/your-google-form-link" class="form-button" target="_blank">Apply for Early Access</a>
+  </section>
+
+  <section id="testimonials" style="background-color: #f9f9f9;">
+    <h2>What Early Users Are Saying</h2>
+    <div class="testimonials">
+      <div class="card">
+        “FundGuard helped me trace and report a scam in less than 24 hours. It's a real game changer!”<br />
+        <strong>- Ada N., Nigeria</strong>
       </div>
-
-      <div style="flex: 1 1 280px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-style: italic;">“As a fintech startup, FundGuard’s fraud API has saved us countless hours of manual checks.”</p>
-        <p style="text-align: right; font-weight: bold; margin-top: 10px;">— Amina T., Nairobi</p>
+      <div class="card">
+        “As a fintech partner, I believe FundGuard can revolutionize fraud detection across Africa.”<br />
+        <strong>- Kwame T., Ghana</strong>
       </div>
-
-      <div style="flex: 1 1 280px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-style: italic;">“The early access program gave us tools to protect our digital wallet from crypto fraud.”</p>
-        <p style="text-align: right; font-weight: bold; margin-top: 10px;">— Kwame M., Accra</p>
+      <div class="card">
+        “From mobile money theft to crypto scams, this app offers the tools Africa truly needs.”<br />
+        <strong>- Aisha M., Kenya</strong>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section>
+    <h2>Founder & CEO</h2>
+    <p><strong>Victor Kolawole Omojuwa</strong> — A visionary Nigerian entrepreneur and public health professional 
+    leading the mission to secure Africa’s digital economy through innovation, integrity, and impact.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 FundGuard Africa | <a href="https://www.fundguardafrica.com">Visit Official Site</a></p>
   </footer>
+
 </body>
 </html>
+
