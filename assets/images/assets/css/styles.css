@@ -43,3 +43,17 @@ li::before {
   font-style: italic;
   border-radius: 5px;
 }
+.demo-video-button {
+  display: inline-block;
+  background-color: #1A73E8;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.demo-video-button:hover {
+  background-color: #0f5dc2;
+}
