@@ -314,4 +314,5 @@ Reach out today.
 
 © 2025 FundGuard Africa Ltd. All rights reserved.
 
+_Triggering redeploy to fix GitHub Pages site._
 
