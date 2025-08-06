@@ -306,7 +306,7 @@ This project is open for collaboration. Want to contribute as a:
 - Legal/Fraud Advisor?
 
 Reach out today.
-
+Todays date
 ---
 
 🔐 **Let’s protect Africa’s future, one fraud alert at a time.**
