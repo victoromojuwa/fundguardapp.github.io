@@ -279,7 +279,7 @@ Early Access Form: [Click Here](https://www.fundguardafrica.com/index-with-early
 
 We’re actively raising a **₦200M seed round**.  
 We welcome investors, accelerators, fintech partners, and government agencies.
-
+ 
 📬 **Email**: fundguardafrica@gmail.com  
 🔗 **LinkedIn**: [Victor Omojuwa](https://www.linkedin.com/in/victorkolawoleomojuwa/)  
 📄 **Pitch Deck**: Available on request  
