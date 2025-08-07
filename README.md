@@ -315,6 +315,4 @@ Todays date
 
 © 2025 FundGuard Africa Ltd. All rights reserved.
 
-Deploy triggered on August 7, 2025
-
 
