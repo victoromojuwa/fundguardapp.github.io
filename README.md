@@ -309,8 +309,7 @@ Reach out today.
 Todays date
 ---
 
-🔐 **Let’s protect Africa’s future, one fraud alert at a time.**
-
+🔐 **Let’s protect Africa’s future, one fraud alert at a time.*
 
 
 © 2025 FundGuard Africa Ltd. All rights reserved.
