@@ -47,7 +47,9 @@ ul.features li{margin:7px 0;color:#1b2747}
   color:#1a2546;
 }
 footer.footer{
-  margin-top:26px; padding:18px 0; text-align:center; color:var(--muted);
+  margin-top:26px; padding:18px 0; text-align:center; color:#4b5a7d;
   border-top:1px solid var(--line); font-size:14px; background:#ffffff80;
 }
 .link{color:var(--brand)}
+.badge{display:inline-block;font-size:12px;background:#eef3ff;color:#203157;padding:4px 8px;border-radius:999px;border:1px solid var(--line);margin-left:6px;vertical-align:middle}
+
