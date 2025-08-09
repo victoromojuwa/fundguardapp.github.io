@@ -1,34 +1,36 @@
+/* Contact Us Strip */
 .contact-strip {
-  background: linear-gradient(90deg, #003366, #0055aa); /* FundGuard blue gradient */
+  background: linear-gradient(90deg, #0b1d2a, #143d55);
+  color: white;
   padding: 20px;
   text-align: center;
-  border-top: 3px solid #ffaa00; /* Accent color */
+  border-radius: 8px;
+  margin: 40px 0;
 }
 
 .contact-strip h3 {
+  font-size: 1.8em;
   margin-bottom: 15px;
-  font-size: 22px;
   font-weight: bold;
-  color: #ffffff;
 }
 
-.contact-strip .contact-emails a {
+.contact-emails a {
   display: inline-block;
-  margin: 5px 12px;
-  color: #ffffff;
-  font-size: 16px;
+  color: white;
   font-weight: bold;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
+  margin: 8px 15px;
+  font-size: 1.1em;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  transition: all 0.3s ease-in-out;
+  transition: background 0.3s ease;
 }
 
-.contact-strip .contact-emails a:hover {
-  background: #ffaa00;
-  color: #003366;
+.contact-emails a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
+
 
 
 
