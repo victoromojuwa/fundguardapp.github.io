@@ -1,0 +1,47 @@
+/* ============= FundGuard Africa — Premium Theme ============= */
+:root{
+  --bg:#0b1222; --ink:#eaf1ff; --muted:#9fb1d9; --brand:#2b6fff; --accent:#ff7a1a;
+  --card:#121a2b; --line:#213255;
+  --radius:14px; --shadow:0 10px 25px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:linear-gradient(180deg, #0b1222 0%, #0d1428 100%);
+  color:var(--ink); font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+.container{max-width:1060px;margin:0 auto;padding:28px 20px}
+header.hero{
+  text-align:center; padding:28px 0 10px; border-bottom:1px solid var(--line);
+}
+.hero img{max-height:72px;display:block;margin:0 auto 12px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+.hero h1{margin:0 0 6px;font-size:28px;font-weight:700}
+.hero p{margin:0;color:var(--muted)}
+.section{padding:24px 0}
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px; box-shadow:var(--shadow); margin-bottom:18px;
+}
+h2.title{margin:0 0 12px;font-size:20px;color:#cfe0ff}
+ul.features{margin:0;padding-left:18px}
+ul.features li{margin:6px 0}
+.banner{
+  width:100%; max-height:420px; object-fit:cover; border-radius:var(--radius);
+  border:1px solid var(--line); background:#0f172a;
+}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.btn{
+  display:inline-block; text-decoration:none; color:var(--ink);
+  padding:10px 14px; border-radius:10px; border:1px solid var(--line);
+}
+.btn.primary{background:var(--brand); border-color:var(--brand)}
+.btn.accent{background:var(--accent); border-color:var(--accent)}
+.btn:hover{filter:brightness(1.05)}
+.testimonial{background:#0e1730;border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0}
+footer.footer{
+  margin-top:26px; padding:18px 0; text-align:center; color:var(--muted);
+  border-top:1px solid var(--line); font-size:14px;
+}
+.link{color:#cfe0ff}
+
