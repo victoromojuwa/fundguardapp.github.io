@@ -1,8 +1,10 @@
 .site-logo {
-  max-height: 60px;
+  height: 60px;
   width: auto;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
+}
+
 }
 .logo-container {
   text-align: center;
