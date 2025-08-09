@@ -67,32 +67,7 @@ video {
   box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 20px;
 }
-/* Contact strip (SVG icons) */
-.contact-strip{
-  background:#0d1b2a;color:#fff;padding:25px 10px;text-align:center
-}
-.contact-strip h3{margin-bottom:14px;font-size:1.4em;font-weight:700}
-.contact-emails{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
-.contact-emails a{
-  display:flex;align-items:center;gap:8px;color:#ffb703;text-decoration:none;
-  font-weight:600;padding:8px 12px;border-radius:8px;
-  transition:transform .2s ease, background .25s ease, color .25s ease;
-}
-.contact-emails a:hover{background:#ffb703;color:#0d1b2a;transform:translateY(-1px)}
-.contact-emails svg{
-  width:18px;height:18px;flex:0 0 18px;
-  fill:#ffcc4d; /* icon color */
-  transition:fill .25s ease
-}
-.contact-emails a:hover svg{fill:#0d1b2a}
 
-/* Footer */
-footer {
-  background-color: #0b3d91;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
 /* === Integrated Footer (dark + gold) === */
 footer.footer{
   background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
