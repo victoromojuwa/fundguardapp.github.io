@@ -5,71 +5,95 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Protect • Track • Recover</title>
 
-<!-- Social Preview (optional; safe to keep) -->
+<!-- Social Preview (optional) -->
 <meta name="description" content="AI-powered fraud detection and fund recovery for Africa’s digital economy. Real-time alerts, case management, and compliance tools.">
 <meta property="og:title" content="FundGuard Africa — Detect, Track & Recover Stolen Funds">
 <meta property="og:description" content="Protecting Africa’s digital economy with real-time fraud detection, fund tracking, and recovery tools.">
 <meta property="og:url" content="https://www.fundguardafrica.com">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Inline CSS: one-file site -->
 <style>
-:root{
-  --bg1:#0d0d0d; --bg2:#1a1a1a; --ink:#ffffff; --muted:#cfd7e3;
-  --gold:#f5c542; --line:#2a2a2a; --card:rgba(255,255,255,.03);
-  --brand:#2b6fff; --accent:#ff7a1a;
-}
-*{box-sizing:border-box} html,body{height:100%}
-body{margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--ink);font:16px/1.65 system-ui,Segoe UI,Roboto,Helvetica,Arial}
-a{color:#9ec1ff;text-decoration:none} a:hover{text-decoration:underline}
-.container{max-width:1100px;margin:0 auto;padding:24px 16px}
-h1,h2,h3{margin:0 0 10px}
-.section{padding:24px 0;border-bottom:1px solid var(--line)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
-ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
+  :root{
+    --navy:#0A1A2F;       /* dark blue background */
+    --navy2:#0F2641;      /* subtle blend */
+    --ink:#ffffff;        /* body text */
+    --muted:#cfd7e3;
+    --gold:#FFD700;       /* brand gold */
+    --line:#193250;       /* soft divider */
+    --card:rgba(255,255,255,.05);
+    --brand:#2b6fff;      /* CTA blue */
+    --accent:#ff7a1a;     /* CTA orange */
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: radial-gradient(1200px 600px at 20% -10%, var(--navy2), transparent),
+                linear-gradient(135deg, var(--navy), var(--navy2));
+    color:var(--ink);
+    font:16px/1.65 system-ui, Segoe UI, Roboto, Helvetica, Arial;
+    text-align:left;
+  }
+  a{color:#9ec1ff;text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{margin:0 0 10px}
+  .container{max-width:1100px;margin:0 auto;padding:22px 16px}
+  .section{padding:22px 0;border-bottom:1px solid var(--line)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  ul.features{margin:0;padding-left:18px}
+  ul.features li{margin:6px 0}
 
-/* Header & footer */
-.site-header{border-bottom:3px solid var(--gold)}
-.brand-wordmark{color:var(--gold);font-weight:800;font-size:34px;letter-spacing:.5px;text-transform:uppercase;margin:0}
-.tagline{color:#d7d7d7;margin:6px 0 0}
-.site-footer{border-top:3px solid var(--gold)}
-.footer-bottom{font-size:14px;color:#cfcfcf}
+  /* Header */
+  .site-header{border-bottom:3px solid var(--gold)}
+  .brand{
+    display:flex; align-items:center; gap:12px;
+  }
+  .brand svg{width:36px;height:36px;flex:0 0 36px}
+  .brand-name{color:var(--gold);font-weight:800;font-size:34px;letter-spacing:.5px;text-transform:uppercase;margin:0}
+  .tagline{color:#d7e3f7;margin:6px 0 0}
 
-/* Buttons */
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.btn{display:inline-block;text-decoration:none;color:#fff;padding:10px 14px;border-radius:10px;border:1px solid transparent;font-weight:600}
-.btn.primary{background:var(--brand)} .btn.accent{background:var(--accent)} .btn:hover{filter:brightness(1.05)}
+  /* Buttons */
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+  .btn{display:inline-block;text-decoration:none;color:#fff;padding:10px 14px;border-radius:10px;border:1px solid transparent;font-weight:600}
+  .btn.primary{background:var(--brand)}
+  .btn.accent{background:var(--accent)}
+  .btn:hover{filter:brightness(1.05)}
 
-/* Testimonials */
-.testimonial{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}
+  /* Testimonials */
+  .testimonial{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}
 
-/* Contact strip */
-.contact-strip.card{padding:16px}
-.contact-strip h3{margin:0 0 10px}
-.contact-emails{display:flex;flex-wrap:wrap;gap:12px}
-.contact-emails a{color:#cfe0ff;font-weight:600}
+  /* Contact strip */
+  .contact-strip.card{padding:16px}
+  .contact-strip h3{margin:0 0 10px}
+  .contact-emails{display:flex;flex-wrap:wrap;gap:12px}
+  .contact-emails a{color:#cfe0ff;font-weight:600}
 
-/* Sticky CTA (mobile) */
-.sticky-cta{position:fixed;left:0;right:0;bottom:14px;display:flex;justify-content:center;z-index:9999;pointer-events:none}
-.sticky-cta a{pointer-events:auto;background:var(--accent);color:#111;font-weight:700;padding:12px 18px;border-radius:999px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.2), 0 2px 6px rgba(0,0,0,.2);border:2px solid #ffb36f}
-@media(min-width:900px){.sticky-cta{display:none}}
+  /* Footer */
+  .site-footer{border-top:3px solid var(--gold)}
+  .footer-brand{color:var(--gold);font-weight:800;font-size:22px;margin-bottom:6px}
+  .footer-bottom{font-size:14px;color:#cfd7e3}
 
-/* Back to top */
-#backToTop{position:fixed;right:16px;bottom:80px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:#2b6fff;color:#fff;border:none;box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s, transform .2s, visibility .2s;z-index:9999}
-#backToTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+  /* Sticky CTA (mobile) */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:14px;display:flex;justify-content:center;z-index:9999;pointer-events:none}
+  .sticky-cta a{pointer-events:auto;background:var(--accent);color:#111;font-weight:700;padding:12px 18px;border-radius:999px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.25), 0 2px 6px rgba(0,0,0,.25);border:2px solid #ffb36f}
+  @media(min-width:900px){.sticky-cta{display:none}}
 
-/* Doc / README rendering */
-.md{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
-.md h1,.md h2,.md h3{margin-top:1.2em}
-.md pre{background:#0f0f0f;border:1px solid var(--line);padding:12px;border-radius:8px;overflow:auto}
-.md code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.md a{color:#9ec1ff}
-.loading{opacity:.7}
-.doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-.doc-note{color:#cfd7e3;font-size:14px;margin-top:8px}
+  /* Back to top */
+  #backToTop{position:fixed;right:16px;bottom:80px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:#2b6fff;color:#fff;border:none;box-shadow:0 10px 20px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s, transform .2s, visibility .2s;z-index:9999}
+  #backToTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+
+  /* README rendering */
+  .md{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .md h1,.md h2,.md h3{margin-top:1.2em}
+  .md pre{background:#0f1c30;border:1px solid var(--line);padding:12px;border-radius:8px;overflow:auto}
+  .md code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .md a{color:#9ec1ff}
+  .loading{opacity:.7}
+  .doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .doc-note{color:#cfd7e3;font-size:14px;margin-top:8px}
 </style>
 
-<!-- Markdown renderer for README -->
+<!-- Markdown renderer (for README) -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -77,7 +101,21 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
 <!-- Header -->
 <header class="site-header">
   <div class="container">
-    <h1 class="brand-wordmark">FundGuard Africa</h1>
+    <div class="brand">
+      <!-- Inline SVG logo (dark shield + gold core) -->
+      <svg viewBox="0 0 64 64" aria-label="FundGuard">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0A1A2F"/>
+            <stop offset="1" stop-color="#12345A"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#g)" stroke="#FFD700" stroke-width="2"
+              d="M32 4l20 8v16c0 12-8 24-20 32C20 52 12 40 12 28V12l20-8z"/>
+        <circle cx="32" cy="28" r="9" fill="#FFD700"/>
+      </svg>
+      <h1 class="brand-name">FundGuard Africa</h1>
+    </div>
     <p class="tagline">Protect • Track • Recover</p>
   </div>
 </header>
@@ -108,6 +146,7 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
           <li>💬 AI-powered Risk Messaging</li>
         </ul>
         <div class="actions">
+          <!-- Demo = link (fast loading) -->
           <a class="btn primary" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/view?usp=drive_link">▶ Watch Demo</a>
           <a class="btn accent" target="_blank" rel="noopener" href="https://forms.gle/2ptr9QuHbkC6FCjQ6">🚀 Get Early Access</a>
           <a class="btn" target="_blank" rel="noopener" href="https://github.com/victoromojuwa/fundguardapp.github.io">View GitHub</a>
@@ -152,7 +191,7 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
     </div>
   </section>
 
-  <!-- Founder -->
+  <!-- Founder & Team -->
   <section class="section">
     <div class="container">
       <div class="card">
@@ -209,7 +248,7 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
           <a class="btn" target="_blank" rel="noopener" href="https://github.com/victoromojuwa/fundguardapp.github.io/blob/main/README.md">Open on GitHub</a>
         </div>
         <div id="md" class="md loading">Loading README…</div>
-        <div class="doc-note">This section auto-syncs from your GitHub README. Update README.md and refresh to see changes.</div>
+        <div class="doc-note">This mirrors your GitHub README.md. Update README.md and tap Refresh to see changes.</div>
       </div>
     </div>
   </section>
@@ -218,6 +257,7 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
 <!-- Footer -->
 <footer class="site-footer">
   <div class="container">
+    <div class="footer-brand">FundGuard Africa</div>
     <div class="footer-bottom">© 2025 FundGuard Africa — All rights reserved.</div>
   </div>
 </footer>
@@ -230,7 +270,6 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
 <!-- Back to top -->
 <button id="backToTop" aria-label="Back to top">↑</button>
 
-<!-- Inline JS -->
 <script>
   // Back to top
   const btt = document.getElementById('backToTop');
@@ -249,11 +288,11 @@ ul.features{margin:0;padding-left:18px} ul.features li{margin:6px 0}
       .then(txt => { md.innerHTML = marked.parse(txt); md.classList.remove('loading'); })
       .catch(err => { md.innerHTML = "<p>Couldn’t load README.md. Check repository path/branch.</p>"; console.error("README fetch error:", err); });
   }
-  // auto-load on first visit
-  loadReadme();
+  loadReadme(); // auto-load on first visit
 </script>
 </body>
 </html>
+
 
 
  
