@@ -52,6 +52,81 @@
 .contact-emails a:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
+/* ===== FundGuard layout & brand colors (left-aligned) ===== */
+:root{
+  --bg1:#0d0d0d;  /* match logo background */
+  --bg2:#1a1a1a;
+  --ink:#ffffff;  /* body text white */
+  --gold:#f5c542; /* brand gold */
+  --line:#2a2a2a;
+}
+
+html,body{height:100%}
+body{
+  margin:0;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  color: var(--ink);
+  font: 16px/1.65 system-ui, Segoe UI, Roboto, Helvetica, Arial;
+  text-align: left; /* ensure left alignment site-wide */
+}
+
+/* Generic container to keep content tidy and left-aligned */
+.container{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Headings & links on dark */
+h1,h2,h3{ color: #ffffff; margin: 0 0 10px }
+a{ color:#9ec1ff; text-decoration:none }
+a:hover{text-decoration:underline}
+
+/* Header: gold brand on dark, left-aligned */
+.site-header{
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  border-bottom: 3px solid var(--gold);
+}
+.brand-wordmark{
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.brand-wordmark.small{ font-size: 22px; }
+.tagline{ color:#d7d7d7; margin-top:6px }
+
+/* Sections/cards stay left-aligned */
+.section{ padding: 24px 0; border-bottom:1px solid var(--line) }
+.card{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+/* Footer: gold brand + left-aligned content */
+.site-footer{
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  border-top: 3px solid var(--gold);
+  color:#eaeaea;
+}
+.site-footer .footer-top{ margin-bottom:10px }
+.site-footer .footer-bottom{ font-size:14px; color:#cfcfcf }
+
+/* Contact strip: left-aligned and compact */
+.contact-strip{
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.contact-strip h3{ color:#ffffff; margin-bottom:8px }
+.contact-emails{ display:flex; flex-wrap:wrap; gap:10px }
+.contact-emails a{
+  color:#cfe0ff; font-weight:600; padding:2px 0;
+}
 
 
 
