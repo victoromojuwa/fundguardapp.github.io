@@ -1,297 +1,228 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FundGuard Africa — Protect • Track • Recover</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FundGuard Africa — Protect • Track • Recover</title>
 
-<!-- Social Preview (optional) -->
-<meta name="description" content="AI-powered fraud detection and fund recovery for Africa’s digital economy. Real-time alerts, case management, and compliance tools.">
-<meta property="og:title" content="FundGuard Africa — Detect, Track & Recover Stolen Funds">
-<meta property="og:description" content="Protecting Africa’s digital economy with real-time fraud detection, fund tracking, and recovery tools.">
-<meta property="og:url" content="https://www.fundguardafrica.com">
-<meta name="twitter:card" content="summary_large_image">
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css?v=10" />
 
-<style>
-  :root{
-    --navy:#0A1A2F;       /* dark blue background */
-    --navy2:#0F2641;      /* subtle blend */
-    --ink:#ffffff;        /* body text */
-    --muted:#cfd7e3;
-    --gold:#FFD700;       /* brand gold */
-    --line:#193250;       /* soft divider */
-    --card:rgba(255,255,255,.05);
-    --brand:#2b6fff;      /* CTA blue */
-    --accent:#ff7a1a;     /* CTA orange */
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    background: radial-gradient(1200px 600px at 20% -10%, var(--navy2), transparent),
-                linear-gradient(135deg, var(--navy), var(--navy2));
-    color:var(--ink);
-    font:16px/1.65 system-ui, Segoe UI, Roboto, Helvetica, Arial;
-    text-align:left;
-  }
-  a{color:#9ec1ff;text-decoration:none}
-  a:hover{text-decoration:underline}
-  h1,h2,h3{margin:0 0 10px}
-  .container{max-width:1100px;margin:0 auto;padding:22px 16px}
-  .section{padding:22px 0;border-bottom:1px solid var(--line)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
-  ul.features{margin:0;padding-left:18px}
-  ul.features li{margin:6px 0}
-
-  /* Header */
-  .site-header{border-bottom:3px solid var(--gold)}
-  .brand{
-    display:flex; align-items:center; gap:12px;
-  }
-  .brand svg{width:36px;height:36px;flex:0 0 36px}
-  .brand-name{color:var(--gold);font-weight:800;font-size:34px;letter-spacing:.5px;text-transform:uppercase;margin:0}
-  .tagline{color:#d7e3f7;margin:6px 0 0}
-
-  /* Buttons */
-  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-  .btn{display:inline-block;text-decoration:none;color:#fff;padding:10px 14px;border-radius:10px;border:1px solid transparent;font-weight:600}
-  .btn.primary{background:var(--brand)}
-  .btn.accent{background:var(--accent)}
-  .btn:hover{filter:brightness(1.05)}
-
-  /* Testimonials */
-  .testimonial{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}
-
-  /* Contact strip */
-  .contact-strip.card{padding:16px}
-  .contact-strip h3{margin:0 0 10px}
-  .contact-emails{display:flex;flex-wrap:wrap;gap:12px}
-  .contact-emails a{color:#cfe0ff;font-weight:600}
-
-  /* Footer */
-  .site-footer{border-top:3px solid var(--gold)}
-  .footer-brand{color:var(--gold);font-weight:800;font-size:22px;margin-bottom:6px}
-  .footer-bottom{font-size:14px;color:#cfd7e3}
-
-  /* Sticky CTA (mobile) */
-  .sticky-cta{position:fixed;left:0;right:0;bottom:14px;display:flex;justify-content:center;z-index:9999;pointer-events:none}
-  .sticky-cta a{pointer-events:auto;background:var(--accent);color:#111;font-weight:700;padding:12px 18px;border-radius:999px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.25), 0 2px 6px rgba(0,0,0,.25);border:2px solid #ffb36f}
-  @media(min-width:900px){.sticky-cta{display:none}}
-
-  /* Back to top */
-  #backToTop{position:fixed;right:16px;bottom:80px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:#2b6fff;color:#fff;border:none;box-shadow:0 10px 20px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s, transform .2s, visibility .2s;z-index:9999}
-  #backToTop.show{opacity:1;visibility:visible;transform:translateY(0)}
-
-  /* README rendering */
-  .md{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
-  .md h1,.md h2,.md h3{margin-top:1.2em}
-  .md pre{background:#0f1c30;border:1px solid var(--line);padding:12px;border-radius:8px;overflow:auto}
-  .md code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  .md a{color:#9ec1ff}
-  .loading{opacity:.7}
-  .doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-  .doc-note{color:#cfd7e3;font-size:14px;margin-top:8px}
-</style>
-
-<!-- Markdown renderer (for README) -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Meta -->
+  <meta name="description" content="AI-powered fraud detection and fund recovery for Africa’s digital economy. Real-time alerts, case management, and compliance tools.">
+  <meta property="og:title" content="FundGuard Africa — Detect, Track & Recover Stolen Funds">
+  <meta property="og:description" content="Protecting Africa’s digital economy with real-time fraud detection, fund tracking, and recovery tools.">
+  <meta property="og:url" content="https://www.fundguardafrica.com">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
-<!-- Header -->
-<header class="site-header">
-  <div class="container">
-    <div class="brand">
-      <!-- Inline SVG logo (dark shield + gold core) -->
-      <svg viewBox="0 0 64 64" aria-label="FundGuard">
-        <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#0A1A2F"/>
-            <stop offset="1" stop-color="#12345A"/>
-          </linearGradient>
-        </defs>
-        <path fill="url(#g)" stroke="#FFD700" stroke-width="2"
-              d="M32 4l20 8v16c0 12-8 24-20 32C20 52 12 40 12 28V12l20-8z"/>
-        <circle cx="32" cy="28" r="9" fill="#FFD700"/>
-      </svg>
-      <h1 class="brand-name">FundGuard Africa</h1>
-    </div>
-    <p class="tagline">Protect • Track • Recover</p>
-  </div>
-</header>
-
-<main>
-  <!-- About -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>About FundGuard</h2>
-        <p><strong>FundGuard Africa</strong> is an AI-powered fraud detection and fund recovery platform.
-          We help individuals, businesses, banks, and fintechs monitor suspicious transactions in real time,
-          track stolen funds across accounts and crypto wallets, and generate verified case reports for legal and regulatory action.</p>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- Prefer PNG at docs/assets/images/logo-dark.png; SVG fallback below if image missing -->
+        <img class="brand-logo" src="assets/images/logo-dark.png" alt="FundGuard Africa Logo" onerror="this.style.display='none';document.getElementById('fg-svg').style.display='block'">
+        <svg id="fg-svg" class="brand-logo" viewBox="0 0 64 64" aria-label="FundGuard" style="display:none">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0C1F2E"/><stop offset="1" stop-color="#14385A"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#g)" stroke="#FFD700" stroke-width="2" d="M32 4l20 8v16c0 12-8 24-20 32C20 52 12 40 12 28V12l20-8z"/>
+          <circle cx="32" cy="28" r="9" fill="#FFD700"/>
+        </svg>
+        <h1 class="brand-name">FundGuard Africa</h1>
       </div>
+      <nav class="top-links">
+        <a href="#features">Features</a>
+        <a href="#sdgs">SDGs</a>
+        <a href="#tech">Tech</a>
+        <a href="#traction">Traction</a>
+        <a href="#docs">Docs</a>
+        <a class="btn btn-accent" target="_blank" rel="noopener" href="https://forms.gle/2ptr9QuHbkC6FCjQ6">Get Early Access</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- Core Features -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>Core Features</h2>
-        <ul class="features">
-          <li>🔍 Real-time Fraud Detection & Alerts</li>
-          <li>📁 Secure Case Management</li>
-          <li>🛡️ AML/NDPR/CBN-aligned Compliance Tools</li>
-          <li>🔗 Bank & Crypto Wallet Monitoring</li>
-          <li>💬 AI-powered Risk Messaging</li>
-        </ul>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h2 class="hero-title">Protect • Track • Recover</h2>
+        <p class="hero-lead">
+          An AI-powered fraud detection and fund recovery platform for Africa’s digital economy.
+          Real-time alerts, case management, and compliant reporting for individuals, banks, and fintechs.
+        </p>
         <div class="actions">
-          <!-- Demo = link (fast loading) -->
-          <a class="btn primary" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/view?usp=drive_link">▶ Watch Demo</a>
-          <a class="btn accent" target="_blank" rel="noopener" href="https://forms.gle/2ptr9QuHbkC6FCjQ6">🚀 Get Early Access</a>
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/view?usp=drive_link">▶ Watch Demo</a>
           <a class="btn" target="_blank" rel="noopener" href="https://github.com/victoromojuwa/fundguardapp.github.io">View GitHub</a>
-          <a class="btn" href="#docs">📖 Documentation</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SDGs -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>Sustainable & Impact (SDGs)</h2>
-        <p>Direct support for <strong>SDG 8</strong> (Decent Work & Economic Growth) and <strong>SDG 16</strong> (Peace, Justice & Strong Institutions) through secure finance, transparency, and evidence-backed reporting.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech Stack -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>Tech Stack</h2>
-        <ul class="features">
-          <li>Frontend: HTML, CSS, JavaScript (Vue-ready)</li>
-          <li>Backend: Supabase (Postgres, Auth, REST, Realtime, Storage)</li>
-          <li>Hosting: GitHub Pages + Custom Domain (HTTPS)</li>
-          <li>Security: SSL/TLS, RLS policies, encrypted storage, API keys</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Traction -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>Traction</h2>
-        <p>MVP live with active testing from early users and partners. Core flows include authentication, case creation, evidence uploads, and alerting. Integration roadmap includes bank/crypto partners and expanded regulatory APIs.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Founder & Team -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>Founder & Team</h2>
-        <p><strong>Victor Kolawole Omojuwa</strong> — Founder/CEO. Public Health professional, tech entrepreneur, and peace advocate. Mission: protect Africa’s digital assets from fraud.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Compliance -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>Licensing & Compliance</h2>
-        <p>Aligned with <strong>CBN, NDPR, EFCC, and NITDA</strong> requirements. MVP uses safe, simulated checks where integrations require regulatory approvals; production will ship with approved, audited connections.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="section">
-    <div class="container">
-      <div class="card">
-        <h2>What Early Users Say</h2>
-        <div class="testimonial">“FundGuard helped us trace fraudulent transactions in minutes.” — <strong>Bank Security Officer</strong></div>
-        <div class="testimonial">“Instant alerts saved my business from a major scam.” — <strong>SME Owner</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section">
-    <div class="container">
-      <div class="contact-strip card">
-        <h3>📬 Contact Us</h3>
-        <div class="contact-emails">
-          <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
-          <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
-          <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
-          <a href="mailto:legal@fundguardafrica.com">legal@fundguardafrica.com</a>
-          <a href="mailto:media@fundguardafrica.com">media@fundguardafrica.com</a>
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">Core Features</h3>
+          <ul class="features">
+            <li>🔍 Real-time Fraud Detection & Alerts</li>
+            <li>📁 Secure Case Management</li>
+            <li>🛡️ AML/NDPR/CBN-aligned Compliance Tools</li>
+            <li>🔗 Bank & Crypto Wallet Monitoring</li>
+            <li>💬 AI-powered Risk Messaging</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Documentation (auto-load README.md) -->
-  <section id="docs" class="section">
-    <div class="container">
-      <div class="card">
-        <div class="doc-actions">
-          <h2 style="margin-right:auto">Documentation</h2>
-          <a class="btn" href="#docs" onclick="loadReadme();return false;">↻ Refresh</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://github.com/victoromojuwa/fundguardapp.github.io/blob/main/README.md">Open on GitHub</a>
+    <!-- SDGs -->
+    <section id="sdgs" class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">Sustainable & Impact (SDGs)</h3>
+          <p>We support <strong>SDG 8</strong> (Decent Work & Economic Growth) and <strong>SDG 16</strong> (Peace, Justice & Strong Institutions) by strengthening financial integrity, transparency, and evidence-backed reporting.</p>
         </div>
-        <div id="md" class="md loading">Loading README…</div>
-        <div class="doc-note">This mirrors your GitHub README.md. Update README.md and tap Refresh to see changes.</div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
 
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-brand">FundGuard Africa</div>
-    <div class="footer-bottom">© 2025 FundGuard Africa — All rights reserved.</div>
+    <!-- Tech -->
+    <section id="tech" class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">Tech Stack</h3>
+          <ul class="features">
+            <li>Frontend: HTML, CSS, JavaScript (Vue-ready)</li>
+            <li>Backend: Supabase (Postgres, Auth, REST, Realtime, Storage)</li>
+            <li>Hosting: GitHub Pages + Custom Domain (HTTPS)</li>
+            <li>Security: SSL/TLS, RLS policies, encrypted storage, API keys</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Traction -->
+    <section id="traction" class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">Traction</h3>
+          <p>MVP live with early users. Working flows: authentication, case creation, evidence uploads, alerts. Roadmap: bank/crypto integrations, expanded regulatory APIs, enterprise features.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">Founder & Team</h3>
+          <p><strong>Victor Kolawole Omojuwa</strong> — Founder/CEO. Public Health professional, tech entrepreneur, and peace advocate. Mission: protect Africa’s digital assets from fraud.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance -->
+    <section class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">Licensing & Compliance</h3>
+          <p>Aligned with <strong>CBN, NDPR, EFCC, and NITDA</strong>. MVP uses safe simulated checks where approvals are required; production will ship with approved, audited integrations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+      <div class="container">
+        <div class="card">
+          <h3 class="section-title">What Early Users Say</h3>
+          <div class="testimonial">“FundGuard helped us trace fraudulent transactions in minutes.” — <strong>Bank Security Officer</strong></div>
+          <div class="testimonial">“Instant alerts saved my business from a major scam.” — <strong>SME Owner</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section">
+      <div class="container">
+        <div class="card contact-strip">
+          <h3 class="section-title">📬 Contact Us</h3>
+          <div class="contact-emails">
+            <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+            <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+            <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+            <a href="mailto:legal@fundguardafrica.com">legal@fundguardafrica.com</a>
+            <a href="mailto:media@fundguardafrica.com">media@fundguardafrica.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documentation (auto-load README.md) -->
+    <section id="docs" class="section">
+      <div class="container">
+        <div class="card">
+          <div class="doc-header">
+            <h3 class="section-title" style="margin-right:auto">Documentation</h3>
+            <a class="btn" href="#docs" onclick="loadReadme();return false;">↻ Refresh</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://github.com/victoromojuwa/fundguardapp.github.io/blob/main/README.md">Open on GitHub</a>
+          </div>
+          <div id="md" class="md loading">Loading README…</div>
+          <p class="doc-note">This mirrors your GitHub README.md. Update README.md and tap Refresh to see changes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img class="brand-logo" src="assets/images/logo-dark.png" alt="FundGuard Africa Logo" onerror="this.style.display='none';document.getElementById('fg-svg-foot').style.display='inline'">
+        <svg id="fg-svg-foot" class="brand-logo" viewBox="0 0 64 64" aria-label="FundGuard" style="display:none">
+          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0C1F2E"/><stop offset="1" stop-color="#14385A"/></linearGradient></defs>
+          <path fill="url(#g2)" stroke="#FFD700" stroke-width="2" d="M32 4l20 8v16c0 12-8 24-20 32C20 52 12 40 12 28V12l20-8z"/><circle cx="32" cy="28" r="9" fill="#FFD700"/>
+        </svg>
+        <span class="brand-name">FundGuard Africa</span>
+      </div>
+      <div class="footer-copy">© 2025 FundGuard Africa — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Sticky CTA (mobile) -->
+  <div class="sticky-cta">
+    <a href="https://forms.gle/2ptr9QuHbkC6FCjQ6" target="_blank" rel="noopener">🚀 Get Early Access</a>
   </div>
-</footer>
 
-<!-- Sticky CTA (mobile) -->
-<div class="sticky-cta">
-  <a href="https://forms.gle/2ptr9QuHbkC6FCjQ6" target="_blank" rel="noopener">🚀 Get Early Access</a>
-</div>
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top">↑</button>
 
-<!-- Back to top -->
-<button id="backToTop" aria-label="Back to top">↑</button>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { if (window.scrollY > 600) btt.classList.add('show'); else btt.classList.remove('show'); });
+    btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-<script>
-  // Back to top
-  const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 600) btt.classList.add('show'); else btt.classList.remove('show');
-  });
-  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-
-  // README loader
-  const RAW_URL = "https://raw.githubusercontent.com/victoromojuwa/fundguardapp.github.io/main/README.md";
-  function loadReadme(){
-    const md = document.getElementById('md');
-    md.classList.add('loading'); md.textContent = "Loading README…";
-    fetch(RAW_URL, {cache:'no-store'})
-      .then(r => r.ok ? r.text() : Promise.reject(r.status))
-      .then(txt => { md.innerHTML = marked.parse(txt); md.classList.remove('loading'); })
-      .catch(err => { md.innerHTML = "<p>Couldn’t load README.md. Check repository path/branch.</p>"; console.error("README fetch error:", err); });
-  }
-  loadReadme(); // auto-load on first visit
-</script>
+    // README loader
+    const RAW_URL = "https://raw.githubusercontent.com/victoromojuwa/fundguardapp.github.io/main/README.md";
+    function loadReadme(){
+      const md = document.getElementById('md');
+      md.classList.add('loading'); md.textContent = "Loading README…";
+      fetch(RAW_URL, {cache:'no-store'})
+        .then(r => r.ok ? r.text() : Promise.reject(r.status))
+        .then(txt => { md.innerHTML = marked.parse(txt); md.classList.remove('loading'); })
+        .catch(err => { md.innerHTML = "<p>Couldn’t load README.md. Check repository path/branch.</p>"; console.error("README fetch error:", err); });
+    }
+    loadReadme();
+  </script>
 </body>
 </html>
+
+
+
 
 
 
