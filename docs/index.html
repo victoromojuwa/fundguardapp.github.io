@@ -1,151 +1,261 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FundGuard Africa</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FundGuard Africa — Protect • Track • Recover</title>
 
-  <!-- Meta Description -->
-  <meta name="description" content="FundGuard Africa - AI-powered fraud detection platform helping Africa track, detect, and recover stolen funds in real time.">
+<meta name="description" content="FundGuard Africa is an AI-powered fraud detection and fund recovery platform for Africa’s digital economy. Real-time alerts, case management, AML tools, and secure reporting."/>
+<meta property="og:title" content="FundGuard Africa — Protect • Track • Recover"/>
+<meta property="og:description" content="AI fraud detection and fund recovery for Africa. Real-time alerts, case tracking, AML/KYC tools, and secure reporting."/>
+<meta property="og:url" content="https://www.fundguardafrica.com"/>
+<meta name="twitter:card" content="summary_large_image"/>
 
-  <!-- Open Graph / Social Media Preview -->
-  <meta property="og:title" content="FundGuard Africa">
-  <meta property="og:description" content="Protecting Africa's Digital Economy from Fraud.">
-  <meta property="og:image" content="assets/images/logo-dark.png">
-  <meta property="og:url" content="https://www.fundguardafrica.com">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/logo-dark.png">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #0D1B2A; /* Dark blue */
-      color: white;
-    }
-    header, footer {
-      padding: 20px;
-      background-color: #0A1520;
-      text-align: center;
-    }
-    .site-title {
-      font-size: 28px;
-      font-weight: bold;
-      color: #D4AF37; /* Gold */
-      margin: 0;
-    }
-    section {
-      padding: 40px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 {
-      color: #D4AF37; /* Gold */
-      margin-bottom: 15px;
-    }
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #D4AF37;
-      color: black;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      padding: 8px 0;
-    }
-  </style>
+<style>
+  :root{
+    --navy:#0B1E2D; --navy2:#14385A; --ink:#fff; --muted:#cfd7e3;
+    --gold:#FFD700; --line:#193250; --card:rgba(255,255,255,.06);
+    --brand:#2b6fff; --accent:#ff7a1a;
+  }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--ink);font:16px/1.65 system-ui,Segoe UI,Roboto,Helvetica,Arial}
+  a{color:#9ec1ff;text-decoration:none} a:hover{text-decoration:underline}
+  h1,h2,h3{margin:0 0 10px}
+  .container{max-width:1100px;margin:0 auto;padding:22px 16px}
+  .section{padding:26px 0;border-bottom:1px solid var(--line)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .title{color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-weight:800}
+  .section-title{border-bottom:3px solid var(--gold);padding-bottom:6px;margin-bottom:14px}
+  ul.tight{margin:0;padding-left:18px} ul.tight li{margin:6px 0}
+  .pill{display:inline-block;border:1px solid var(--line);background:rgba(255,255,255,.05);padding:6px 10px;border-radius:999px;margin:4px 6px 0 0}
+  .grid{display:grid;gap:14px}
+  @media(min-width:900px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+  .hero h2{font-size:28px;margin:6px 0 8px}
+  .lead{color:#e6eef8;max-width:900px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+  .btn{display:inline-block;color:#111;background:var(--gold);padding:10px 14px;border-radius:10px;border:1px solid #e8c84b;font-weight:700}
+  .btn.secondary{background:var(--brand);color:#fff;border-color:#284fd8}
+  .muted{color:var(--muted)}
+  .badge{background:rgba(255,215,0,.14);border:1px solid var(--gold);color:var(--gold);padding:4px 10px;border-radius:999px;font-weight:700}
+  .note{font-size:14px;color:#cfd7e3}
+  .kv{display:flex;flex-wrap:wrap;gap:10px}
+  .kv div{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .contact a{font-weight:700}
+  .footer{border-top:3px solid var(--gold);text-align:center;color:#cfd7e3}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1 class="site-title">FundGuard Africa</h1>
-  </header>
+<header class="section" style="border-bottom:3px solid var(--gold);background:linear-gradient(180deg,rgba(255,215,0,.06),transparent)">
+  <div class="container">
+    <h1 class="title" style="font-size:26px;margin-bottom:2px">FundGuard Africa</h1>
+    <div class="muted">Official Domain: <strong><a href="https://www.fundguardafrica.com">www.fundguardafrica.com</a></strong></div>
+  </div>
+</header>
+
+<main>
 
   <!-- Hero -->
-  <section>
-    <h2>Protecting Africa's Digital Economy from Fraud</h2>
-    <p>An AI-powered fraud detection platform helping users track, detect, and recover stolen funds in real time.</p>
-    <a href="#demo" class="btn">Watch Demo</a>
+  <section class="section hero">
+    <div class="container">
+      <span class="badge">Protect • Track • Recover</span>
+      <h2>AI-powered fraud detection & fund recovery for Africa’s digital economy.</h2>
+      <p class="lead">Real-time alerts, secure case management, AML/KYC tools, and evidence-ready reporting for individuals, banks, fintechs, and regulators.</p>
+      <div class="actions">
+        <a class="btn secondary" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/view?usp=drive_link">▶ Watch Demo</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://forms.gle/2ptr9QuHbkC6FCjQ6">🚀 Get Early Access</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Countries -->
+  <section class="section">
+    <div class="container grid cols-2">
+      <div class="card">
+        <h3 class="section-title">About FundGuard</h3>
+        <p><strong>FundGuard Africa</strong> safeguards users, SMEs, and institutions from scams, theft, and cyber-enabled financial crime. We combine AI risk scoring, transaction monitoring, and compliant reporting so victims and partners can act fast — with traceability.</p>
+        <div class="kv">
+          <div><strong>MVP:</strong> Live</div>
+          <div><strong>Model:</strong> SaaS + API</div>
+          <div><strong>Sector:</strong> Fraud Intelligence / RegTech</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="section-title">Where We Operate</h3>
+        <p>FundGuard is usable today in 9 countries with English-first onboarding and compliance alignment:</p>
+        <p>
+          🇳🇬 Nigeria • 🇬🇭 Ghana • 🇰🇪 Kenya • 🇿🇦 South Africa • 🇺🇬 Uganda • 🇹🇿 Tanzania • 🇨🇲 Cameroon • 🇷🇼 Rwanda • 🇨🇮 Côte d’Ivoire
+        </p>
+        <p class="note">Roadmap: expand to <strong>20+ African countries within 3 years</strong> via banking, mobile money, and regulator integrations.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Core Features -->
-  <section>
-    <h2>Core Features</h2>
-    <ul>
-      <li>🔍 Real-time Fraud Detection & Alerts</li>
-      <li>📁 Secure Case Management System</li>
-      <li>🛡️ Government & AML Verification Tools</li>
-      <li>🔗 Bank & Crypto Wallet Monitoring</li>
-      <li>💬 AI-powered Risk Messaging & Alerts</li>
-    </ul>
+  <section class="section" id="features">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Core Features</h3>
+        <div class="grid cols-2">
+          <div>
+            <h4>Real-time Fraud Detection</h4>
+            <p>AI risk models monitor accounts, wallets, and flows to flag abnormal behavior instantly.</p>
+            <ul class="tight"><li>Anomaly & velocity checks</li><li>Geo/IP pattern analysis</li><li>Self-serve alert center</li></ul>
+          </div>
+          <div>
+            <h4>Secure Case Management</h4>
+            <p>Create a tamper-proof case with evidence, notes, and audit trails. Share read-only links with partners.</p>
+            <ul class="tight"><li>Case IDs • Chain of custody</li><li>Role-based access</li><li>Export legal-grade reports</li></ul>
+          </div>
+          <div>
+            <h4>Bank & Crypto Monitoring</h4>
+            <p>Track flagged wallets, counterparties, and transaction paths across chains and accounts.</p>
+            <ul class="tight"><li>Wallet & IBAN watchlists</li><li>Heuristic clustering</li><li>Cross-platform signals</li></ul>
+          </div>
+          <div>
+            <h4>Compliance & Reporting</h4>
+            <p>CBN/NDPR-aligned workflows with AML/KYC checks and EFCC-ready summaries.</p>
+            <ul class="tight"><li>KYC/AML screens</li><li>Regulator export packs</li><li>Data minimization</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Sustainable Impact -->
-  <section>
-    <h2>Sustainable & Impact (SDGs)</h2>
-    <p>FundGuard Africa contributes to UN Sustainable Development Goals by promoting financial security, economic stability, and innovation-driven growth.</p>
+  <!-- SDGs -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Sustainable & Impact (SDGs)</h3>
+        <p><strong>SDG 8 — Decent Work & Economic Growth:</strong> Reducing fraud protects incomes and promotes digital trade.</p>
+        <p><strong>SDG 16 — Peace, Justice & Strong Institutions:</strong> Evidence-backed reporting strengthens trust between citizens, banks, and regulators.</p>
+        <p><strong>SDG 9 — Industry, Innovation & Infrastructure:</strong> Modern AI/ML improves resilience across Africa’s fintech ecosystem.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Tech Stack -->
-  <section>
-    <h2>Tech Stack</h2>
-    <p>Built using AI/ML algorithms, blockchain analytics, real-time APIs, and a secure cloud infrastructure.</p>
+  <section class="section" id="tech">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Tech Stack</h3>
+        <div class="grid cols-2">
+          <div>
+            <h4>Application</h4>
+            <ul class="tight">
+              <li>Frontend: HTML/CSS/JS (Vue-ready)</li>
+              <li>Backend: Supabase (Postgres, Auth, Realtime, Storage)</li>
+              <li>APIs: REST & Webhooks</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Security & Ops</h4>
+            <ul class="tight">
+              <li>RLS, role scopes, audit logs</li>
+              <li>TLS/HTTPS, encrypted storage</li>
+              <li>Least-privilege keys, rotation</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">Production roll-out will replace any simulated checks with approved integrations and signed DPAs.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Traction -->
-  <section>
-    <h2>Traction</h2>
-    <p>Live MVP, early user sign-ups, and growing interest from banks, fintechs, and regulators.</p>
+  <section class="section" id="traction">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Traction</h3>
+        <ul class="tight">
+          <li>MVP live; early testers across 9 countries</li>
+          <li>Core flows: auth, case creation, evidence uploads, alerts</li>
+          <li>Active conversations with banks & mobile money partners</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- Team -->
-  <section>
-    <h2>Founder & Team</h2>
-    <p><strong>Victor Kolawole Omojuwa</strong> – CEO & Founder, with expertise in fintech innovation, public health, and peace advocacy.</p>
+  <!-- Founder & Team -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Founder & Team</h3>
+        <p><strong>Victor Kolawole Omojuwa — Founder/CEO.</strong> Public Health professional, tech entrepreneur, and peace advocate.</p>
+        <p><em>Founder story (seed):</em> “Fraud is stealing from Africa’s future. I started FundGuard to give everyone—individuals, SMEs, and institutions—a fast, trusted way to detect, track, and recover funds.”</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Compliance -->
-  <section>
-    <h2>Licensing & Compliance</h2>
-    <p>Aligned with CBN, NDPR, EFCC, and NITDA standards for data privacy and financial security.</p>
+  <!-- Licensing & Compliance -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Licensing & Compliance</h3>
+        <p>Aligned with <strong>CBN</strong>, <strong>NDPR</strong>, <strong>EFCC</strong>, and <strong>NITDA</strong> guidelines. MVP enforces RLS and data minimization. Production adds regulator-approved connections, vendor DPAs, and periodic audits.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Demo Video -->
-  <section id="demo">
-    <h2>Watch Demo Video</h2>
-    <a href="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/view" target="_blank" class="btn">Watch Demo</a>
+  <!-- Test the MVP -->
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Test the MVP</h3>
+        <p>Explore the FundGuard experience on web. The demo shows alerting, case creation, and reporting flows.</p>
+        <div class="actions">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/view?usp=drive_link">▶ Watch Demo</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://forms.gle/2ptr9QuHbkC6FCjQ6">Join Early Access</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Early Access -->
-  <section>
-    <h2>Get Early Access</h2>
-    <a href="https://forms.gle/2ptr9QuHbkC6FCjQ6" target="_blank" class="btn">Sign Up</a>
+  <!-- Support & Partnerships -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h3 class="section-title">Support & Partnerships</h3>
+        <p>We partner with banks, fintechs, regulators, and NGOs to harden defenses against fraud across Africa.</p>
+        <div class="contact">
+          <p><strong>Investors & Partnerships:</strong> <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a></p>
+          <p><strong>General:</strong> <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p class="site-title">FundGuard Africa</p>
-    <p>© 2025 FundGuard Africa | All Rights Reserved</p>
-  </footer>
+  <!-- Testimonials & Contribute -->
+  <section class="section">
+    <div class="container grid cols-2">
+      <div class="card">
+        <h3 class="section-title">What Early Users Say</h3>
+        <p>“FundGuard flagged a fraudulent withdrawal before it settled — it saved us.” — <strong>Bank Security Officer</strong></p>
+        <p>“The case report gave us exactly what police needed.” — <strong>SME Owner</strong></p>
+      </div>
+      <div class="card">
+        <h3 class="section-title">Contribute</h3>
+        <p>Security researchers, data partners, and developers are welcome.</p>
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://github.com/victoromojuwa/fundguardapp.github.io">View Repository</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="section footer">
+  <div class="container">
+    <div class="title" style="font-size:20px;margin-bottom:6px">FundGuard Africa</div>
+    <div>Official Domain: <a href="https://www.fundguardafrica.com">www.fundguardafrica.com</a></div>
+    <div class="muted" style="margin-top:6px">© 2025 FundGuard Africa — All rights reserved.</div>
+  </div>
+</footer>
 
 </body>
 </html>
+
 
 
 
