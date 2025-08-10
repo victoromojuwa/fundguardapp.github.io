@@ -85,6 +85,28 @@ ul.features li{margin:6px 0}
   .brand-name{font-size:22px}
   .hero-title{font-size:24px}
 }
+/* Logo size adjustments */
+header img,
+footer img {
+  max-height: 50px; /* Smaller, professional size */
+  width: auto;      /* Maintain proportions */
+  display: block;
+  margin: 0 auto;   /* Center horizontally */
+}
+
+/* Add vertical centering for header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add vertical centering for footer */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 
