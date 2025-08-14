@@ -71,6 +71,28 @@ h1,h2,h3{margin:0 0 10px}
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
+/* Fund Recovery Blurb */
+.recovery-blurb {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #f9f9f9; /* soft white */
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.recovery-blurb strong {
+  color: #b8860b; /* gold */
+  font-weight: bold;
+}
+
+.recovery-blurb em {
+  color: #00bfff; /* light blue accent */
+  font-style: normal;
+  font-weight: 600;
+}
 
 /* Lists & testimonials */
 ul.features{margin:0;padding-left:18px}
