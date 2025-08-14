@@ -4,66 +4,71 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Seed Pitch Deck</title>
-<meta name="description" content="FundGuard Africa seed pitch: problem, solution, traction, market, compliance, expansion, ask." />
+<meta name="description" content="FundGuard Africa seed pitch: problem, solution, traction, market, compliance, expansion, and ask." />
 <link rel="icon" href="assets/images/logo-32.png" />
 <style>
   :root{
     --bg:#0a1e3d; --card:#102a54; --muted:#b7c6e6; --gold:#d4af37; --ink:#f7f9ff;
+    --ink2:#e9eefc; --border:rgba(255,255,255,.08);
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
   .wrap{max-width:980px;margin:0 auto;padding:28px 18px}
-  .band{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 0;margin-bottom:10px}
-  .title{color:var(--gold);font-weight:800;font-size:28px;margin:0}
-  .sub{color:var(--muted);margin:6px 0 0 0}
-  .toc{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 24px}
-  .chip{border:1px solid var(--gold); color:var(--gold); padding:6px 10px; border-radius:999px; text-decoration:none; font-weight:600}
-  .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;margin:12px 0}
-  h2{color:var(--gold);margin:0 0 8px 0}
-  p{margin:8px 0;color:#e7ecff}
-  ul{margin:6px 0 8px 18px}
+  .top{background:linear-gradient(180deg,rgba(12,29,63,.85),rgba(10,30,61,1));border-bottom:1px solid rgba(255,255,255,.08)}
+  .h1{color:var(--gold);font-weight:800;font-size:30px;margin:0}
+  .sub{color:var(--muted);margin:8px 0 0 0}
+  .nav{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+  .chip{border:1px solid var(--gold);color:var(--gold);padding:6px 10px;border-radius:999px;text-decoration:none;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin:14px 0}
+  h2{color:var(--gold);margin:0 0 10px 0}
+  p{margin:8px 0;color:var(--ink2);line-height:1.55}
+  ul,ol{margin:8px 0 10px 22px;color:var(--ink2);line-height:1.55}
   a{color:var(--gold);text-decoration:none}
-  .footer{margin:28px 0 8px;color:var(--muted);text-align:center}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .btn{background:var(--gold);color:#0b1a33;padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+  .btn.out{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  .footer{margin:26px 0 8px;color:var(--muted);text-align:center}
+  .back{display:inline-block;margin-top:6px}
 </style>
 </head>
 <body>
-  <div class="band">
+  <div class="top">
     <div class="wrap">
-      <h1 class="title">FundGuard Africa — Seed Pitch Deck</h1>
-      <p class="sub">AI-powered fraud detection & fund recovery for Africa’s digital economy • <a href="https://www.fundguardafrica.com">fundguardafrica.com</a></p>
-      <div class="toc">
+      <h1 class="h1">FundGuard Africa — Seed Pitch Deck</h1>
+      <p class="sub">AI-powered fraud detection & fund recovery for Africa’s digital economy • <a href="https://www.fundguardafrica.com" target="_blank">fundguardafrica.com</a></p>
+      <div class="nav">
         <a class="chip" href="#problem">Problem</a>
         <a class="chip" href="#solution">Solution</a>
         <a class="chip" href="#product">Product</a>
         <a class="chip" href="#market">Market & Impact</a>
-        <a class="chip" href="#traction-tech">Traction & Tech</a>
-        <a class="chip" href="#model-gtm">Business Model & GTM</a>
+        <a class="chip" href="#traction">Traction & Tech</a>
+        <a class="chip" href="#model">Business Model</a>
         <a class="chip" href="#compliance">Compliance</a>
-        <a class="chip" href="#team-ask">Team, Ask & Use of Funds</a>
+        <a class="chip" href="#team">Team & Ask</a>
         <a class="chip" href="#contact">Contact</a>
       </div>
+      <a class="back" href="index.html">← Back to Website</a>
     </div>
   </div>
 
   <div class="wrap">
-
-    <section id="cover" class="card">
+    <section class="card" id="cover">
       <h2>Cover</h2>
-      <p><strong>FundGuard Africa</strong><br/>AI-powered fraud detection and fund recovery for Africa’s digital economy.</p>
+      <p><strong>FundGuard Africa</strong><br/>AI-powered fraud detection & fund recovery for Africa’s digital economy.</p>
       <p><strong>Website:</strong> www.fundguardafrica.com<br/>
          <strong>Email:</strong> invest@fundguardafrica.com</p>
     </section>
 
-    <section id="problem" class="card">
+    <section class="card" id="problem">
       <h2>Problem</h2>
       <ul>
-        <li>Billions lost annually to fraud across mobile money, banks, and crypto rails.</li>
-        <li>Victims lack tools to <em>detect, trace,</em> and <em>recover</em> in real time.</li>
+        <li>Billions lost annually to fraud across mobile money, banks, and crypto.</li>
+        <li>Victims lack tools to <em>detect</em>, <em>trace</em>, and <em>recover</em> in real time.</li>
         <li>Institutions face rising compliance costs and reputational risk.</li>
       </ul>
     </section>
 
-    <section id="solution" class="card">
+    <section class="card" id="solution">
       <h2>Solution</h2>
       <p>FundGuard delivers:</p>
       <ul>
@@ -71,11 +76,11 @@
         <li><strong>Transaction tracing & fund tracking</strong></li>
         <li><strong>Secure case management</strong></li>
         <li><strong>AML / sanctions checks</strong></li>
-        <li><strong>APIs</strong> for banks, fintechs & partners</li>
+        <li><strong>APIs</strong> for banks & fintechs</li>
       </ul>
     </section>
 
-    <section id="product" class="card">
+    <section class="card" id="product">
       <h2>Product: How It Works</h2>
       <ol>
         <li><strong>Detect</strong>: AI flags risky activity in real time.</li>
@@ -85,14 +90,14 @@
       <p><strong>MVP is live</strong> with simulated alerts & dummy transaction monitor. Try it: <a href="mvp.html">fundguardafrica.com/mvp.html</a>.</p>
     </section>
 
-    <section id="market" class="card">
+    <section class="card" id="market">
       <h2>Market & Impact</h2>
-      <p><strong>Initial markets:</strong> Nigeria, Ghana, Kenya, South Africa. <br/>
-         <strong>Expansion:</strong> +10 countries in 36 months; Pan-African coverage within 5 years.</p>
+      <p><strong>Initial markets:</strong> Nigeria, Ghana, Kenya, South Africa.<br/>
+         <strong>Expansion:</strong> +10 countries in 36 months; Pan‑African coverage within 5 years.</p>
       <p><strong>SDGs:</strong> Decent work & growth (SDG 8); Peace, justice & strong institutions (SDG 16).</p>
     </section>
 
-    <section id="traction-tech" class="card">
+    <section class="card" id="traction">
       <h2>Traction & Tech</h2>
       <p><strong>Traction</strong></p>
       <ul>
@@ -108,25 +113,25 @@
       </ul>
     </section>
 
-    <section id="model-gtm" class="card">
+    <section class="card" id="model">
       <h2>Business Model & GTM</h2>
       <ul>
         <li><strong>B2B SaaS</strong> for banks/fintechs</li>
         <li><strong>B2C premium</strong> subscriptions</li>
         <li><strong>Paid incident reports & recovery services</strong></li>
       </ul>
-      <p><strong>Go-To-Market:</strong> pilots with banks/fintechs; compliance-aligned rollouts; partnerships; developer APIs.</p>
+      <p><strong>Go-To-Market:</strong> pilots with banks/fintechs; compliance‑aligned rollouts; partnerships; developer APIs.</p>
     </section>
 
-    <section id="compliance" class="card">
+    <section class="card" id="compliance">
       <h2>Compliance & Security</h2>
       <ul>
         <li>Aligning with CBN, NDPR/NITDA, AML/CFT standards</li>
-        <li>Row-Level Security for data; evidence storage controls</li>
+        <li>Row‑Level Security for data; evidence storage controls</li>
       </ul>
     </section>
 
-    <section id="team-ask" class="card">
+    <section class="card" id="team">
       <h2>Team, Ask & Use of Funds</h2>
       <p><strong>Founder:</strong> Victor Kolawole Omojuwa (CEO) — public health professional & tech entrepreneur.</p>
       <p><strong>Raise:</strong> ₦200,000,000 seed via SAFE (USD $2M cap, 20% discount)</p>
@@ -139,14 +144,19 @@
       </ul>
     </section>
 
-    <section id="contact" class="card">
+    <section class="card" id="contact">
       <h2>Contact</h2>
       <p><strong>Website:</strong> www.fundguardafrica.com<br/>
          <strong>Email:</strong> invest@fundguardafrica.com<br/>
          <strong>Demo:</strong> <a href="mvp.html">fundguardafrica.com/mvp.html</a></p>
+      <div class="cta">
+        <a class="btn" href="onepager.html" target="_blank">View One‑Pager</a>
+        <a class="btn out" href="index.html">Back to Home</a>
+      </div>
     </section>
 
     <div class="footer">© 2025 FundGuard Africa • Premium Blue/Gold Investor Deck</div>
   </div>
 </body>
 </html>
+
