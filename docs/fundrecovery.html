@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FundGuard — Fund Recovery Simulation</title>
+<meta name="description" content="Simulate FundGuard’s fund recovery workflow: trace, notify institutions, freeze assets, and initiate recovery." />
+<style>
+  :root{
+    --bg:#0a1e3d; --card:#102a54; --muted:#b7c6e6; --gold:#d4af37; --ink:#f7f9ff; --ink2:#e7ecfb;
+    --border:rgba(255,255,255,.08); --ok:#2ecc71; --warn:#f39c12; --err:#e74c3c; --pulse:#49a6ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  a{color:var(--gold);text-decoration:none}
+  header{padding:22px 16px;background:linear-gradient(180deg,rgba(10,30,61,1),rgba(12,34,68,.85))}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+  .title{display:flex;align-items:center;gap:12px}
+  .brand{font-weight:800;color:var(--gold);font-size:20px}
+  .h1{margin:6px 0 0 0;font-size:28px;color:#fff}
+  .sub{margin:6px 0 0;color:var(--muted)}
+  .cta-bar{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+  .btn{background:var(--gold);color:#0b1a33;padding:10px 14px;border-radius:10px;font-weight:700}
+  .btn.out{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  main{padding:18px 0 28px}
+  .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+  @media (max-width: 940px){ .grid{grid-template-columns:1fr} }
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+  h2{color:var(--gold);margin:0 0 10px}
+  p{color:var(--ink2);line-height:1.55;margin:8px 0}
+  .logos{display:flex;flex-wrap:wrap;gap:8px}
+  .logo-badge{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--ink2);padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
+  .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .node{background:rgba(255,255,255,.06);border:1px solid var(--border);padding:12px;border-radius:12px;min-width:140px}
+  .node h4{margin:0 0 6px;color:#fff;font-size:14px}
+  .node small{color:var(--muted)}
+  .arrow{color:var(--gold);font-size:18px}
+  .pulse{width:10px;height:10px;border-radius:50%;background:var(--pulse);box-shadow:0 0 0 0 rgba(73,166,255,.8);animation:pulse 1.6s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 12px rgba(73,166,255,0)}100%{box-shadow:0 0 0 0 rgba(73,166,255,0)}}
+  .form-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  input[type=text]{flex:1;min-width:220px;background:#0e2450;border:1px solid var(--border);border-radius:10px;color:#fff;padding:10px 12px}
+  .btn-recovery{background:var(--gold);color:#0b1a33;padding:10px 14px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+  .hint{color:var(--muted);font-size:12px;margin-top:6px}
+  .timeline{margin-top:12px;border-left:2px dashed rgba(255,255,255,.15);padding-left:14px}
+  .tl-item{margin:10px 0 14px 0}
+  .tl-title{display:flex;align-items:center;gap:8px}
+  .pill{font-size:11px;border-radius:999px;padding:2px 8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--ink2)}
+  .ok{background:rgba(46,204,113,.1);border-color:rgba(46,204,113,.4);color:#c8f7df}
+  .warn{background:rgba(243,156,18,.1);border-color:rgba(243,156,18,.5);color:#ffe1b3}
+  .err{background:rgba(231,76,60,.1);border-color:rgba(231,76,60,.4);color:#ffcdc4}
+  .footer{margin-top:18px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <span class="brand">FundGuard Africa</span>
+        <span class="pill">Fund Recovery MVP</span>
+      </div>
+      <h1 class="h1">💸 Fund Recovery — Live Simulation</h1>
+      <p class="sub">Enter a transaction ID to simulate tracing, institution notifications, and asset freeze/recovery. (Demo data only.)</p>
+      <div class="cta-bar">
+        <a class="btn" href="index.html">← Back to Website</a>
+        <a class="btn out" href="mvp.html">Explore Full MVP</a>
+        <a class="btn out" href="onepager.html" target="_blank">Investor One-Pager</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <!-- LEFT: Simulation -->
+      <section class="card">
+        <h2>Start a Recovery</h2>
+        <p>Enter a suspicious or known fraudulent Transaction ID. We’ll simulate a trace through banks/wallets and show the recovery workflow.</p>
+        <div class="form-row">
+          <input id="txn" type="text" placeholder="e.g. TXN-453672 or WALLET-0x9a3...">
+          <button id="go" class="btn-recovery">Start Recovery Process</button>
+        </div>
+        <div class="hint">Tip: try <code>TXN-453672</code>, <code>WALLET-0x9a3</code>, or any random code — the flow adapts.</div>
+
+        <div style="margin-top:16px">
+          <div class="flow">
+            <div class="node">
+              <div class="tl-title"><div class="pulse"></div><h4>Victim Account</h4></div>
+              <small>Reported loss: ₦480,000</small>
+            </div>
+            <div class="arrow">➔</div>
+            <div class="node">
+              <h4>Intermediary Bank / Wallet</h4>
+              <small>Flagged within 90s</small>
+            </div>
+            <div class="arrow">➔</div>
+            <div class="node">
+              <h4>Exchange / Cash-out Point</h4>
+              <small>Freeze request sent</small>
+            </div>
+            <div class="arrow">➔</div>
+            <div class="node">
+              <h4>Recovery / Case Mgmt</h4>
+              <small>Case FG-{{auto}}</small>
+            </div>
+          </div>
+        </div>
+
+        <div id="result" class="timeline" style="display:none"></div>
+      </section>
+
+      <!-- RIGHT: Institutions + Notes -->
+      <aside class="card">
+        <h2>Institutions in the Loop</h2>
+        <div class="logos" aria-label="Mock brands">
+          <span class="logo-badge">NG-BANK</span>
+          <span class="logo-badge">MOMO-PAY</span>
+          <span class="logo-badge">CRYPTO-X</span>
+          <span class="logo-badge">WALLET-Y</span>
+          <span class="logo-badge">EXCHANGE-Z</span>
+          <span class="logo-badge">REGTECH-AML</span>
+        </div>
+        <p style="margin-top:8px">For demo, these are mock endpoints. In production, FundGuard integrates with partner banks, mobile money, exchanges, and compliance systems via secure APIs.</p>
+
+        <h2 style="margin-top:16px">What You’ll See</h2>
+        <ul>
+          <li>Trace hops with amounts (simulated)</li>
+          <li>Freeze/notify events to institutions</li>
+          <li>Case ID & recovery status updates</li>
+        </ul>
+        <p class="hint">This simulation doesn’t move real money or access live accounts.</p>
+      </aside>
+    </div>
+
+    <div class="footer">© 2025 FundGuard Africa • Demo only — not financial advice.</div>
+  </main>
+
+<script>
+(function(){
+  const btn = document.getElementById('go');
+  const input = document.getElementById('txn');
+  const out = document.getElementById('result');
+
+  function rnd(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+  function amt(){ return new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(rnd(50000,800000)); }
+  function id(){ return 'FG-' + Date.now().toString().slice(-6) + '-' + rnd(100,999); }
+
+  function line(status, text, pill=''){
+    return `
+      <div class="tl-item">
+        <div class="tl-title">
+          <span class="pill ${pill}">${status}</span>
+          <strong style="color:#fff">${text}</strong>
+        </div>
+      </div>`;
+  }
+
+  btn.addEventListener('click', ()=>{
+    const v = (input.value || '').trim().toUpperCase() || 'TXN-' + rnd(100000,999999);
+    const caseId = id();
+    const hop1 = amt(), hop2 = amt(), hop3 = amt();
+
+    out.style.display = 'block';
+    out.innerHTML =
+      line('RECEIVED','Case created: '+caseId,'warn') +
+      `<div class="tl-item"><p>Input Transaction: <strong>${v}</strong></p></div>` +
+      line('TRACE','Hop 1 → Intermediary Bank detected • Amount: '+hop1,'') +
+      line('TRACE','Hop 2 → Wallet Y routed • Amount: '+hop2,'') +
+      line('TRACE','Hop 3 → Exchange Z cash-out attempt • Amount: '+hop3,'') +
+      line('NOTICE','Freeze request sent to Exchange Z & Wallet Y','warn') +
+      line('OK','Exchange Z confirmed temporary freeze on suspicious balance','ok') +
+      line('OK','Bank compliance ticket opened; regulator reference generated','ok') +
+      line('OK','Recovery action queued — Awaiting KYC verification & legal hold','ok') +
+      line('NEXT','Download evidence & share with institution portal','');
+
+    // Smooth scroll to results
+    out.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
+</script>
+</body>
+</html>
+
