@@ -203,7 +203,31 @@ footer {
   align-items: center;
   justify-content: center;
 }
+<!-- PRODUCT VISUALS -->
+<section class="product-visual">
+  <div class="product-visual-wrap">
+    <img
+      src="assets/images/fundguard-dashboard-hero.png"
+      alt="FundGuard dashboard on laptop and phone"
+      class="hero-mockup"
+      loading="eager"
+      width="1600" height="900"
+    />
+  </div>
+</section>
 
+<!-- OPTIONAL: second visual row -->
+<section class="product-visual alt">
+  <div class="product-visual-wrap">
+    <img
+      src="assets/images/fraud-analytics-panel.png"
+      alt="FundGuard fraud analytics panel"
+      class="hero-mockup"
+      loading="lazy"
+      width="1600" height="900"
+    />
+  </div>
+</section>
 
 
 
