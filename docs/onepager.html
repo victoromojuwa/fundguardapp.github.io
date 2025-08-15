@@ -93,4 +93,19 @@
   </div>
 </body>
 </html>
+<script>
+  // generic click tracker for elements with data-gtag attributes
+  document.addEventListener('click', function(e){
+    const el = e.target.closest('[data-gtag]');
+    if(!el) return;
+    const eventName = el.getAttribute('data-gtag') || 'click';
+    const eventParams = {
+      item_id: el.getAttribute('data-item-id') || undefined,
+      item_name: el.getAttribute('data-item-name') || undefined,
+      link_url: el.getAttribute('href') || undefined,
+      location: el.getAttribute('data-location') || undefined,
+    };
+    gtag('event', eventName, eventParams);
+  });
+</script>
 
