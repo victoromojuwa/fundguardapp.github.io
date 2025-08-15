@@ -93,6 +93,61 @@ h1,h2,h3{margin:0 0 10px}
   font-style: normal;
   font-weight: 600;
 }
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Hero buttons (gold/blue) */
+.btn-primary {
+  background: linear-gradient(135deg, #0a2a66, #b8860b); /* blue → gold */
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  margin: 8px;
+}
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* Product buttons (outline) */
+.btn-outline {
+  color: #b8860b;
+  border: 2px solid #b8860b;
+  background: transparent;
+  margin: 8px;
+}
+.btn-outline:hover {
+  background: rgba(184,134,11,.12);
+  transform: translateY(-2px);
+}
+
+/* Layout helpers */
+.hero-ctas {
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center; 
+  margin-top:18px; margin-bottom:10px;
+}
+.product-ctas { margin: 36px auto 10px; text-align:center; }
+.section-title { margin-bottom:10px; color:#b8860b; }
+
+.cta-grid {
+  display:grid; grid-template-columns: repeat(3, minmax(180px,1fr));
+  gap: 12px; max-width: 880px; margin: 0 auto;
+}
+@media (max-width: 900px){ .cta-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .cta-grid { grid-template-columns: 1fr; } }
+
+/* Footer links */
+.footer-links { 
+  display:flex; flex-wrap:wrap; gap:14px; justify-content:center; 
+  margin-top:10px; font-size:.95rem;
+}
+.footer-links a { color:#cfd8ea; text-decoration:none; }
+.footer-links a:hover { color:#ffffff; text-decoration:underline; }
 
 /* Lists & testimonials */
 ul.features{margin:0;padding-left:18px}
