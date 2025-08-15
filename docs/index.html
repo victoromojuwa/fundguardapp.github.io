@@ -60,19 +60,13 @@
   .pill:hover{ background:#d4af37; color:#0a1e3d; }
 </style>
 <script>
-  // generic click tracker for elements with data-gtag attributes
-  document.addEventListener('click', function(e){
-    const el = e.target.closest('[data-gtag]');
-    if(!el) return;
-    const eventName = el.getAttribute('data-gtag') || 'click';
-    const eventParams = {
-      item_id: el.getAttribute('data-item-id') || undefined,
-      item_name: el.getAttribute('data-item-name') || undefined,
-      link_url: el.getAttribute('href') || undefined,
-      location: el.getAttribute('data-location') || undefined,
-    };
-    gtag('event', eventName, eventParams);
-  });
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GD0PGHCN57');
 </script>
 
 </header>
@@ -286,6 +280,21 @@
 
 </body>
 </html>
+<script>
+  // generic click tracker for elements with data-gtag attributes
+  document.addEventListener('click', function(e){
+    const el = e.target.closest('[data-gtag]');
+    if(!el) return;
+    const eventName = el.getAttribute('data-gtag') || 'click';
+    const eventParams = {
+      item_id: el.getAttribute('data-item-id') || undefined,
+      item_name: el.getAttribute('data-item-name') || undefined,
+      link_url: el.getAttribute('href') || undefined,
+      location: el.getAttribute('data-location') || undefined,
+    };
+    gtag('event', eventName, eventParams);
+  });
+</script>
 
 
 
