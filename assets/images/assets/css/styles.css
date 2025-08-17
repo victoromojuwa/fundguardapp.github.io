@@ -228,6 +228,47 @@ footer {
     />
   </div>
 </section>
+/* ===== Core Features ===== */
+.fg-section { padding: 56px 0; }
+.fg-wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+.fg-features { background: #0b2a36; }               /* deep brand blue */
+.fg-h2 { color:#d4af37; font-size:1.9rem; margin:0 0 18px; }
+
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  grid-column: span 6;                               /* two per row on desktop */
+  background: #09232d;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.28);
+}
+
+.feature-card h3 {
+  color:#ffffff;
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  letter-spacing:.2px;
+}
+
+.feature-card ul { margin:0; padding:0 0 0 18px; }
+.feature-card li {
+  color:#dce6ea;
+  line-height: 1.55;
+  margin: 8px 0;
+}
+.feature-card li strong { color:#d4af37; font-weight:700; }
+
+/* mobile: one per row */
+@media (max-width: 880px) {
+  .feature-card { grid-column: span 12; }
+}
 
 
 
