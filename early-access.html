@@ -2,19 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FundGuard Early Access</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FundGuard Africa — Early Access</title>
+  <meta name="description" content="Apply for FundGuard Early Access: investors, partners, and early users." />
+  <style>
+    :root{
+      --ink:#0b1e27;
+      --blue:#004080;
+      --gold:#d4af37;
+      --muted:#5f7180;
+      --line:#e7edf1;
+      --card:#f9fbfc;
+      --bg:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
+    header{background:#0b1e27;color:#fff;text-align:center;padding:28px 16px}
+    header h1{margin:0;font-size:2.2rem;font-weight:900;letter-spacing:.5px}
+    header .tag{color:var(--gold);font-weight:700;margin-top:6px}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px 16px}
+    h2{color:#004080;margin:8px 0 6px}
+    .sub{color:var(--muted);margin:0 0 14px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.05);padding:18px;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px}
+    .badge{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin:4px 6px 0 0;font-weight:700}
+    .cta{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{border-radius:10px;padding:12px 16px;font-weight:800;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
+    .btn--gold{background:var(--gold);color:#0b1e27;border-color:var(--gold)} .btn--gold:hover{filter:brightness(1.07);text-decoration:none}
+    footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:24px;padding:18px 16px;border-top:1px solid rgba(255,255,255,.08)}
+    .contact-stack{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px}
+    .contact-stack a{color:var(--gold);font-weight:700} .contact-stack a:hover{color:#0f4c81;text-shadow:0 0 6px rgba(212,175,55,.6)}
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 40px;">
-  <h1>🚀 FundGuard Early Access Program</h1>
-  <p>Be the first to experience Africa's smartest fraud detection app.</p>
+<body>
 
-  <iframe src="https://forms.gle/D9Qk4cVEDGSvshjA8"
-    width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0"
-    style="border: 2px solid #ccc; border-radius: 8px;">
-    Loading form…
-  </iframe>
+  <header>
+    <h1>FundGuard Africa — Early Access</h1>
+    <div class="tag">Investors • Partners • Early Users</div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+      <div class="card">
+        <h2>Apply for Early Access</h2>
+        <p class="sub">Tell us a bit about your organization and use case. We’ll prioritize security teams, risk leaders, payment providers, and fintechs in target markets.</p>
+
+        <!-- Embed your Google Form -->
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdw-F3fu9mJitN3i5dxN3OTyxkCt8ox72MBIwYkNq4eJWCbiA/viewform?embedded=true"
+          width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </div>
+
+      <aside class="card">
+        <h2>What You’ll Get</h2>
+        <ul>
+          <li>Access to the <strong>MVP demo</strong> + fraud signals preview.</li>
+          <li>Fund recovery <strong>simulation</strong> + evidence report.</li>
+          <li>Enterprise/API briefing for banks & PSPs.</li>
+          <li>Roadmap alignment for market rollouts.</li>
+        </ul>
+        <div class="badge">NDPR-ready</div>
+        <div class="badge">GDPR-aligned</div>
+        <div class="badge">RLS enforced</div>
+        <hr style="border:none;border-top:1px solid #e7edf1;margin:12px 0">
+        <h3>Prefer Email?</h3>
+        <p class="mono">
+          General: fundguardafrica@gmail.com<br>
+          Investors: invest@fundguardafrica.com<br>
+          Support: support@fundguardafrica.com
+        </p>
+        <div class="cta">
+          <a class="btn btn--gold" href="mvp.html">🧪 Open MVP</a>
+          <a class="btn" style="border:1px solid #e7edf1" href="demo.html">🎥 Watch Demo</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contact-stack">
+      <a href="mailto:fundguardafrica@gmail.com">✉️ fundguardafrica@gmail.com</a>
+      <a href="mailto:invest@fundguardafrica.com">🎯 invest@fundguardafrica.com</a>
+      <a href="mailto:support@fundguardafrica.com">💼 support@fundguardafrica.com</a>
+    </div>
+    <div>&copy; 2025 FundGuard Africa — <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+  </footer>
+
 </body>
 </html>
+
 
