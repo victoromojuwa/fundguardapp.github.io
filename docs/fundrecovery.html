@@ -1,250 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FundGuard — Fund Recovery (MVP Simulation)</title>
-<meta name="description" content="Simulate FundGuard’s fund recovery workflow: trace, notify institutions, freeze assets, and initiate recovery." />
-<link rel="icon" href="assets/images/logo-32.png" />
-<style>
-  :root{
-    --bg:#0a1e3d; --panel:#102a54; --muted:#b7c6e6; --gold:#d4af37; --ink:#f7f9ff; --ink2:#e9eefc; --border:rgba(255,255,255,.10);
-    --ok:#2ecc71; --warn:#f39c12; --err:#e74c3c;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-  a{color:var(--gold);text-decoration:none}
-  header{padding:22px 16px;background:linear-gradient(180deg,rgba(10,30,61,1),rgba(12,34,68,.85));border-bottom:1px solid var(--border)}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-  .brand{display:flex;align-items:center;gap:10px}
-  .brand .name{font-weight:800;color:var(--gold);font-size:20px}
-  h1{margin:6px 0 0 0;font-size:28px}
-  .sub{margin:6px 0 0;color:var(--muted)}
-  .cta{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
-  .btn{background:var(--gold);color:#0b1a33;padding:10px 14px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
-  .btn.out{background:transparent;color:var(--gold);border:1px solid var(--gold)}
-  main{padding:18px 0 28px}
-  .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-  @media (max-width: 960px){ .grid{grid-template-columns:1fr} }
-  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px}
-  h2{color:var(--gold);margin:0 0 10px}
-  p{color:var(--ink2);line-height:1.55;margin:8px 0}
-  .row{display:flex;gap:12px;flex-wrap:wrap}
-  label{font-size:13px;color:var(--muted)}
-  input, textarea, select{
-    width:100%; background:#0d244e; border:1px solid var(--border); color:#fff;
-    padding:10px 12px; border-radius:10px; outline:none;
-  }
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media (max-width: 720px){ .two{grid-template-columns:1fr} }
-  .hint{color:var(--muted);font-size:12px;margin-top:6px}
-  .timeline{margin-top:14px;border-left:2px dashed rgba(255,255,255,.15);padding-left:14px}
-  .tl{margin:10px 0 14px}
-  .tag{display:inline-block;font-size:11px;border-radius:999px;padding:2px 8px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--ink2);margin-right:6px}
-  .ok{background:rgba(46,204,113,.15);border-color:rgba(46,204,113,.5);color:#d7fbe9}
-  .warn{background:rgba(243,156,18,.15);border-color:rgba(243,156,18,.5);color:#ffe2b8}
-  .err{background:rgba(231,76,60,.12);border-color:rgba(231,76,60,.4);color:#ffd0c8}
-  .logos{display:flex;flex-wrap:wrap;gap:8px}
-  .badge{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--ink2);padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
-  footer{margin-top:20px;text-align:center;color:var(--muted)}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FundGuard Africa — Fund Recovery (Live Simulation)</title>
+  <meta name="description" content="Submit a simulated recovery case: generate a time-stamped Evidence Report with case details and recovery timeline." />
+  <style>
+    :root{
+      --ink:#0b1e27;
+      --blue:#004080;
+      --gold:#d4af37;
+      --muted:#5f7180;
+      --line:#e7edf1;
+      --card:#f9fbfc;
+      --bg:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
+
+    header{background:#0b1e27;color:#fff;text-align:center;padding:28px 16px}
+    header h1{margin:0;font-size:2.2rem;font-weight:900;letter-spacing:.5px}
+    header .tag{color:var(--gold);font-weight:700;margin-top:6px}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 16px}
+
+    h2{color:#004080;margin:8px 0 6px}
+    .sub{color:var(--muted);margin:0 0 14px}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+
+    .card{background:#fff;border:1px solid var(--line);border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,.05);padding:18px}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){.form-row{grid-template-columns:1fr}}
+    label{font-weight:700;color:#0b1e27}
+    input,select,textarea{
+      width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff
+    }
+    textarea{min-height:110px;resize:vertical}
+
+    .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+    .btn{border-radius:10px;padding:12px 16px;font-weight:800;border:1px solid transparent;
+      display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+    .btn--gold{background:var(--gold);color:#0b1e27;border-color:var(--gold)}
+    .btn--gold:hover{filter:brightness(1.07);text-decoration:none}
+    .btn--ghost{border:1px solid var(--line);background:#fff;color:#0b1e27}
+
+    .badge{display:inline-block;background:var(--card);border:1px solid var(--line);
+      border-radius:8px;padding:4px 8px;margin:4px 6px 0 0;font-weight:700}
+    .muted{color:var(--muted)}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Courier New",monospace;
+      background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px}
+
+    .timeline{display:grid;gap:10px;margin-top:12px}
+    .t-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+    .t-item b{color:#0b1e27}
+
+    footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:24px;padding:18px 16px;
+      border-top:1px solid rgba(255,255,255,.08)}
+    .contact-stack{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px}
+    .contact-stack a{color:var(--gold);font-weight:700}
+    .contact-stack a:hover{color:#0f4c81;text-shadow:0 0 6px rgba(212,175,55,.6)}
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <div class="brand">
-      <span class="name">FundGuard Africa</span>
-      <span class="tag">Fund Recovery MVP</span>
+  <header>
+    <h1>Fund Recovery — Live Simulation</h1>
+    <div class="tag">Create a case • Generate Evidence Report • Review recovery timeline</div>
+    <div class="btns" style="justify-content:center;margin-top:10px">
+      <a class="btn btn--ghost" href="mvp.html">🧪 MVP Overview</a>
+      <a class="btn btn--ghost" href="demo.html">🎥 Watch Investor Demo</a>
+      <a class="btn btn--ghost" href="onepager.html">📄 Investor One Pager</a>
     </div>
-    <h1>💸 Fund Recovery — Live Simulation</h1>
-    <p class="sub">Enter a transaction to simulate trace, institution notifications, freeze requests, and recovery workflow. (Demo data only.)</p>
-    <div class="cta">
-      <a class="btn" href="index.html">← Back to Website</a>
-      <a class="btn out" href="mvp.html">Explore Full MVP</a>
-      <a class="btn out" href="onepager.html" target="_blank">Investor One‑Pager</a>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <!-- Case Form -->
+      <section class="card">
+        <h2>Submit Recovery Case</h2>
+        <p class="sub">Enter sample details below (no real PII). On submit, you’ll get a <b>downloadable Evidence Report</b> and a simulated <b>recovery timeline</b>.</p>
+
+        <form id="recoveryForm">
+          <div class="form-row">
+            <div>
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" placeholder="Jane Doe" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="incidentDate">Incident date</label>
+              <input id="incidentDate" name="incidentDate" type="date" required />
+            </div>
+            <div>
+              <label for="amount">Amount lost</label>
+              <input id="amount" name="amount" type="number" step="0.01" placeholder="e.g., 266527" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="currency">Currency</label>
+              <select id="currency" name="currency" required>
+                <option value="NGN">NGN — Nigerian Naira</option>
+                <option value="KES">KES — Kenyan Shilling</option>
+                <option value="ZAR">ZAR — South African Rand</option>
+                <option value="GHS">GHS — Ghanaian Cedi</option>
+                <option value="TZS">TZS — Tanzanian Shilling</option>
+                <option value="USD">USD — US Dollar</option>
+              </select>
+            </div>
+            <div>
+              <label for="channel">Channel (bank/wallet/exchange)</label>
+              <input id="channel" name="channel" placeholder="e.g., Bank X, Wallet Y, Exchange Z" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="txnRef">Transaction reference(s)</label>
+              <input id="txnRef" name="txnRef" placeholder="e.g., TX-92344; TX-92345" />
+            </div>
+            <div>
+              <label for="location">Country</label>
+              <select id="location" name="location" required>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Kenya">Kenya</option>
+                <option value="South Africa">South Africa</option>
+                <option value="Ghana">Ghana</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Tanzania">Tanzania</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="details">Brief description</label>
+            <textarea id="details" name="details" placeholder="Describe what happened…"></textarea>
+          </div>
+
+          <div class="btns">
+            <button class="btn btn--gold" type="submit">Generate Evidence Report</button>
+            <button class="btn btn--ghost" type="button" id="resetBtn">Reset</button>
+          </div>
+        </form>
+
+        <p class="muted" style="margin-top:10px">
+          Disclaimer: This is a <b>simulation</b> for demo purposes. No live bank/wallet actions are performed.
+        </p>
+      </section>
+
+      <!-- Timeline & Output -->
+      <aside class="card">
+        <h2>Recovery Timeline (Simulated)</h2>
+        <div class="timeline" id="timeline">
+          <div class="t-item"><b>Case created</b> — Intake validated, evidence packaging initialized.</div>
+          <div class="t-item"><b>Signals mapped</b> — Patterns checked against blacklist & social graph.</div>
+          <div class="t-item"><b>Compliance pack</b> — Report shell prepared for legal & regulators.</div>
+        </div>
+
+        <h2 style="margin-top:16px">Quick Stats</h2>
+        <div class="badge">NDPR‑ready</div>
+        <div class="badge">GDPR‑aligned</div>
+        <div class="badge">RLS enforced</div>
+      </aside>
     </div>
-  </div>
-</header>
 
-<main class="wrap">
-  <div class="grid">
-    <!-- LEFT: Recovery Form & Timeline -->
-    <section class="card">
-      <h2>Start a Recovery</h2>
-      <button id="start" class="btn"
-        data-gtag="recovery_started"
-        data-item-id="recovery_start_btn"
-        data-item-name="Start Recovery"
-        data-location="fundrecovery">Start Recovery Process</button>
-
-      <p>Provide basic details to simulate a recovery request. We’ll generate a case ID and show the step‑by‑step actions FundGuard takes.</p>
-
-      <div class="two">
-        <div>
-          <label for="fullName">Full Name</label>
-          <input id="fullName" type="text" placeholder="e.g., Adaeze Okoye" />
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="e.g., ada@example.com" />
-        </div>
-      </div>
-
-      <div class="two" style="margin-top:12px">
-        <div>
-          <label for="country">Country</label>
-          <select id="country">
-            <option value="NG">Nigeria</option>
-            <option value="GH">Ghana</option>
-            <option value="KE">Kenya</option>
-            <option value="ZA">South Africa</option>
-            <option value="TZ">Tanzania</option>
-          </select>
-        </div>
-        <div>
-          <label for="txn">Transaction / Wallet ID</label>
-          <input id="txn" type="text" placeholder="e.g., TXN-453672 or 0x9a3…"/>
-        </div>
-      </div>
-
-      <div style="margin-top:12px">
-        <label for="details">Brief Description</label>
-        <textarea id="details" rows="3" placeholder="What happened? When? Which bank/wallet? Estimated amount?"></textarea>
-      </div>
-
-      <div class="row" style="margin-top:14px">
-        <button id="start" class="btn">Start Recovery Process</button>
-        <button id="download" class="btn out" disabled>Download Evidence (HTML)</button>
-      </div>
-
-      <div class="hint">This is a simulation for demo only — no real accounts are accessed.</div>
-
-      <div id="timeline" class="timeline" style="display:none"></div>
-    </section>
-
-    <!-- RIGHT: Institutions & Notes -->
-    <aside class="card">
-      <h2>Institutions in the Loop</h2>
-      <div class="logos">
-        <span class="badge">NG‑BANK</span>
-        <span class="badge">MOMO‑PAY</span>
-        <span class="badge">CRYPTO‑X</span>
-        <span class="badge">WALLET‑Y</span>
-        <span class="badge">EXCHANGE‑Z</span>
-        <span class="badge">REGTECH‑AML</span>
-      </div>
-      <p style="margin-top:8px">In production, FundGuard integrates with partner banks, mobile money, exchanges, and compliance systems via secure APIs.</p>
-
-      <h2 style="margin-top:16px">What This Demo Shows</h2>
+    <!-- Help -->
+    <section class="card" style="margin-top:18px">
+      <h2>How the Evidence Report Works</h2>
+      <p>When you submit the form, FundGuard generates a time‑stamped <b>HTML Evidence Report</b> (download) containing the case details you provided and a simulated recovery timeline:</p>
       <ul>
-        <li>Case creation with unique ID</li>
-        <li>Trace hops with amounts (simulated)</li>
-        <li>Freeze/notify events to institutions</li>
-        <li>Recovery status updates</li>
+        <li><b>Intermediate bank detected</b> — amount routed.</li>
+        <li><b>Wallet exchange</b> — cash‑out attempt flagged.</li>
+        <li><b>Freeze requests</b> — sent to implicated end‑points.</li>
+        <li><b>Compliance ticket</b> — opened with regulatory reference.</li>
+        <li><b>Awaiting KYC verification</b> — for counterparties.</li>
       </ul>
-    </aside>
+      <p class="muted">In production, these actions would be backed by partner integrations and verifiable logs.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contact-stack">
+      <a href="mailto:fundguardafrica@gmail.com">✉️ fundguardafrica@gmail.com</a>
+      <a href="mailto:invest@fundguardafrica.com">🎯 invest@fundguardafrica.com</a>
+      <a href="mailto:support@fundguardafrica.com">💼 support@fundguardafrica.com</a>
+    </div>
+    <div>&copy; 2025 FundGuard Africa — <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+  </footer>
+
+  <script>
+    // Simple helper to format numbers with thousands separators
+    const fmt = (n) => new Intl.NumberFormat().format(Number(n || 0));
+
+    const form = document.getElementById('recoveryForm');
+    const timeline = document.getElementById('timeline');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function nowISO(){
+      const d = new Date();
+      return d.toISOString().replace('T',' ').slice(0,19) + ' UTC';
+    }
+
+    function buildTimeline(amount, currency){
+      const amt = fmt(amount);
+      return [
+        `Intermediate bank detected — amount ${currency} ${amt}`,
+        `Wallet Y routed — ${currency} ${fmt(Math.round(amount * 0.485))}`,
+        `Exchange Z cash‑out attempt — ${currency} ${fmt(Math.round(amount * 0.603))}`,
+        `Freeze request sent to Exchange Z & Wallet Y`,
+        `Recovery action queued`,
+        `Awaiting KYC verification & legal hold`,
+        `Bank compliance ticket opened, regulatory reference generated`
+      ];
+    }
+
+    function evidenceHTML(data, caseId, events){
+      const rows = events.map((e,i)=> `<tr><td>${i+1}</td><td>${e}</td></tr>`).join('');
+      return `<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FundGuard Evidence Report — ${caseId}</title>
+<style>
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#ffffff;color:#0b1e27;line-height:1.6;margin:0;padding:20px}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{margin:0 0 8px;font-size:1.8rem}
+  .meta{color:#5f7180;margin-bottom:16px}
+  .box{background:#f9fbfc;border:1px solid #e7edf1;border-radius:12px;padding:16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse}
+  td,th{border:1px solid #e7edf1;padding:8px}
+  th{background:#f4f7fb;text-align:left}
+  .badge{display:inline-block;background:#fff2cc;border:1px solid #ffe08a;border-radius:6px;padding:4px 8px;margin-right:6px}
+  .muted{color:#5f7180}
+</style>
+</head><body><div class="wrap">
+  <h1>FundGuard Evidence Report</h1>
+  <div class="meta">Case ID: <b>${caseId}</b> • Generated: ${nowISO()}</div>
+
+  <div class="box">
+    <h3>Case Details</h3>
+    <p><b>Victim:</b> ${data.fullName} (${data.email})</p>
+    <p><b>Incident Date:</b> ${data.incidentDate} • <b>Country:</b> ${data.location}</p>
+    <p><b>Channel:</b> ${data.channel} • <b>Amount:</b> ${data.currency} ${fmt(data.amount)}</p>
+    <p><b>Transaction Ref(s):</b> ${data.txnRef || '—'}</p>
+    <p><b>Description:</b> ${data.details || '—'}</p>
   </div>
 
-  <footer>© 2025 FundGuard Africa • Demo only</footer>
-</main>
+  <div class="box">
+    <h3>Recovery Timeline (Simulated)</h3>
+    <table><thead><tr><th>#</th><th>Event</th></tr></thead><tbody>${rows}</tbody></table>
+  </div>
 
-<script>
-(function(){
-  const el = (id)=>document.getElementById(id);
-  const startBtn = el('start');
-  const dlBtn = el('download');
-  const tl = el('timeline');
+  <div class="box">
+    <h3>Compliance Notes</h3>
+    <span class="badge">NDPR‑ready</span>
+    <span class="badge">GDPR‑aligned</span>
+    <span class="badge">RLS enforced</span>
+    <p class="muted">This is a simulated report for demo purposes. In production, steps are backed by verifiable partner integrations and audit logs.</p>
+  </div>
 
-  function rnd(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-  function naira(n){ return new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(n); }
-  function caseId(){ return 'FG-' + Date.now().toString().slice(-6) + '-' + rnd(100,999); }
+  <p class="muted">© 2025 FundGuard Africa — fundguardafrica@gmail.com • invest@fundguardafrica.com • support@fundguardafrica.com</p>
+</div></body></html>`;
+    }
 
-  function item(html){ return `<div class="tl">${html}</div>`; }
-  function pill(kind, text){ return `<span class="tag ${kind}">${text}</span>`; }
-
-  startBtn.addEventListener('click', ()=>{
-    const name = el('fullName').value.trim() || 'Anonymous';
-    const email = el('email').value.trim() || 'n/a';
-    const country = el('country').value;
-    const txn = (el('txn').value.trim() || ('TXN-' + rnd(100000,999999))).toUpperCase();
-    const desc = el('details').value.trim() || '—';
-
-    const cId = caseId();
-    const hops = [rnd(90000,600000), rnd(70000,450000), rnd(50000,380000)];
-    const amounts = hops.map(naira);
-
-    tl.style.display = 'block';
-    tl.innerHTML =
-      item(`${pill('warn','RECEIVED')} <strong>Case created:</strong> ${cId}`) +
-      item(`<strong>Reporter:</strong> ${name} • <strong>Email:</strong> ${email} • <strong>Country:</strong> ${country}`) +
-      item(`<strong>Transaction:</strong> ${txn} • <strong>Description:</strong> ${desc}`) +
-      item(`${pill('','TRACE')} Hop 1 → Intermediary Bank detected • Amount: ${amounts[0]}`) +
-      item(`${pill('','TRACE')} Hop 2 → Wallet Y routed • Amount: ${amounts[1]}`) +
-      item(`${pill('','TRACE')} Hop 3 → Exchange Z cash‑out attempt • Amount: ${amounts[2]}`) +
-      item(`${pill('warn','NOTICE')} Freeze request sent to Exchange Z & Wallet Y`) +
-      item(`${pill('ok','OK')} Exchange Z confirmed temporary freeze on suspicious balance`) +
-      item(`${pill('ok','OK')} Bank compliance ticket opened; regulator reference generated`) +
-      item(`${pill('ok','OK')} Recovery action queued — awaiting KYC verification & legal hold`) +
-      item(`<em>Download evidence and share with institution portals.</em>`);
-
-    // enable download
-    dlBtn.disabled = false;
-    dlBtn.onclick = ()=>{
-      const html = `
-        <html><head><meta charset="utf-8"><title>${cId} - Evidence Report</title></head>
-        <body style="font-family:Arial,Helvetica,sans-serif;color:#111">
-        <h2>FundGuard Evidence Report</h2>
-        <p><strong>Case ID:</strong> ${cId}</p>
-        <p><strong>Reporter:</strong> ${name} • <strong>Email:</strong> ${email} • <strong>Country:</strong> ${country}</p>
-        <p><strong>Transaction:</strong> ${txn}</p>
-        <p><strong>Description:</strong> ${desc}</p>
-        <hr/>
-        <h3>Timeline</h3>
-        <ul>
-          <li>Hop 1 → Intermediary Bank detected • Amount: ${amounts[0]}</li>
-          <li>Hop 2 → Wallet Y routed • Amount: ${amounts[1]}</li>
-          <li>Hop 3 → Exchange Z cash‑out attempt • Amount: ${amounts[2]}</li>
-          <li>Freeze request sent to Exchange Z & Wallet Y</li>
-          <li>Exchange Z confirmed temporary freeze on suspicious balance</li>
-          <li>Bank compliance ticket opened; regulator reference generated</li>
-          <li>Recovery action queued — awaiting KYC verification & legal hold</li>
-        </ul>
-        <p style="margin-top:24px;font-size:12px;color:#666">Demo only — no real accounts accessed. © 2025 FundGuard Africa</p>
-        </body></html>
-      `;
-      const blob = new Blob([html], {type:'text/html'});
+    function download(filename, content){
+      const blob = new Blob([content], {type: 'text/html;charset=utf-8'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = cId.replace(/[^A-Z0-9\-]/g,'_') + "_evidence.html";
-      document.body.appendChild(a); a.click(); a.remove();
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
       URL.revokeObjectURL(url);
-    };
+    }
 
-    // scroll into view
-    tl.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-})();
-</script>
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const caseId = `FG-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,6).toUpperCase()}`;
+      const events = buildTimeline(Number(data.amount), data.currency);
 
+      // Render timeline in-page
+      timeline.innerHTML = '';
+      events.forEach(text=>{
+        const div = document.createElement('div');
+        div.className = 't-item';
+        div.innerHTML = `<b>${text.split('—')[0].trim()}</b> — ${text.split('—')[1] ? text.split('—')[1].trim() : ''}`;
+        timeline.appendChild(div);
+      });
+
+      // Generate & download evidence HTML
+      const report = evidenceHTML(data, caseId, events);
+      download(`FundGuard_Evidence_${caseId}.html`, report);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      alert('Evidence Report generated and downloaded. (Simulation)');
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+      form.reset();
+      timeline.innerHTML = `
+        <div class="t-item"><b>Case created</b> — Intake validated, evidence packaging initialized.</div>
+        <div class="t-item"><b>Signals mapped</b> — Patterns checked against blacklist & social graph.</div>
+        <div class="t-item"><b>Compliance pack</b> — Report shell prepared for legal & regulators.</div>
+      `;
+    });
+  </script>
 </body>
 </html>
-<script>
-  // generic click tracker for elements with data-gtag attributes
-  document.addEventListener('click', function(e){
-    const el = e.target.closest('[data-gtag]');
-    if(!el) return;
-    const eventName = el.getAttribute('data-gtag') || 'click';
-    const eventParams = {
-      item_id: el.getAttribute('data-item-id') || undefined,
-      item_name: el.getAttribute('data-item-name') || undefined,
-      link_url: el.getAttribute('href') || undefined,
-      location: el.getAttribute('data-location') || undefined,
-    };
-    gtag('event', eventName, eventParams);
-  });
-</script>
+
+
 
 
 
