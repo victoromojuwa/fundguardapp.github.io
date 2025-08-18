@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FundGuard Africa — Fraud Detection & Fund Recovery</title>
-  <meta name="description" content="AI-powered fraud detection and fund recovery across Africa: live alerts, case management, evidence reports, and recovery workflows for users, banks, and regulators." />
+  <meta name="description" content="AI-powered fraud detection and fund recovery across Africa: real-time alerts, case management, evidence reports, and recovery workflows for users, banks, and regulators." />
 
-  <!-- Open Graph / Social -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <!-- Social -->
   <meta property="og:title" content="FundGuard Africa — Fraud Detection & Fund Recovery">
   <meta property="og:description" content="Real-time fraud alerts, case management, evidence reports, and recovery workflows.">
   <meta property="og:image" content="https://www.fundguardafrica.com/assets/images/fundguard-banner.png">
@@ -15,7 +19,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- GA4 (leave as-is if you already have it on the site) -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -25,156 +29,229 @@
 </head>
 <body>
 
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="wrap topbar-flex">
-      <a href="./" class="brand-name">FundGuard <span class="gold">Africa</span></a>
-      <nav class="mini-contacts">
-        <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
-        <span>•</span>
-        <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
-        <span>•</span>
-        <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+  <!-- Header -->
+  <header class="hdr">
+    <div class="container hdr__row">
+      <a class="brand" href="./">
+        <span class="brand__word">FundGuard</span> <span class="brand__gold">Africa</span>
+      </a>
+      <nav class="hdr__nav">
+        <a href="#features">Features</a>
+        <a href="#expansion">Expansion</a>
+        <a href="#team">Team</a>
+        <a class="nav__cta" href="access.html">Early Access</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="wrap hero-inner">
-      <h1 class="hero-title">Africa’s fraud detection & <span class="gold">fund recovery</span> engine</h1>
-      <p class="hero-sub">AI-powered alerts, case management, evidence reports, and recovery workflows for users, banks, and regulators.</p>
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <h1>Africa’s fraud detection & <span class="gold">fund recovery</span> engine</h1>
+        <p class="lead">
+          AI-powered alerts, case management, evidence reports, and recovery workflows for users, banks, and regulators.
+        </p>
 
-      <div class="cta-row">
-        <a class="btn btn-primary" href="onepager.html">Investor One Pager</a>
-        <a class="btn btn-primary" href="pitch.html">Seed Pitch Deck</a>
-        <a class="btn btn-primary" href="demo.html">Investor Demo (Live)</a>
+        <div class="btnrow">
+          <a class="btn btn--primary" href="onepager.html">Investor One Pager</a>
+          <a class="btn btn--primary" href="pitch.html">Seed Pitch Deck</a>
+          <a class="btn btn--primary" href="demo.html">Investor Demo</a>
+        </div>
+
+        <div class="btnrow btnrow--ghosts">
+          <a class="btn btn--ghost" href="fundrecovery.html">💸 Fund Recovery</a>
+          <a class="btn btn--ghost" href="mvp.html">🧪 MVP Demo</a>
+          <a class="btn btn--ghost" href="access.html">🚀 Early Access</a>
+        </div>
+
+        <div class="mini-contacts">
+          <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+          <span>•</span>
+          <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+          <span>•</span>
+          <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+        </div>
       </div>
 
-      <div class="cta-row-alt">
-        <a class="btn btn-ghost" href="fundrecovery.html">💸 Fund Recovery</a>
-        <a class="btn btn-ghost" href="mvp.html">🧪 MVP Demo</a>
-        <a class="btn btn-ghost" href="access.html">🚀 Early Access</a>
-      </div>
+      <!-- Device Mockups -->
+      <div class="hero__devices">
+        <div class="device device--laptop">
+          <div class="device__screen">
+            <img src="assets/images/fundguard-dashboard-hero.png" alt="FundGuard dashboard" />
+          </div>
+          <div class="device__base"></div>
+        </div>
 
-      <img class="hero-mockup" src="assets/images/fundguard-dashboard-hero.png" alt="FundGuard dashboard mockup" />
+        <div class="device device--phone">
+          <div class="device__notch"></div>
+          <img src="assets/images/fundguard-mobile.png" alt="FundGuard mobile" />
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Core Features -->
-  <section id="features" class="fg-section fg-features">
-    <div class="wrap">
-      <h2 class="fg-h2">🚀 FundGuard Core Features</h2>
-      <div class="feat-grid">
-        <article class="feature-card">
+  <!-- Features -->
+  <section id="features" class="sect">
+    <div class="container">
+      <h2 class="sect__title">🚀 FundGuard Core Features</h2>
+      <p class="sect__sub">Built for Africa. Scalable to the world.</p>
+
+      <div class="grid grid--3">
+        <article class="card">
           <h3>1) Fraud Detection & Recovery</h3>
           <ul>
-            <li><strong>Cases & Recovery</strong> — Track cases from report to resolution with recovery workflows.</li>
-            <li><strong>Evidence Report Generator</strong> — Time-stamped reports for legal & compliance.</li>
+            <li><strong>Cases & Recovery</strong> — End-to-end workflows from report to resolution.</li>
+            <li><strong>Evidence Reports</strong> — Time-stamped PDFs for legal & compliance.</li>
             <li><strong>Fund Tracking</strong> — Trace flow across banks, wallets, and exchanges.</li>
           </ul>
         </article>
-        <article class="feature-card">
+
+        <article class="card">
           <h3>2) User Security & Identity</h3>
           <ul>
-            <li><strong>Identity Verification</strong> — Biometric + KYC for secure onboarding.</li>
-            <li><strong>AI Behavior Analysis</strong> — Detect suspicious patterns in real time.</li>
+            <li><strong>Identity Verification</strong> — Biometric + KYC onboarding.</li>
+            <li><strong>AI Behavior Analysis</strong> — Real-time pattern detection.</li>
             <li><strong>Alerts & Messages</strong> — Push, email/SMS, and in-app messaging.</li>
           </ul>
         </article>
-        <article class="feature-card">
+
+        <article class="card">
           <h3>3) Advanced Intelligence Tools</h3>
           <ul>
-            <li><strong>Blacklist & Social Map</strong> — Monitor known fraud accounts & networks.</li>
-            <li><strong>Predictive Analytics</strong> — AI models forecast fraud risk.</li>
+            <li><strong>Blacklist & Social Map</strong> — Monitor known accounts & networks.</li>
+            <li><strong>Predictive Analytics</strong> — Forecast fraud risk.</li>
             <li><strong>Transaction Monitoring</strong> — Live anomaly detection.</li>
           </ul>
         </article>
-        <article class="feature-card">
+
+        <article class="card">
           <h3>4) Business & Compliance</h3>
           <ul>
-            <li><strong>API Access</strong> — Integrations for banks, fintechs, and businesses.</li>
-            <li><strong>Insurance & Protection</strong> — Partner pathways for fraud-loss coverage.</li>
-            <li><strong>Analytics Dashboard</strong> — Visual reporting for regulators & enterprises.</li>
+            <li><strong>API Access</strong> — Integrations for banks, fintechs, and enterprises.</li>
+            <li><strong>Insurance & Protection</strong> — Partner pathways for loss coverage.</li>
+            <li><strong>Analytics Dashboard</strong> — Visual reporting for regulators & ops.</li>
             <li><strong>Regulatory Readiness</strong> — CBN roadmap, NDPR/GDPR compliance.</li>
           </ul>
         </article>
-        <article class="feature-card">
+
+        <article class="card">
           <h3>5) Scalability & Growth</h3>
           <ul>
-            <li><strong>Business Use Cases</strong> — Corporate accounts, merchants, institutions.</li>
-            <li><strong>Global Expansion</strong> — Live in Nigeria + 10 African markets; scaling pan-Africa.</li>
-            <li><strong>Enterprise Ready</strong> — Secure infra, reliable APIs, biometric verification.</li>
+            <li><strong>Business Use Cases</strong> — Corporate, merchant, institutional.</li>
+            <li><strong>Global Expansion</strong> — Live in Nigeria + 10 African markets.</li>
+            <li><strong>Enterprise Ready</strong> — Secure infra, reliable APIs, biometrics.</li>
+          </ul>
+        </article>
+
+        <article class="card card--cta">
+          <h3>Ready to partner?</h3>
+          <p>We collaborate with banks, fintechs, regulators, and recovery partners.</p>
+          <a class="btn btn--primary btn--wide" href="access.html">Request Access</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expansion -->
+  <section id="expansion" class="sect sect--alt">
+    <div class="container">
+      <h2 class="sect__title">🌍 Global Expansion</h2>
+      <p class="sect__sub">From Africa to worldwide fraud detection coverage — expansion progress & volumes.</p>
+
+      <div class="coverage">
+        <div class="coverage__title">Coverage Summary</div>
+        <div class="coverage__bar" role="img" aria-label="Africa 100%, Middle East 75%, APAC 60%, Europe 25% planned, Americas 15% planned">
+          <span class="seg seg--af" style="width:34%" title="Africa · 100%"></span>
+          <span class="seg seg--me" style="width:20%" title="Middle East · 75%"></span>
+          <span class="seg seg--apac" style="width:25%" title="APAC · 60%"></span>
+          <span class="seg seg--eu" style="width:12%" title="Europe · 25% planned"></span>
+          <span class="seg seg--am" style="width:9%" title="Americas · 15% planned"></span>
+        </div>
+        <div class="coverage__legend">
+          <span class="dot seg--af"></span>Africa
+          <span class="dot seg--me"></span>Middle East
+          <span class="dot seg--apac"></span>APAC
+          <span class="dot seg--eu"></span>Europe (planned)
+          <span class="dot seg--am"></span>Americas (planned)
+        </div>
+      </div>
+
+      <div class="grid grid--4">
+        <div class="region">
+          <div class="region__head"><span>Africa</span><strong>100%</strong></div>
+          <div class="progress"><span style="width:100%"></span></div>
+          <div class="region__meta">2,500k txns</div>
+          <div class="region__countries">Nigeria • Kenya • South Africa • Ghana • Uganda • Tanzania</div>
+        </div>
+        <div class="region">
+          <div class="region__head"><span>Middle East</span><strong>75%</strong></div>
+          <div class="progress"><span style="width:75%"></span></div>
+          <div class="region__meta">850k txns</div>
+          <div class="region__countries">UAE • Saudi Arabia • Qatar • Kuwait</div>
+        </div>
+        <div class="region">
+          <div class="region__head"><span>Asia Pacific</span><strong>60%</strong></div>
+          <div class="progress"><span style="width:60%"></span></div>
+          <div class="region__meta">1,200k txns</div>
+          <div class="region__countries">Singapore • Malaysia • Philippines • Indonesia</div>
+        </div>
+        <div class="region">
+          <div class="region__head"><span>Europe</span><strong class="planned">25%</strong></div>
+          <div class="progress"><span class="planned" style="width:25%"></span></div>
+          <div class="region__meta">Go-to-market readiness</div>
+          <div class="region__countries">UK • Germany • France • Netherlands</div>
+        </div>
+        <div class="region">
+          <div class="region__head"><span>Americas</span><strong class="planned">15%</strong></div>
+          <div class="progress"><span class="planned" style="width:15%"></span></div>
+          <div class="region__meta">Market development</div>
+          <div class="region__countries">Brazil • Mexico • Colombia • Argentina</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder & Team -->
+  <section id="team" class="sect">
+    <div class="container">
+      <h2 class="sect__title">👤 Founder & Team</h2>
+      <p class="sect__sub">Mission-led leadership, backed by technical, legal, and growth advisors.</p>
+
+      <div class="grid grid--team">
+        <article class="tcard">
+          <img class="tcard__photo" src="assets/images/victor-founder.jpg" alt="Victor Kolawole Omojuwa">
+          <h3>Victor Kolawole Omojuwa</h3>
+          <p class="tcard__role">Founder & CEO</p>
+          <p class="tcard__bio">
+            Public Health professional turned tech entrepreneur; Certified Peace Ambassador and Conflictologist. Leading FundGuard to become Africa’s first
+            AI-powered fraud detection & fund recovery platform with a global roadmap.
+          </p>
+        </article>
+
+        <article class="tcard">
+          <h3>Core Team & Advisors</h3>
+          <p class="tcard__bio">
+            Engineers (fraud AI, crypto tracing, secure infra), legal advisors (compliance, recovery), and partnerships (banks, fintechs, regulators) across Africa and beyond.
+          </p>
+          <ul class="bullets">
+            <li>Fraud detection AI & data modeling</li>
+            <li>Banking, crypto, and payments integrations</li>
+            <li>Regulatory, NDPR/GDPR & licensing readiness</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Global Expansion -->
-  <section id="expansion" class="fg-section fg-expansion">
-    <div class="wrap">
-      <h2 class="fg-h2">🌍 Global Expansion</h2>
-      <p class="fg-sub">From Africa to worldwide fraud detection coverage — expansion progress & volumes.</p>
-
-      <div class="coverage-summary">
-        <div class="coverage-title">Coverage Summary</div>
-        <div class="coverage-bar" role="img" aria-label="Africa 100%, Middle East 75%, APAC 60%, Europe 25% planned, Americas 15% planned">
-          <span class="seg africa" style="width:34%" title="Africa · 100%"></span>
-          <span class="seg me"     style="width:20%" title="Middle East · 75%"></span>
-          <span class="seg apac"   style="width:25%" title="APAC · 60%"></span>
-          <span class="seg eu"     style="width:12%" title="Europe · 25% (planned)"></span>
-          <span class="seg am"     style="width:9%"  title="Americas · 15% (planned)"></span>
-        </div>
-        <div class="coverage-legend">
-          <span class="dot africa"></span>Africa
-          <span class="dot me"></span>Middle East
-          <span class="dot apac"></span>APAC
-          <span class="dot eu"></span>Europe (planned)
-          <span class="dot am"></span>Americas (planned)
-        </div>
+  <!-- Contact -->
+  <section class="contact">
+    <div class="container contact__box">
+      <div>
+        <h3>📬 Let’s talk</h3>
+        <p>Investors, partners, and institutions: we’d love to collaborate.</p>
       </div>
-
-      <div class="fg-expansion-grid">
-        <div class="region-card">
-          <div class="region-head"><span class="region-name">Africa</span><span class="region-pct">100%</span></div>
-          <div class="progress"><span class="bar" style="width:100%"></span></div>
-          <div class="region-meta">2,500k txns</div>
-          <div class="region-countries">Nigeria • Kenya • South Africa • Ghana • Uganda • Tanzania</div>
-        </div>
-        <div class="region-card">
-          <div class="region-head"><span class="region-name">Middle East</span><span class="region-pct">75%</span></div>
-          <div class="progress"><span class="bar" style="width:75%"></span></div>
-          <div class="region-meta">850k txns</div>
-          <div class="region-countries">UAE • Saudi Arabia • Qatar • Kuwait</div>
-        </div>
-        <div class="region-card">
-          <div class="region-head"><span class="region-name">Asia Pacific</span><span class="region-pct">60%</span></div>
-          <div class="progress"><span class="bar" style="width:60%"></span></div>
-          <div class="region-meta">1,200k txns</div>
-          <div class="region-countries">Singapore • Malaysia • Philippines • Indonesia</div>
-        </div>
-        <div class="region-card">
-          <div class="region-head"><span class="region-name">Europe</span><span class="region-tag planned">Planned</span><span class="region-pct">25%</span></div>
-          <div class="progress"><span class="bar planned" style="width:25%"></span></div>
-          <div class="region-meta">Go-to-market readiness</div>
-          <div class="region-countries">UK • Germany • France • Netherlands</div>
-        </div>
-        <div class="region-card">
-          <div class="region-head"><span class="region-name">Americas</span><span class="region-tag planned">Planned</span><span class="region-pct">15%</span></div>
-          <div class="progress"><span class="bar planned" style="width:15%"></span></div>
-          <div class="region-meta">Market development</div>
-          <div class="region-countries">Brazil • Mexico • Colombia • Argentina</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Strip -->
-  <section class="contact-strip">
-    <div class="wrap">
-      <h3>📬 Contact Us</h3>
-      <div class="contact-emails">
+      <div class="contact__emails">
         <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
         <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
         <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
@@ -183,38 +260,23 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="wrap footer-flex">
-      <div class="footer-brand">FundGuard <span class="gold">Africa</span></div>
-      <nav class="footer-links">
-        <a href="onepager.html">Investor One Pager</a>
-        <a href="pitch.html">Seed Pitch Deck</a>
-        <a href="demo.html">Investor Demo</a>
+  <footer class="ftr">
+    <div class="container ftr__grid">
+      <div class="ftr__brand">FundGuard <span class="gold">Africa</span></div>
+      <nav class="ftr__links">
+        <a href="onepager.html">One Pager</a>
+        <a href="pitch.html">Pitch Deck</a>
+        <a href="demo.html">Demo</a>
         <a href="fundrecovery.html">Fund Recovery</a>
-        <a href="mvp.html">MVP Demo</a>
+        <a href="mvp.html">MVP</a>
         <a href="access.html">Early Access</a>
       </nav>
-      <div class="footer-copy">© 2025 FundGuard Africa — www.fundguardafrica.com</div>
+      <div class="ftr__copy">© 2025 FundGuard Africa — www.fundguardafrica.com</div>
     </div>
   </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
 
 
                                                                                                                                                                                  
