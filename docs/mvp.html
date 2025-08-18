@@ -1,305 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FundGuard Africa – MVP Demo</title>
-  <meta name="description" content="Investor demo: real-time fraud alerts, stolen-funds tracking, case management." />
-  <meta property="og:title" content="FundGuard Africa – MVP Demo" />
-  <meta property="og:description" content="Try the FundGuard investor demo with simulated fraud alerts and case tools." />
-  <meta property="og:image" content="assets/images/fundguard-banner.png" />
-  <meta property="og:type" content="website" />
-  <link rel="icon" href="assets/images/logo-32.png" />
-
+  <title>FundGuard Africa — MVP Demo</title>
+  <meta name="description" content="FundGuard MVP demo: live simulation of fraud alerts, transaction monitoring, and evidence report generation." />
   <style>
     :root{
-      --bg:#0a1e3d;         /* Premium deep blue */
-      --card:#102a54;       /* Card blue */
-      --muted:#b7c6e6;      /* Muted steel */
-      --gold:#d4af37;       /* FundGuard gold */
-      --white:#ffffff;
-      --accent:#2bb673;     /* success green */
-      --danger:#ff6b6b;     /* alert red */
+      --ink:#0b1e27;
+      --blue:#004080;
+      --gold:#d4af37;
+      --muted:#5f7180;
+      --line:#e7edf1;
+      --card:#f9fbfc;
+      --bg:#ffffff;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
-      background:var(--bg); color:var(--white);
-    }
-    a{color:var(--gold); text-decoration:none}
-    .wrap{max-width:1100px; margin:0 auto; padding:24px}
-    .nav{
-      display:flex; align-items:center; gap:16px; padding:14px 0; justify-content:space-between;
-    }
-    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px}
-    .brand img{height:40px; width:40px; object-fit:contain}
-    .pill{padding:10px 14px; border:1px solid var(--gold); border-radius:999px; color:var(--gold)}
-    .hero{
-      display:grid; gap:16px; padding:32px 0 10px;
-    }
-    .hero h1{margin:0; font-size:40px; line-height:1.1}
-    .tag{display:inline-block; color:#0b1a33; background:var(--gold); font-weight:700; padding:6px 10px; border-radius:6px; margin:10px 0}
-    .sub{color:var(--muted); max-width:820px}
-    .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px}
-    .btn{
-      background:var(--gold); color:#0b1a33; padding:12px 16px; border-radius:10px; font-weight:700; border:none; cursor:pointer;
-    }
-    .btn.outline{background:transparent; color:var(--gold); border:1px solid var(--gold)}
-    .grid{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
-    .card{
-      background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:16px;
-      box-shadow:0 0 0 1px rgba(0,0,0,.05), 0 10px 30px rgba(0,0,0,.25);
-    }
-    .card h3{margin:0 0 8px 0}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
+    header{background:#0b1e27;color:#fff;text-align:center;padding:28px 16px}
+    header h1{margin:0;font-size:2.2rem;font-weight:900;letter-spacing:.5px}
+    header .tag{color:var(--gold);font-weight:700;margin-top:6px}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 16px}
+    h2{color:#004080;margin:8px 0 6px}
+    .sub{color:var(--muted);margin:0 0 14px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.05);padding:18px}
+    .badge{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin:4px 6px 0 0;font-weight:700}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:14px 0 0}
+    .btn{border-radius:10px;padding:12px 16px;font-weight:800;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
+    .btn--gold{background:var(--gold);color:#0b1e27;border-color:var(--gold)} .btn--gold:hover{filter:brightness(1.07);text-decoration:none}
+    .btn--ghost{border:1px solid var(--line);background:#fff;color:#0b1e27}
+    .list{margin:0;padding-left:18px}
     .muted{color:var(--muted)}
-    .kpi{display:flex; gap:18px; flex-wrap:wrap}
-    .chip{background:rgba(255,255,255,.08); padding:6px 10px; border-radius:999px; color:var(--muted)}
-    .feed{max-height:280px; overflow:auto; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background:#0c2247; border:1px dashed rgba(255,255,255,.15); padding:10px; border-radius:10px}
-    .feed .row{padding:8px 6px; border-bottom:1px dashed rgba(255,255,255,.06)}
-    .feed .row:last-child{border-bottom:0}
-    .row .ts{color:#9bb0d6; margin-right:6px}
-    .row.ok{color:var(--accent)}
-    .row.bad{color:var(--danger)}
-    .input{width:100%; padding:12px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:#0b1f41; color:var(--white)}
-    .input::placeholder{color:#9bb0d6}
-    .sm{font-size:13px}
-    .footer{margin:40px 0 20px; color:var(--muted); text-align:center}
-    .hr{height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent); margin:24px 0}
-    @media (max-width:900px){
-      .hero h1{font-size:34px}
-    }
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px}
+    footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:24px;padding:18px 16px;border-top:1px solid rgba(255,255,255,.08)}
+    .contact-stack{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px}
+    .contact-stack a{color:var(--gold);font-weight:700} .contact-stack a:hover{color:#0f4c81;text-shadow:0 0 6px rgba(212,175,55,.6)}
   </style>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWVLWQG4B4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KWVLWQG4B4'); // FundGuard GA4
-  </script>
 </head>
 <body>
-  <div class="wrap">
-    <!-- NAV -->
-    <div class="nav">
-      <div class="brand">
-        <img src="assets/images/logo-32.png" alt="FundGuard" />
-        <div>FUNDGUARD AFRICA</div>
-      </div>
-      <div class="cta-row">
-        <a class="pill" href="index.html">Home</a>
-        <a class="pill" target="_blank" href="https://www.fundguardafrica.com">Official Site</a>
-      </div>
+
+  <header>
+    <h1>FundGuard Africa — MVP Demo</h1>
+    <div class="tag">Live simulation: Fraud Alerts • Transactions Monitor • Evidence Report</div>
+    <div class="hero-cta">
+      <a class="btn btn--gold" href="fundrecovery.html">💸 Start Fund Recovery (Sim)</a>
+      <a class="btn btn--ghost" href="demo.html">🎥 Watch Investor Demo</a>
+      <a class="btn btn--ghost" href="onepager.html">📄 Investor One Pager</a>
     </div>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <span class="tag">Investor Demo</span>
-      <h1>Protect. Track. Recover. <br/> Africa’s real-time fraud intelligence platform.</h1>
-      <p class="sub">
-        This interactive demo uses <strong>simulated data</strong> to show how FundGuard detects suspicious activity,
-        tracks stolen funds across bank and crypto rails, and generates case reports you can share with partners.
-      </p>
-      
-        <!-- Updated CTA Section -->
-<div class="cta-buttons">
-  
-  <!-- Explore Demo -->
-  <a href="demo.html" target="_blank" class="btn btn-primary">🚀 Explore Demo</a>
-  
-  <!-- Request Full Access -->
-  <a href="https://fundguardafrica.com/request-access" target="_blank" class="btn btn-secondary">📩 Request Full Access</a>
-  
-  <!-- Watch Demo Video -->
-  <a href="https://youtu.be/your-demo-video-link" target="_blank" class="btn btn-video">🎥 Watch Demo Video</a>
-  
-  <!-- Download Pitch Deck PDF -->
-  <a href="assets/docs/FundGuard_Seed_Pitch_Deck.pdf" target="_blank" class="btn btn-pdf">📊 Download Pitch Deck</a>
-  
-  <!-- Download Investor One-Pager PDF -->
-  <a href="assets/docs/FundGuard_Investor_One_Pager.pdf" target="_blank" class="btn btn-pdf">📄 Download One-Pager</a>
-
-</div>
-
-      <div class="kpi">
-        <span class="chip">Live in 8+ African markets</span>
-        <span class="chip">API-first, bank & crypto</span>
-        <span class="chip">Compliance-aligned (AML/CFT)</span>
-      </div>
-    </section>
-
-    <div class="hr"></div>
-
-    <!-- 3-STEP GUIDE -->
-    <section class="grid" style="grid-template-columns: repeat(12,1fr); gap:16px;">
-      <div class="card" style="grid-column: span 4;">
-        <h3>1) Detect</h3>
-        <p class="muted">AI flags risky transactions and account behavior in real time across bank and crypto rails.</p>
-      </div>
-      <div class="card" style="grid-column: span 4;">
-        <h3>2) Trace</h3>
-        <p class="muted">Follow funds across counterparties/wallets, view hops, and auto-generate case notes.</p>
-      </div>
-      <div class="card" style="grid-column: span 4;">
-        <h3>3) Act</h3>
-        <p class="muted">Create an incident report for investigators, banks, or regulators with one click.</p>
-      </div>
-    </section>
-
-    <div class="hr"></div>
-
-    <!-- INTERACTIVE DEMO -->
-    <section id="interactive" class="grid" style="grid-template-columns: repeat(12,1fr); gap:16px;">
-      <!-- Live Alerts -->
-      <div class="card" style="grid-column: span 6;">
-        <h3>Live Fraud Alerts (simulated)</h3>
-        <div id="alertFeed" class="feed" aria-live="polite"></div>
-        <p class="sm muted">Simulation rotates through common fraud signals every few seconds.</p>
-      </div>
-
-      <!-- Transaction Feed -->
-      <div class="card" style="grid-column: span 6;">
-        <h3>Transaction Monitor (dummy data)</h3>
-        <div id="txFeed" class="feed"></div>
-        <div class="sm muted">Showing synthetic activity for demo purposes only.</div>
-      </div>
-
-      <!-- Blacklist Search -->
-      <div class="card" style="grid-column: span 6;">
-        <h3>Blacklist / Risk Lookup</h3>
-        <input class="input" id="blInput" placeholder="Paste account number, wallet, or phone…" />
-        <div style="margin-top:10px; display:flex; gap:8px;">
-          <button class="btn" onclick="runBlacklist()">Search</button>
-          <span id="blResult" class="chip">Awaiting query…</span>
-        </div>
-        <p class="sm muted">Demo data set includes: 1122334455, 0xDEMO123, +2348000000000</p>
-      </div>
-
-      <!-- Case/Report -->
-      <div class="card" style="grid-column: span 6;">
-        <h3>Generate Incident Report</h3>
-        <input class="input" id="caseVictim" placeholder="Victim name (e.g., A. Okeke)" style="margin-bottom:8px" />
-        <input class="input" id="caseRef" placeholder="Case ref (auto if blank)" style="margin-bottom:8px" />
-        <textarea class="input" id="caseNotes" rows="5" placeholder="What happened? Add notes here…"></textarea>
-        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn" onclick="downloadReport()">Download Sample Report</button>
-          <button class="btn outline" onclick="alert('In full version this submits to Supabase (cases/evidence).')">Submit (disabled in demo)</button>
-        </div>
-        <p class="sm muted">In production, this would save to Supabase with RLS policies and evidence storage.</p>
-      </div>
-    </section>
-
-    <div class="hr"></div>
-
-    <!-- INVESTOR CTA -->
+  <main class="wrap">
     <section class="card">
-      <h3>For Investors & Partners</h3>
-      <p class="muted">
-        This demo illustrates FundGuard’s workflows using safe synthetic data. For full, private access (with additional tools),
-        request access and we’ll provision an investor sandbox and schedule a guided walk-through.
-      </p>
-      <div class="cta-row">
-        <a class="btn" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdw-F3fu9mJitN3i5dxN3OTyxkCt8ox72MBIwYkNq4eJWCbiA/viewform">Request Full Access</a>
-        <a class="btn outline" href="mailto:invest@fundguardafrica.com">Email Investor Relations</a>
+      <h2>What’s Included in the MVP</h2>
+      <ul class="list">
+        <li><strong>Fraud Alerts (Simulated):</strong> live alert cards to showcase signal quality.</li>
+        <li><strong>Transaction Monitor (Dummy):</strong> shows how anomalies surface in real time.</li>
+        <li><strong>Fund Recovery Flow:</strong> enter case details → generate a time‑stamped <em>Evidence Report</em>.</li>
+        <li><strong>Case Management (UI):</strong> guided steps from report → recovery → compliance pack.</li>
+      </ul>
+      <p class="muted">Note: Certain government/banking integrations are simulated in the MVP to avoid compliance dependencies before seed.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>How to Test Quickly</h2>
+        <ol class="list">
+          <li>Open <a href="fundrecovery.html">Fund Recovery</a> and submit a test case (use dummy details).</li>
+          <li>Download the generated <strong>Evidence Report</strong> PDF at the end.</li>
+          <li>Review the audit trail and timeline steps (freeze requests, compliance ticket, etc.).</li>
+          <li>Optionally watch the <a href="demo.html">Investor Demo</a> for a guided walkthrough.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h2>Known MVP Limitations</h2>
+        <ul class="list">
+          <li>Some data sources are mocked; production partners will replace them post‑seed.</li>
+          <li>No live PII processing beyond test mode; RLS/ACLs are configured.</li>
+          <li>Mobile apps are web-based previews; native clients planned.</li>
+        </ul>
+        <div class="badge">NDPR-ready</div>
+        <div class="badge">GDPR-aligned</div>
+        <div class="badge">RLS enforced</div>
       </div>
     </section>
 
-    <div class="footer">
-      © 2025 FundGuard Africa • <a href="index.html">Home</a> • <a href="https://victoromojuwa.github.io/fundguardapp.github.io/" target="_blank">Verified Mirror</a>
+    <section class="card">
+      <h2>Security & Compliance Notes</h2>
+      <ul class="list">
+        <li>Row Level Security (RLS) and least-privilege roles for data access.</li>
+        <li>Secrets stored in environment variables (no hard-coded keys).</li>
+        <li>Evidence packs watermarked and time‑stamped.</li>
+      </ul>
+      <p class="mono">Contact: invest@fundguardafrica.com • support@fundguardafrica.com</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contact-stack">
+      <a href="mailto:fundguardafrica@gmail.com">✉️ fundguardafrica@gmail.com</a>
+      <a href="mailto:invest@fundguardafrica.com">🎯 invest@fundguardafrica.com</a>
+      <a href="mailto:support@fundguardafrica.com">💼 support@fundguardafrica.com</a>
     </div>
-  </div>
+    <div>&copy; 2025 FundGuard Africa — <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+  </footer>
 
-  <script>
-    // --- Simulated fraud alerts ---
-    const alertFeed = document.getElementById('alertFeed');
-    const alerts = [
-      {t:'High-risk login from new device (NG-175.34.x.x)', cls:'bad'},
-      {t:'Rapid outgoing transfers flagged (velocity spike)', cls:'bad'},
-      {t:'Crypto wallet linked to known scam cluster', cls:'bad'},
-      {t:'Mismatched KYC details – manual review suggested', cls:'ok'},
-      {t:'Account recovered – beneficiary contacted', cls:'ok'}
-    ];
-    function addAlert(){
-      const a = alerts[Math.floor(Math.random()*alerts.length)];
-      const row = document.createElement('div');
-      row.className = 'row ' + a.cls;
-      row.innerHTML = '<span class="ts">['+new Date().toLocaleTimeString()+']</span> ' + a.t;
-      alertFeed.prepend(row);
-      // keep feed tidy
-      if(alertFeed.childElementCount > 30) alertFeed.removeChild(alertFeed.lastChild);
-    }
-    setInterval(addAlert, 3000);
-    addAlert(); addAlert(); addAlert();
-
-    // --- Simulated transactions ---
-    const txFeed = document.getElementById('txFeed');
-    const names = ['A.Okeke', 'S.Diallo', 'T.Kimani', 'R.Moyo', 'Y.Ncube', 'B.Amadi'];
-    const merchants = ['WalletTopUp','P2P Transfer','Card NFC','Crypto Bridge','FX Swap','MerchantPay'];
-    function addTx(){
-      const amt = (Math.random()*45000+500).toFixed(2);
-      const who = names[Math.floor(Math.random()*names.length)];
-      const mch = merchants[Math.floor(Math.random()*merchants.length)];
-      const risk = Math.random();
-      const row = document.createElement('div');
-      row.className = 'row ' + (risk>0.82?'bad':risk>0.6?'ok':'');
-      row.innerHTML = '<span class="ts">'+new Date().toLocaleTimeString()+'</span>'
-        + who + ' • ' + mch + ' • NGN ' + amt + (risk>0.82?' • FLAGGED':'');
-      txFeed.prepend(row);
-      if(txFeed.childElementCount > 30) txFeed.removeChild(txFeed.lastChild);
-    }
-    setInterval(addTx, 2200);
-    for(let i=0;i<5;i++) addTx();
-
-    // --- Blacklist demo ---
-    const blacklist = new Set(['1122334455','0xDEMO123','+2348000000000','NG-ACC-778899']);
-    function runBlacklist(){
-      const v = (document.getElementById('blInput').value||'').trim();
-      const el = document.getElementById('blResult');
-      if(!v){ el.textContent='Enter a value to search…'; return; }
-      if(blacklist.has(v)){
-        el.textContent='Match found: HIGH RISK';
-        el.style.background='rgba(255,107,107,.15)';
-        el.style.color='#ff9b9b';
-      }else{
-        el.textContent='No match in demo dataset';
-        el.style.background='rgba(43,182,115,.15)';
-        el.style.color='#9be6bf';
-      }
-    }
-
-    // --- Download sample incident report (TXT) ---
-    function downloadReport(){
-      const victim = (document.getElementById('caseVictim').value||'Unknown Victim').trim();
-      const ref = (document.getElementById('caseRef').value||('FG-'+Date.now())).trim();
-      const notes = (document.getElementById('caseNotes').value||'N/A').trim();
-      const body =
-`FundGuard Africa - Incident Report (DEMO)
------------------------------------------
-Case Ref: ${ref}
-Victim:   ${victim}
-Date:     ${new Date().toLocaleString()}
-
-Summary:
-${notes}
-
-Recent Alerts (demo):
-- Velocity spike on outgoing transfers
-- Device change + IP mismatch
-- Linked wallet flagged in external cluster
-
-Recommendation:
-Escalate to institution partner, freeze suspected endpoints, initiate KYC re-check, notify user.
-
-This is a simulated report for investor demo purposes only.`;
-
-      const blob = new Blob([body], {type:'text/plain;charset=utf-8'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = ref + '_FundGuard_Demo_Report.txt';
-      document.body.appendChild(a); a.click();
-      URL.revokeObjectURL(url); a.remove();
-    }
-  </script>
 </body>
 </html>
+
