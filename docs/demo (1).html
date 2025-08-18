@@ -1,89 +1,97 @@
-<img src="assets/images/fundguard-banner.png" alt="FundGuard Banner" class="banner" />
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FundGuard Demo</title>
-</head>
-<body style="font-family: Arial, sans-serif; padding: 2rem; background: #f9f9f9; color: #222;">
-  <h1 style="text-align: center;">🎥 Watch the FundGuard App Demo</h1>
-  <p style="text-align: center;">Learn how FundGuard helps detect, track, and recover stolen funds in real-time.</p>
-  <div style="display: flex; justify-content: center; margin-top: 2rem;">
-    <video width="720" height="420" controls>
-      <source src="assets/videos/fundguard-demo.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</body>
-</html>
-<!-- 
-  demo.html – Official Demo Video Page for FundGuard Africa
-
-  Description:
-  This file presents the official demo video for FundGuard Africa, showcasing the app’s core functionality.
-  It provides a high-level walkthrough for investors, users, and stakeholders. 
-  The embedded video demonstrates FundGuard’s real-time fraud detection, fund tracking, and recovery system.
-
-  Key Elements:
-  - Embedded responsive video
-  - Brand-aligned visuals
-  - Clear call-to-action
-  - Supports fundraising and outreach initiatives
-
-  Location of video: assets/videos/fundguard-demo.mp4
--->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FundGuard Demo Video</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9fafb;
-      color: #111827;
-      text-align: center;
-      padding: 2rem;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    video {
-      max-width: 90%;
-      height: auto;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .cta {
-      margin-top: 2rem;
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #2563eb;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-    .cta:hover {
-      background-color: #1d4ed8;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FundGuard Africa — Investor Demo</title>
+<meta name="description" content="Investor demo: product walkthrough, live simulation, and quick links to pitch materials." />
+<style>
+:root{--ink:#0b1e27;--blue:#004080;--gold:#d4af37;--muted:#5f7180;--line:#e7edf1;--card:#f9fbfc;--bg:#ffffff}
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
+header{background:#0b1e27;color:#fff;text-align:center;padding:28px 16px}
+header h1{margin:0;font-size:2.2rem;font-weight:900;letter-spacing:.5px}
+header .tag{color:var(--gold);font-weight:700;margin-top:6px}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 16px}
+h2{color:#004080;margin:8px 0 6px} .sub{color:var(--muted);margin:0 0 14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.05);padding:18px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px} @media (max-width:980px){.grid{grid-template-columns:1fr}}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.btn{border-radius:10px;padding:12px 16px;font-weight:800;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
+.btn--gold{background:var(--gold);color:#0b1e27;border-color:var(--gold)} .btn--gold:hover{filter:brightness(1.07);text-decoration:none}
+.btn--ghost{border:1px solid var(--line);background:#fff;color:#0b1e27}
+.badge{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin:4px 6px 0 0;font-weight:700}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Courier New",monospace;background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px}
+footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:24px;padding:18px 16px;border-top:1px solid rgba(255,255,255,.08)}
+.contact-stack{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px}
+.contact-stack a{color:var(--gold);font-weight:700} .contact-stack a:hover{color:#0f4c81;text-shadow:0 0 6px rgba(212,175,55,.6)}
+</style>
 </head>
 <body>
-  <h1>Watch the FundGuard Demo</h1>
-  <p>Protecting Africa’s digital economy with real-time fraud detection & fund recovery.</p>
 
-  <video controls>
-    <a href="https://drive.google.com/file/d/VIDEO_ID/view" target="_blank" class="demo-video-button">
-  🎬 Watch FundGuard Demo Video
-</a>
+<header>
+  <h1>FundGuard Africa — Investor Demo</h1>
+  <div class="tag">Walkthrough • Live Simulation • Investor Materials</div>
+  <div class="btns" style="justify-content:center">
+    <a class="btn btn--gold" href="fundrecovery.html">💸 Try Fund Recovery (Sim)</a>
+    <a class="btn btn--ghost" href="mvp.html">🧪 MVP Overview</a>
+    <a class="btn btn--ghost" href="onepager.html">📄 One Pager</a>
+    <a class="btn btn--ghost" href="pitch.html">🎯 Seed Pitch</a>
+  </div>
+</header>
 
-  <a href="index.html" class="cta">← Back to Home</a>
+<main class="wrap">
+  <section class="grid">
+    <div class="card">
+      <h2>🎥 Product Walkthrough</h2>
+      <p class="sub">This video covers fraud alerts, transaction monitoring, recovery flow, and evidence report generation.</p>
+      <!-- Replace the src below with your actual share link if different -->
+      <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line)">
+        <iframe src="https://drive.google.com/file/d/1QxVeDocAoAkk0iMJ9GpC5FQc_FjKHdIZ/preview"
+                allow="autoplay; encrypted-media" allowfullscreen
+                style="position:absolute;left:0;top:0;width:100%;height:100%;border:0"></iframe>
+      </div>
+    </div>
+
+    <aside class="card">
+      <h2>Quick Actions</h2>
+      <div class="btns">
+        <a class="btn btn--gold" href="fundrecovery.html">Generate Evidence Report</a>
+        <a class="btn btn--ghost" href="api.html">Open Developer API</a>
+      </div>
+      <h3 style="margin-top:10px">What’s Included</h3>
+      <ul>
+        <li>Fraud alerts (simulated)</li>
+        <li>Transaction monitor (dummy)</li>
+        <li>Recovery flow + downloadable report</li>
+      </ul>
+      <div class="badge">NDPR-ready</div>
+      <div class="badge">GDPR-aligned</div>
+      <div class="badge">RLS enforced</div>
+      <p class="mono">Contact: invest@fundguardafrica.com • support@fundguardafrica.com</p>
+    </aside>
+  </section>
+
+  <section class="card">
+    <h2>How to Evaluate in 3 Minutes</h2>
+    <ol>
+      <li>Watch the video above (1–2 mins scan).</li>
+      <li>Open <a href="fundrecovery.html">Fund Recovery</a> and submit a test case (no real PII).</li>
+      <li>Download the generated <b>Evidence Report</b> and review the timeline.</li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="contact-stack">
+    <a href="mailto:fundguardafrica@gmail.com">✉️ fundguardafrica@gmail.com</a>
+    <a href="mailto:invest@fundguardafrica.com">🎯 invest@fundguardafrica.com</a>
+    <a href="mailto:support@fundguardafrica.com">💼 support@fundguardafrica.com</a>
+  </div>
+  <div>&copy; 2025 FundGuard Africa — <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+</footer>
+
 </body>
 </html>
+
