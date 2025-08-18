@@ -142,6 +142,69 @@ img{ max-width:100%; display:block; }
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+/* ===== FundGuard Premium Blue/Gold Theme (drop-in override) ===== */
+
+/* Header */
+.hdr{background:#0b2a36;border-bottom:none;position:sticky;top:0;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.hdr__row{padding:16px 0}
+.brand{color:#fff;font-weight:900;letter-spacing:.3px;font-size:1.8rem}
+@media (min-width:880px){.brand{font-size:2.2rem}}
+.brand__word{color:#fff}
+.brand__gold{color:#d4af37}
+.hdr__nav a{color:#cfe3ea;font-weight:600}
+.hdr__nav a:hover{color:#fff;text-decoration:none}
+.nav__cta{background:#d4af37;color:#0b2a36!important;padding:8px 14px;border-radius:8px}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#0f2530,#0b1e27);color:#eaf3f6}
+.hero h1{color:#fff}
+.lead{color:#cfe3ea}
+
+/* Emails (under hero) */
+.mini-contacts a{color:#d4af37;font-weight:600;text-decoration:none;border-bottom:1px dashed rgba(212,175,55,.55)}
+.mini-contacts a:hover{color:#fff;text-decoration:underline}
+.mini-contacts span{color:#4f6a75}
+
+/* Buttons */
+.btn{border:1px solid transparent;border-radius:10px;padding:11px 16px;font-weight:700}
+.btn--primary{background:#d4af37;color:#0b2a36;border-color:#d4af37}
+.btn--primary:hover{filter:brightness(1.08);text-decoration:none}
+.btn--ghost{border:1px solid #bcd1d9;color:#eaf3f6;background:transparent}
+.btn--ghost:hover{background:#12313d;border-color:#eaf3f6;color:#fff;text-decoration:none}
+
+/* Features section */
+#features.sect{background:#fff;border-top:1px solid #e6edf0}
+#features .sect__title{color:#0b2a36}
+#features .sect__sub{color:#566a73}
+.card{background:#fff;border:1px solid #e6edf0;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.card h3{color:#0b2a36}
+.card li{color:#30434b}
+
+/* Expansion visuals */
+.coverage__title{color:#0b2a36}
+.coverage__bar{background:#eceff3;border:1px solid #e6e9ee}
+.seg--af{background:#d4af37}
+.seg--me{background:#c79a2b}
+.seg--apac{background:#967321}
+.seg--eu{background:#bfbfbf}
+.seg--am{background:#a9a9a9}
+.coverage__legend{color:#6b7f89}
+
+/* Team */
+.tcard__role{color:#d4af37;font-weight:700}
+.tcard__photo{border:2px solid #d4af37}
+
+/* Contact strip */
+.contact{background:#f9fafb;border-top:1px solid #e6edf0}
+.contact__emails a{background:#fff;border:1px solid #e6edf0;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:8px 12px}
+.contact__emails a:hover{border-color:#d4af37}
+
+/* Footer */
+.ftr{background:#0b2a36;border-top:none}
+.ftr__brand{color:#fff}
+.ftr__links a{color:#d4e4ea}
+.ftr__links a:hover{color:#fff;text-decoration:none}
+.ftr__copy{color:#b7cad1}
 
 
 
