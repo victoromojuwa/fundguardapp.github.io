@@ -122,6 +122,26 @@ img{ max-width:100%; display:block; }
   .ftr__grid{ grid-template-columns: 1fr; text-align:center; }
   .ftr__brand, .ftr__copy{ text-align:center; }
 }
+.device-visuals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem auto;
+  flex-wrap: wrap;
+}
+
+.device-laptop {
+  max-width: 60%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.device-mobile {
+  max-width: 25%;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
 
 
 
