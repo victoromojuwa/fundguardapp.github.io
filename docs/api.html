@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FundGuard Africa — Developer API</title>
+<meta name="description" content="Developer-facing overview of tables, example queries, and authentication for the FundGuard MVP.">
+<style>
+:root{--ink:#0b1e27;--blue:#0f3d66;--gold:#d4af37;--muted:#5f7180;--line:#e7edf1;--bg:#ffffff}
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
+header{background:#0b1e27;color:#fff;text-align:center;padding:28px 16px}
+header h1{margin:0;font-size:2.1rem;font-weight:900}
+header .tag{color:var(--gold);font-weight:700;margin-top:6px}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.05);padding:18px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px} @media (max-width:980px){.grid{grid-template-columns:1fr}}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto}
+.badge{display:inline-block;background:#f9fbfc;border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin:4px 6px 0 0;font-weight:700}
+footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:24px;padding:18px 16px;border-top:1px solid rgba(255,255,255,.08)}
+.contact{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px}
+.contact a{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <h1>Developer API — FundGuard Africa</h1>
+  <div class="tag">MVP endpoints • Tables • Auth basics</div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2>Authentication</h2>
+    <p>Use your project’s Supabase URL and anon key (demo use only; don’t commit secrets).</p>
+    <div class="mono">
+// JavaScript example
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Read current user profile (RLS enforced)
+const { data, error } = await sb.from('users')
+  .select('*')
+  .eq('id', (await sb.auth.getUser()).data.user.id);
+    </div>
+    <div class="badge">RLS enforced</div> <div class="badge">NDPR-ready</div> <div class="badge">GDPR-aligned</div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Tables & Views</h2>
+      <ul>
+        <li><b>users</b> — profiles (RLS)</li>
+        <li><b>cases</b> — fraud cases</li>
+        <li><b>evidence</b> — uploaded files/records</li>
+        <li><b>fraud_alerts</b> — signals (sim/demo)</li>
+        <li><b>fraud_transactions</b> — anomaly store</li>
+        <li><b>funds_tracking</b> — tracing hops</li>
+        <li><b>recovery_cases</b> — actions & status</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Sample Queries</h2>
+      <div class="mono">
+// All cases for current user
+const { data: myCases } = await sb.from('cases')
+  .select('*')
+  .eq('user_id', (await sb.auth.getUser()).data.user.id);
+
+// Create a case
+const { data: newCase } = await sb.from('cases').insert({
+  user_id: (await sb.auth.getUser()).data.user.id,
+  description: 'Card-not-present fraud',
+  amount: 266527, currency: 'NGN', channel: 'Bank X'
+}).select().single();
+
+// List fraud alerts (demo)
+const { data: alerts } = await sb.from('fraud_alerts')
+  .select('*')
+  .order('created_at',{ascending:false})
+  .limit(20);
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Webhooks & Integrations (Roadmap)</h2>
+    <ul>
+      <li>Bank/exchange freeze requests (secure channels)</li>
+      <li>Evidence pack delivery to law enforcement mailboxes</li>
+      <li>AML/KYC provider federation & scoring</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="contact">
+    <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+    <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+    <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+  </div>
+  <div>&copy; 2025 FundGuard Africa — <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+</footer>
+</body></html>
