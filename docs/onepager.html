@@ -1,103 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FundGuard Africa – Investor One Pager</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #0b1e27;
-      margin: 0;
-      line-height: 1.6;
-    }
-    header {
-      background: #0b1e27;
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      font-weight: bold;
-    }
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 {
-      color: #004080;
-      margin-bottom: 0.5rem;
-    }
-    .highlight {
-      color: #d4af37; /* gold */
-      font-weight: bold;
-      :root{
-  --ink:#0b1e27;
-  --blue:#0f3d66;        /* softer blue */
-  --gold:#d4af37;
-  --muted:#5f7180;
-  --line:#e7edf1;
-  --card:#ffffff;        /* cards pure white */
-  --bg:#ffffff;          /* page white */
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FundGuard Africa — Investor One Pager</title>
+<meta name="description" content="Investor-focused summary of FundGuard Africa — Africa’s first fraud detection & fund recovery platform." />
+<style>
+:root{
+  --ink:#0b1e27; --blue:#0f3d66; --gold:#d4af37;
+  --muted:#5f7180; --line:#e7edf1; --bg:#ffffff;
 }
-    }
-    footer {
-      background: #0b1e27;
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
-    footer p {
-      margin: 0.3rem 0;
-    }
-  </style>
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+header{background:#fff;color:var(--ink);text-align:center;padding:40px 20px;border-bottom:2px solid var(--line)}
+header h1{margin:0;font-size:2.6rem;font-weight:900}
+header p{color:var(--muted);font-size:1.1rem;margin:.5rem 0 0}
+.wrap{max-width:1100px;margin:0 auto;padding:36px 20px}
+h2{color:var(--ink);margin:28px 0 12px;font-size:1.6rem;border-left:6px solid var(--gold);padding-left:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.04);padding:22px 22px;margin-bottom:22px}
+.highlight{color:var(--gold);font-weight:800}
+ul{padding-left:20px;margin:10px 0}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.kpi b{display:block;font-size:1.25rem;color:var(--gold)}
+.cta{display:inline-block;background:var(--gold);color:#0b1e27;padding:12px 22px;border-radius:10px;font-weight:800;margin-top:10px;border:1px solid var(--gold)}
+.cta:hover{filter:brightness(1.06);text-decoration:none}
+footer{background:#fff;color:var(--muted);text-align:center;margin-top:30px;padding:20px;border-top:1px solid var(--line)}
+footer a{color:var(--gold);font-weight:700;display:block}
+@media (max-width:820px){.kpis{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>FundGuard Africa – Investor One Pager</h1>
-    <p class="highlight">Africa’s First Fraud Detection & Fund Recovery Platform</p>
-  </header>
+<header>
+  <h1>FundGuard Africa</h1>
+  <p>Investor One Pager — Africa’s first fraud detection & fund recovery platform</p>
+</header>
 
-  <section>
-    <h2>🚨 Problem & Opportunity</h2>
-    <p>Every year, billions are lost to financial fraud across Africa and emerging markets. Victims lack effective tools for <span class="highlight">detection, reporting, and recovery</span>. Regulators and banks struggle with fragmented systems.</p>
+<main class="wrap">
+
+  <section class="card">
+    <h2>🚀 Vision</h2>
+    <p><span class="highlight">FundGuard Africa</span> is building the leading fraud detection, fund tracking, and recovery ecosystem — starting in Africa and scaling globally.</p>
+    <div class="kpis">
+      <div class="kpi"><b>$5B+</b><span>annual fraud losses in Africa</span></div>
+      <div class="kpi"><b>22% CAGR</b><span>global fraud-tech growth</span></div>
+      <div class="kpi"><b>6+ countries</b><span>initial market coverage</span></div>
+    </div>
   </section>
 
-  <section>
-    <h2>💡 Solution – FundGuard</h2>
-    <p>A fintech security platform enabling <span class="highlight">fraud detection, fund tracking, and recovery</span>. Our app connects banks, wallets, and regulators with AI-driven intelligence, case management, and legal-ready evidence reports.</p>
+  <section class="card">
+    <h2>🛠️ Core Features</h2>
+    <ul>
+      <li><b>Fraud Detection & Recovery</b> — case workflows, money-flow tracing, freeze requests.</li>
+      <li><b>Evidence Reports</b> — downloadable, time-stamped reports for legal/compliance.</li>
+      <li><b>AI Behavior & Transaction Monitoring</b> — real-time anomaly signals.</li>
+      <li><b>Identity & KYC</b> — biometrics + verification integrations (NDPR/GDPR aligned).</li>
+      <li><b>API for Enterprises</b> — banks, PSPs, fintechs, insurers.</li>
+    </ul>
   </section>
 
-  <section>
-    <h2>🌍 Market & Expansion</h2>
-    <p>Starting in Nigeria and East Africa, already monitoring millions of transactions. Scaling pan-Africa, then globally into the Middle East, Europe, and the Americas.</p>
+  <section class="card">
+    <h2>🌍 Current Availability & Expansion</h2>
+    <p>Live and piloting in <span class="highlight">Nigeria, Kenya, South Africa, Ghana, Uganda, Tanzania</span>. Expansion roadmap into the Middle East, APAC, Europe, and the Americas over the next 24–36 months.</p>
   </section>
 
-  <section>
-    <h2>💰 Business Model</h2>
-    <p>Revenue streams from <span class="highlight">API subscriptions, fraud recovery fees, enterprise monitoring, and compliance reporting</span>.</p>
+  <section class="card">
+    <h2>📈 Traction (MVP)</h2>
+    <ul>
+      <li>MVP live with simulated fraud alerts & fund recovery flow.</li>
+      <li>Evidence report generation demonstrated end-to-end.</li>
+      <li>Early investor/partner interest (banks & fintechs).</li>
+    </ul>
   </section>
 
-  <section>
-    <h2>📈 Seed Round</h2>
-    <p>Raising <span class="highlight">₦200M</span> (~$150k) via SAFE note with a <span class="highlight">$2M valuation cap</span> and <span class="highlight">20% discount</span>.</p>
+  <section class="card">
+    <h2>🧭 Compliance & Security</h2>
+    <ul>
+      <li>Data protection: <b>NDPR</b> (Nigeria) & <b>GDPR</b> alignment.</li>
+      <li>RLS-enforced data access, least-privilege architecture.</li>
+      <li>CBN licensing roadmap; law-enforcement collaboration paths.</li>
+    </ul>
   </section>
 
-  <footer>
-    <p>fundguardafrica@gmail.com</p>
-    <p>support@fundguardafrica.com</p>
-    <p>invest@fundguardafrica.com</p>
-    <p>&copy; 2025 FundGuard Africa</p>
-  </footer>
+  <section class="card">
+    <h2>💰 Investment Ask</h2>
+    <p>Raising <span class="highlight">₦200M (~$200k SAFE)</span> to harden production security, integrate live banking/AML providers, and expand market pilots across Africa.</p>
+    <a href="pitch.html" class="cta">View Full Pitch Deck</a>
+  </section>
+
+</main>
+
+<footer>
+  <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+  <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+  <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+  <div>&copy; 2025 FundGuard Africa</div>
+</footer>
 
 </body>
 </html>
+
 
 
