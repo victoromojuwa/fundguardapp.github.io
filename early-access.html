@@ -4,120 +4,90 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Early Access</title>
-<meta name="description" content="Request early access to FundGuard Africa — AI-powered fraud detection and fund recovery platform." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="description" content="Request early access to FundGuard Africa — AI-powered fraud detection & fund recovery." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0b1e27; --muted:#5f7180; --blue:#0f4c81; --blue-soft:#f3f7fb;
-  --gold:#d4af37; --line:#e7edf1; --card:#ffffff; --bg:#f8fbfe;
-  --shadow:0 10px 30px rgba(11,30,39,.06);
+  --ink:#0b1e27; --muted:#5f7180; --blue:#0f4c81; --gold:#d4af37;
+  --line:#e7edf1; --card:#fff; --bg:#f8fbfe; --shadow:0 8px 24px rgba(11,30,39,.06);
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--ink);
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);
   background:
     radial-gradient(1200px 600px at 120% -10%, #e9f3fb 20%, transparent 60%),
     radial-gradient(1200px 600px at -20% 110%, #eef6ff 20%, transparent 60%),
-    var(--bg);
-  line-height:1.6;
-}
-a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
-.wrap{max-width:1100px;margin:0 auto;padding:28px 18px}
+    var(--bg); line-height:1.6;}
+.wrap{max-width:760px;margin:64px auto;padding:24px}
+h1{font-weight:900;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:20px}
+label{display:block;font-weight:700;margin-top:12px}
+input,select,textarea{width:100%;padding:12px 12px;border:1px solid #cfd8de;border-radius:10px;font-size:1rem;margin-top:6px}
+textarea{min-height:110px;resize:vertical}
+button{margin-top:16px;background:var(--blue);color:#fff;border:0;padding:12px 16px;border-radius:10px;
+  font-weight:800;cursor:pointer}
+button:hover{filter:brightness(1.06)}
+.note{font-size:.9rem;color:var(--muted);margin-top:10px}
+.footer{margin-top:18px;color:var(--muted);font-size:.92rem}
 .badge{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:800;color:var(--blue)}
-
-header.hero{background:linear-gradient(180deg,#ffffffcc,#ffffff);border-bottom:1px solid var(--line)}
-.hero__inner{max-width:1100px;margin:0 auto;padding:34px 18px}
-.title{font-weight:900;letter-spacing:.3px;margin:6px 0 8px;font-size:clamp(28px,3.6vw,42px);color:#0b1e27}
-.subtitle{color:var(--muted);max-width:840px}
-
-.card{
-  background:var(--card);border:1px solid var(--line);border-radius:14px;
-  box-shadow:var(--shadow);padding:18px;
-}
-.section{margin:20px 0}
-.notice{font-size:.95rem;color:var(--muted);margin:10px 0 0}
-
-.iframe-wrap{
-  margin-top:12px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:var(--shadow);
-}
-.iframe-wrap iframe{
-  width:100%;
-  height:78vh;       /* big enough but responsive */
-  border:0;
-}
-
-/* Footer */
-footer{border-top:1px solid var(--line);background:#fff;margin-top:22px}
-.footer__inner{max-width:1100px;margin:0 auto;padding:18px}
-.small{font-size:.92rem;color:var(--muted)}
-.logo-word{font-weight:900;font-size:1.1rem;letter-spacing:.6px}
-.logo-word span{color:var(--gold)}
-.email-stack a{display:block;font-weight:700;color:var(--ink)}
-.email-stack a:hover{color:var(--blue)}
-.grid{display:grid;gap:12px}
-@media(min-width:820px){.grid--3{grid-template-columns:1fr 1fr 1fr}}
+.mail-alt a{font-weight:800;color:var(--ink);text-decoration:none}
+.mail-alt a:hover{color:var(--blue);text-decoration:underline}
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <div class="hero__inner">
+  <div class="wrap">
     <div class="badge">Early Access • Design Partners</div>
-    <h1 class="title">Request Early Access to Fund<span style="color:#d4af37">Guard</span> Africa</h1>
-    <p class="subtitle">Join pilot programs with banks, fintechs, and institutional partners. We’ll reach out within 48–72 hours.</p>
+    <h1>Request Early Access to <span style="color:#d4af37">FundGuard</span> Africa</h1>
+    <p class="lead">Join pilot programs with banks, fintechs and institutional partners. We’ll respond within 48–72 hours.</p>
+
+    <div class="card">
+      <!-- FormSubmit posts directly to your inbox -->
+      <form action="https://formsubmit.co/fundguardafrica@gmail.com" method="POST">
+        <!-- Required by FormSubmit -->
+        <input type="hidden" name="_subject" value="New Early Access request — FundGuard Africa">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://www.fundguardafrica.com/thanks.html">
+        <!-- Honeypot (spam protection) -->
+        <input type="text" name="_honey" style="display:none">
+        <!-- Disable FormSubmit CAPTCHA (optional) -->
+        <input type="hidden" name="_captcha" value="false">
+
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" placeholder="e.g., Victor Kolawole Omojuwa" required>
+
+        <label for="email">Work Email</label>
+        <input id="email" name="email" type="email" placeholder="you@company.com" required>
+
+        <label for="org">Organization</label>
+        <input id="org" name="organization" type="text" placeholder="Bank / Fintech / Institution">
+
+        <label for="role">Interest</label>
+        <select id="role" name="interest" required>
+          <option value="">Select one</option>
+          <option>Investor</option>
+          <option>Early Tester</option>
+          <option>Partner / Institution</option>
+        </select>
+
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="Use case, region, timeline, team..."></textarea>
+
+        <button type="submit">Request Access</button>
+        <div class="note">Trouble with the form? Email <b>invest@fundguardafrica.com</b> or <b>support@fundguardafrica.com</b>.</div>
+      </form>
+    </div>
+
+    <div class="footer">
+      © 2025 FundGuard Africa • www.fundguardafrica.com • fundguardafrica@gmail.com
+    </div>
+
+    <p class="mail-alt note">Prefer direct email? → <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a></p>
   </div>
-</header>
-
-<main class="wrap">
-  <section class="card section">
-    <h3 style="margin:0 0 8px;color:#0b1e27">Sign Up</h3>
-    <p class="notice">If the form doesn’t load, use the direct link below.</p>
-
-    <div class="iframe-wrap">
-      <!-- Embed your Google Form -->
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdw-F3fu9mJitN3i5dxN3OTyxkCt8ox72MBIwYkNq4eJWCbiA/viewform?embedded=true"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-
-    <p class="notice">Direct link: 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdw-F3fu9mJitN3i5dxN3OTyxkCt8ox72MBIwYkNq4eJWCbiA/viewform?usp=sf_link" target="_blank" rel="noopener">Open the Early Access Form ↗</a>
-    </p>
-  </section>
-
-  <section class="grid grid--3">
-    <div>
-      <div class="logo-word">Fund<span>Guard</span> Africa</div>
-      <div class="small">www.fundguardafrica.com</div>
-    </div>
-    <div class="small email-stack">
-      <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
-      <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
-      <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
-    </div>
-    <div class="small">
-      <div>© 2025 FundGuard Africa</div>
-      <div><a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer__inner small">Built for Africa. Scalable to the world.</div>
-</footer>
-
 </body>
 </html>
+
+
 
 
 
