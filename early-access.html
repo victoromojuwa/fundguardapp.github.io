@@ -1,91 +1,92 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FundGuard Africa — Early Access</title>
-<meta name="description" content="Request early access to FundGuard Africa — AI-powered fraud detection & fund recovery." />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0b1e27; --muted:#5f7180; --blue:#0f4c81; --gold:#d4af37;
-  --line:#e7edf1; --card:#fff; --bg:#f8fbfe; --shadow:0 8px 24px rgba(11,30,39,.06);
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);
-  background:
-    radial-gradient(1200px 600px at 120% -10%, #e9f3fb 20%, transparent 60%),
-    radial-gradient(1200px 600px at -20% 110%, #eef6ff 20%, transparent 60%),
-    var(--bg); line-height:1.6;}
-.wrap{max-width:760px;margin:64px auto;padding:24px}
-h1{font-weight:900;margin:0 0 6px}
-.lead{color:var(--muted);margin:0 0 18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:20px}
-label{display:block;font-weight:700;margin-top:12px}
-input,select,textarea{width:100%;padding:12px 12px;border:1px solid #cfd8de;border-radius:10px;font-size:1rem;margin-top:6px}
-textarea{min-height:110px;resize:vertical}
-button{margin-top:16px;background:var(--blue);color:#fff;border:0;padding:12px 16px;border-radius:10px;
-  font-weight:800;cursor:pointer}
-button:hover{filter:brightness(1.06)}
-.note{font-size:.9rem;color:var(--muted);margin-top:10px}
-.footer{margin-top:18px;color:var(--muted);font-size:.92rem}
-.badge{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:800;color:var(--blue)}
-.mail-alt a{font-weight:800;color:var(--ink);text-decoration:none}
-.mail-alt a:hover{color:var(--blue);text-decoration:underline}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FundGuard Africa — Early Access</title>
+  <meta name="description" content="Request early access to FundGuard Africa’s fraud detection & fund recovery platform." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b1e27;
+      --muted: #5f7180;
+      --blue: #0f4c81;
+      --gold: #d4af37;
+      --line: #e7edf1;
+      --card: #fff;
+      --bg: #f8fbfe;
+      --shadow: 0 8px 24px rgba(11,30,39,.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: 
+        radial-gradient(1200px 600px at 120% -10%, #e9f3fb 20%, transparent 60%),
+        radial-gradient(1200px 600px at -20% 110%, #eef6ff 20%, transparent 60%),
+        var(--bg);
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 64px auto;
+      padding: 24px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 12px 0;
+      font-weight: 900;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+    .note {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    a.contact-link {
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="badge">Early Access • Design Partners</div>
-    <h1>Request Early Access to <span style="color:#d4af37">FundGuard</span> Africa</h1>
-    <p class="lead">Join pilot programs with banks, fintechs and institutional partners. We’ll respond within 48–72 hours.</p>
+    <span class="badge">Early Access • Design Partners</span>
+    <h1>Request Early Access to <span style="color: var(--gold);">FundGuard</span> Africa</h1>
+    <p class="lead">Join pilot programs with banks, fintechs, institutions, and early testers. We’ll respond within 48–72 hours.</p>
 
-    <div class="card">
-      <!-- FormSubmit posts directly to your inbox -->
-      <form action="https://formsubmit.co/fundguardafrica@gmail.com" method="POST">
-        <!-- Required by FormSubmit -->
-        <input type="hidden" name="_subject" value="New Early Access request — FundGuard Africa">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://www.fundguardafrica.com/thanks.html">
-        <!-- Honeypot (spam protection) -->
-        <input type="text" name="_honey" style="display:none">
-        <!-- Disable FormSubmit CAPTCHA (optional) -->
-        <input type="hidden" name="_captcha" value="false">
-
-        <label for="name">Full Name</label>
-        <input id="name" name="name" type="text" placeholder="e.g., Victor Kolawole Omojuwa" required>
-
-        <label for="email">Work Email</label>
-        <input id="email" name="email" type="email" placeholder="you@company.com" required>
-
-        <label for="org">Organization</label>
-        <input id="org" name="organization" type="text" placeholder="Bank / Fintech / Institution">
-
-        <label for="role">Interest</label>
-        <select id="role" name="interest" required>
-          <option value="">Select one</option>
-          <option>Investor</option>
-          <option>Early Tester</option>
-          <option>Partner / Institution</option>
-        </select>
-
-        <label for="notes">Notes (optional)</label>
-        <textarea id="notes" name="notes" placeholder="Use case, region, timeline, team..."></textarea>
-
-        <button type="submit">Request Access</button>
-        <div class="note">Trouble with the form? Email <b>invest@fundguardafrica.com</b> or <b>support@fundguardafrica.com</b>.</div>
-      </form>
+    <!-- Embedded Google Form -->
+    <div class="form-wrapper" style="max-width:760px; margin:24px auto; background:#fff; padding:24px; border-radius:12px; box-shadow:0 8px 24px rgba(11,30,39,0.06);">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSf0yz9-p6isR9tOFhbxxMNvvwEHEZt2xhlXvH5p-9NaICV2Gg/viewform?embedded=true"
+        width="100%"
+        height="1000"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+      >Loading…</iframe>
     </div>
-
-    <div class="footer">
-      © 2025 FundGuard Africa • www.fundguardafrica.com • fundguardafrica@gmail.com
-    </div>
-
-    <p class="mail-alt note">Prefer direct email? → <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a></p>
+    <p class="note">Or email us directly at <a href="mailto:invest@fundguardafrica.com" class="contact-link">invest@fundguardafrica.com</a>.</p>
   </div>
 </body>
 </html>
+
 
 
 
