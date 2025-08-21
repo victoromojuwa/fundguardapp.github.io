@@ -4,26 +4,91 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Thank You — FundGuard Africa</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Thanks for requesting Early Access to FundGuard Africa." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f8fbfe;color:#0b1e27}
-.wrap{max-width:760px;margin:80px auto;padding:24px;text-align:center}
-.card{background:#fff;border:1px solid #e7edf1;border-radius:14px;box-shadow:0 8px 24px rgba(11,30,39,.06);padding:26px}
-h1{margin:0 0 8px}
-p{color:#5f7180}
-a.btn{display:inline-block;margin-top:14px;background:#0f4c81;color:#fff;padding:12px 16px;border-radius:10px;font-weight:800;text-decoration:none}
-a.btn:hover{filter:brightness(1.06)}
-.small{margin-top:14px;color:#5f7180;font-size:.92rem}
+  :root{
+    --ink:#0b1e27; --muted:#5f7180; --blue:#0f4c81; --gold:#d4af37;
+    --line:#e7edf1; --card:#fff; --bg:#f8fbfe; --shadow:0 8px 24px rgba(11,30,39,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 120% -10%, #e9f3fb 20%, transparent 60%),
+      radial-gradient(1200px 600px at -20% 110%, #eef6ff 20%, transparent 60%),
+      var(--bg);
+    line-height:1.6;
+  }
+  .wrap{max-width:840px;margin:72px auto;padding:24px}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    box-shadow:var(--shadow); padding:28px; text-align:center;
+  }
+  .logo{font-weight:900; font-size:1.4rem; letter-spacing:.6px; margin-bottom:6px}
+  .logo span{color:var(--gold)}
+  .check{
+    width:72px; height:72px; border-radius:50%; display:inline-grid; place-items:center;
+    background:linear-gradient(135deg, var(--gold), #f4d878); color:#0b1e27; font-size:40px; margin:6px auto 14px;
+    box-shadow:0 8px 24px rgba(212,175,55,.35);
+  }
+  h1{margin:8px 0 6px; font-size:clamp(26px,3.2vw,34px)}
+  p{color:var(--muted); margin:4px 0 14px}
+  .cta{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:6px}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px;
+    font-weight:800; text-decoration:none; border:1px solid var(--line); background:#fff; color:var(--ink);
+  }
+  .btn--gold{background:var(--gold); border-color:var(--gold); color:#0b1e27}
+  .btn:hover{filter:brightness(1.03); text-decoration:none}
+  .meta{margin-top:18px; font-size:.95rem; color:var(--muted)}
+  .email-stack a{display:block; color:var(--ink); font-weight:700; text-decoration:none}
+  .email-stack a:hover{color:var(--blue)}
+  footer{margin-top:22px; border-top:1px solid var(--line); background:#fff}
+  .foot{max-width:840px; margin:0 auto; padding:16px; color:var(--muted); font-size:.92rem; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
 </style>
+
+<!-- Optional: GA4 event if gtag is on the site -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  try { gtag('event','thankyou_viewed'); } catch(e){}
+</script>
 </head>
 <body>
-  <div class="wrap">
+  <main class="wrap">
     <div class="card">
-      <h1>Thank you! 🎉</h1>
-      <p>Your early access request has been received. We typically respond within 48–72 hours.</p>
-      <a class="btn" href="/demo.html">View Investor Demo</a>
-      <div class="small">Need to reach us sooner? <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a></div>
+      <div class="logo">Fund<span>Guard</span> Africa</div>
+      <div class="check">✓</div>
+      <h1>Thank you—your Early Access request was received.</h1>
+      <p>We’ll review and get back to you within <b>48–72 hours</b>. Meanwhile, explore the demo and investor materials below.</p>
+
+      <div class="cta">
+        <a class="btn btn--gold" href="/demo.html">🚀 View Investor Demo</a>
+        <a class="btn" href="/fundrecovery.html">💸 Try Fund Recovery (Simulation)</a>
+        <a class="btn" href="/pitch.html">📊 Seed Pitch (Web)</a>
+        <a class="btn" href="/onepager.html">📄 Investor One Pager</a>
+        <a class="btn" href="/">🏠 Back to Home</a>
+      </div>
+
+      <div class="meta">
+        Questions? Reach us at:
+        <div class="email-stack" style="margin-top:6px">
+          <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+          <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+          <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div>© 2025 FundGuard Africa • Built for Africa. Scalable to the world.</div>
+      <div><a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></div>
+    </div>
+  </footer>
 </body>
 </html>
+
