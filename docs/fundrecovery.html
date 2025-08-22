@@ -1,133 +1,382 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FundGuard Africa — Fund Recovery</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0b1e27;
-      color: #eaf3f6;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(180deg,#0f2530,#0b1e27);
-    }
-    header h1 {
-      color: gold;
-      font-size: 2rem;
-    }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #142c3a;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-    label {
-      display: block;
-      margin: 1rem 0 0.5rem;
-      font-weight: 600;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 6px;
-      border: none;
-      margin-bottom: 1rem;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s ease;
-    }
-    .btn-recovery {
-      background: gold;
-      color: #0b1e27;
-    }
-    .btn-recovery:hover {
-      background: #ffd700;
-    }
-    .timeline {
-      margin-top: 2rem;
-      padding-left: 1rem;
-      border-left: 3px solid gold;
-    }
-    .timeline p {
-      margin: 1rem 0;
-    }
-    footer {
-      margin-top: 2rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #8fa8b7;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FundGuard Africa — Fund Recovery</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1e27; --muted:#5b6a78; --gold:#d4af37; --gold-2:#b9972b;
+  --bg:#ffffff; --pane:#f6f8fa; --line:#e7ecf0; --ok:#17a673; --bad:#e03e3e; --warn:#ff9f1a;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+a{color:var(--ink);text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* Header */
+header{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand{display:flex;align-items:center;gap:10px}
+.logo-dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+.brand h1{margin:0;font-weight:800;color:#fff}
+.brand h1 span{color:var(--gold)}
+nav a{color:#e9f1f5;margin-left:16px;font-weight:600;opacity:.92}
+nav a:hover{opacity:1}
+
+/* Title */
+.hero{padding:34px 0 20px}
+.hero h2{color:#fff;margin:0 0 6px;font-size:32px;font-weight:800}
+.hero p{color:#dbe7ee;margin:0}
+
+/* Layout */
+main{padding:26px 0}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.panel{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:18px}
+
+/* Stepper */
+.stepper{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:700;color:var(--muted)}
+.step.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,175,55,.18);color:var(--ink)}
+.step .dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.step.active .dot{background:var(--gold)}
+h3{margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 16px}
+
+/* Forms */
+label{display:block;font-weight:600;margin:10px 0 6px}
+input[type="text"],input[type="email"],input[type="datetime-local"],select,textarea{
+  width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit
+}
+textarea{min-height:110px}
+input[type="file"]{display:block;margin:8px 0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{
+  background:#fff;color:var(--ink);border:1px solid var(--line);padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;transition:.2s
+}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
+.btn-primary{background:var(--gold);border-color:transparent;color:#0b1e27}
+.btn-primary:hover{background:var(--gold-2)}
+.btn-ghost{background:#fff}
+
+/* Sidebar */
+.kv{display:grid;grid-template-columns:140px 1fr;gap:8px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--line);background:#fff}
+.ok{color:#0d5e46;background:rgba(23,166,115,.12)}
+.warn{color:#7a4a00;background:rgba(255,159,26,.12)}
+.bad{color:#7d1f1f;background:rgba(224,62,62,.12)}
+.tl{background:#0c202a;color:#e9f4f8;border-radius:10px;border:1px solid rgba(0,0,0,.15);height:220px;overflow:auto;padding:10px;font-family:ui-monospace,Consolas,Monaco,monospace;font-size:13px}
+.tl .line{padding:6px 0;border-bottom:1px dashed #173845}
+.tl .line:last-child{border-bottom:0}
+.small{color:#96b5c3;font-size:12px}
+
+/* Report preview */
+.preview{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;max-height:240px;overflow:auto}
+.hr{height:1px;background:var(--line);margin:12px 0}
+
+/* Responsive */
+@media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+</style>
 </head>
 <body>
-  <header>
-    <h1>💸 FundGuard Recovery Simulation</h1>
-    <p>Track & Recover Fraudulent Transactions</p>
-  </header>
+<header>
+  <div class="wrap topbar">
+    <div class="brand"><div class="logo-dot"></div><h1><span>FundGuard</span> Africa</h1></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="demo.html">Investor Demo</a>
+      <a href="onepager.html">One Pager</a>
+    </nav>
+  </div>
+  <div class="wrap hero">
+    <h2>💸 Fund Recovery Center</h2>
+    <p>Report an incident, attach evidence, trace flows, and generate a legal-grade evidence report.</p>
+  </div>
+</header>
 
-  <div class="container">
-    <h2>Start Recovery</h2>
-    <form>
-      <label>Your Name</label>
-      <input type="text" placeholder="Enter full name" required>
-      
-      <label>Email</label>
-      <input type="email" placeholder="Enter email" required>
-      
-      <label>Country</label>
-      <select>
-        <option>Nigeria</option>
-        <option>Kenya</option>
-        <option>Ghana</option>
-        <option>South Africa</option>
-        <option>Tanzania</option>
-      </select>
-      
-      <label>Institution</label>
-      <input type="text" placeholder="Bank/Wallet/Exchange name">
-      
-      <label>Transaction ID</label>
-      <input type="text" placeholder="e.g. TXN-44720-XY">
-      
-      <label>Amount</label>
-      <input type="number" placeholder="e.g. 441408">
-      
-      <a href="#" class="btn btn-recovery">Start Recovery</a>
-    </form>
+<main class="wrap">
+  <div class="grid">
+    <!-- LEFT: Workflow -->
+    <div>
+      <div class="panel">
+        <div class="stepper">
+          <div class="step active" id="s1"><span class="dot"></span> 1) Incident</div>
+          <div class="step" id="s2"><span class="dot"></span> 2) Transaction</div>
+          <div class="step" id="s3"><span class="dot"></span> 3) Evidence</div>
+          <div class="step" id="s4"><span class="dot"></span> 4) Report</div>
+        </div>
 
-    <h2>Recovery Timeline</h2>
-    <div class="timeline">
-      <p>✅ Intermediate bank detected: <strong>$441,408</strong></p>
-      <p>✅ Wallet Y routed: <strong>$214,305</strong></p>
-      <p>⚠️ Exchange Z cash-out attempt: <strong>$266,527</strong></p>
-      <p>🚨 Freeze request sent to Exchange Z & Wallet Y</p>
-      <p>📑 Compliance case opened — regulatory reference generated</p>
+        <!-- Step 1 -->
+        <div id="step1">
+          <h3>Incident Details</h3>
+          <p class="sub">Tell us what happened. We’ll issue a case ID and begin automated triage.</p>
+          <label>Full Name</label>
+          <input id="name" type="text" placeholder="e.g., Adaeze Okafor">
+          <div class="row2">
+            <div>
+              <label>Email</label>
+              <input id="email" type="email" placeholder="you@example.com">
+            </div>
+            <div>
+              <label>Country</label>
+              <select id="country">
+                <option value="">Select…</option>
+                <option>Nigeria</option><option>Ghana</option><option>Kenya</option>
+                <option>South Africa</option><option>Uganda</option><option>Tanzania</option>
+              </select>
+            </div>
+          </div>
+          <label>Incident Summary</label>
+          <textarea id="summary" placeholder="Describe the scam/fraud, who, where, when…"></textarea>
+          <div class="row2">
+            <div>
+              <label>Incident Time</label>
+              <input id="time" type="datetime-local">
+            </div>
+            <div>
+              <label>Estimated Loss (USD)</label>
+              <input id="loss" type="text" placeholder="e.g., 266527">
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="resetAll()">Reset</button>
+            <button class="btn btn-primary" onclick="toStep2()">Continue ➜</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step2" style="display:none">
+          <h3>Transaction Details</h3>
+          <p class="sub">Provide any identifiers to improve trace accuracy.</p>
+          <div class="row2">
+            <div>
+              <label>Bank / Wallet</label>
+              <input id="channel" type="text" placeholder="e.g., Bank ABC / Wallet Y">
+            </div>
+            <div>
+              <label>Transaction ID</label>
+              <input id="txid" type="text" placeholder="e.g., TXN-66283BC">
+            </div>
+          </div>
+          <div class="row2">
+            <div>
+              <label>Counterparty (if known)</label>
+              <input id="counterparty" type="text" placeholder="e.g., Exchange Z">
+            </div>
+            <div>
+              <label>Destination (IBAN/Acct/Wallet)</label>
+              <input id="destination" type="text" placeholder="e.g., 0x… or ACCT-****">
+            </div>
+          </div>
+          <label>Additional Notes</label>
+          <textarea id="notes" placeholder="Patterns, contacts, screenshots context…"></textarea>
+
+          <div class="actions">
+            <button class="btn" onclick="backStep1()">◀ Back</button>
+            <button class="btn btn-primary" onclick="toStep3()">Continue ➜</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="step3" style="display:none">
+          <h3>Upload Evidence</h3>
+          <p class="sub">Attach proofs (receipts, chat logs, screenshots, statements). Files remain restricted.</p>
+          <label>Attach files (PNG/JPG/PDF max ~10MB each)</label>
+          <input id="files" type="file" multiple accept=".png,.jpg,.jpeg,.pdf">
+          <label>Describe attached evidence</label>
+          <textarea id="evidenceNotes" placeholder="What each file shows, who sent it, where captured…"></textarea>
+
+          <div class="actions">
+            <button class="btn" onclick="backStep2()">◀ Back</button>
+            <button class="btn btn-primary" onclick="toStep4()">Continue ➜</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div id="step4" style="display:none">
+          <h3>Generate Evidence Report</h3>
+          <p class="sub">We’ll compile a legal-grade, time-stamped report with a chain-of-custody timeline.</p>
+
+          <div class="preview" id="reportPreview">
+            <b>FundGuard Evidence Report — Preview</b>
+            <div class="hr"></div>
+            <div id="previewBody">Generating preview…</div>
+          </div>
+
+          <div class="actions" style="margin-top:14px">
+            <button class="btn" onclick="backStep3()">◀ Back</button>
+            <button class="btn btn-primary" onclick="downloadReport('pdf')">⬇ Download PDF</button>
+            <button class="btn" onclick="downloadReport('docx')">⬇ Download DOCX</button>
+            <button class="btn" onclick="downloadReport('txt')">⬇ Download TXT</button>
+          </div>
+          <p class="small" style="margin-top:8px">Disclaimer: This is a demo environment; data and recovery actions are simulated for illustration.</p>
+        </div>
+      </div>
     </div>
 
-    <p style="margin-top:2rem;text-align:center;">
-      <a href="evidence-report.pdf" class="btn btn-recovery">⬇️ Download Evidence Report</a>
-    </p>
-  </div>
+    <!-- RIGHT: Case summary & Timeline -->
+    <aside>
+      <div class="panel">
+        <h3 style="margin:0 0 8px">Case Summary</h3>
+        <div class="kv">
+          <div><b>Case ID</b></div><div id="caseId">FG-…</div>
+          <div><b>Status</b></div><div id="caseStatus"><span class="badge warn">OPEN</span></div>
+          <div><b>Risk Score</b></div><div id="riskScore"><span class="badge bad">High</span></div>
+          <div><b>Country</b></div><div id="caseCountry">—</div>
+          <div><b>Loss (USD)</b></div><div id="caseLoss">—</div>
+        </div>
+      </div>
 
-  <footer>
-    ⚠️ Simulation for demo purposes. Production version includes secured API and regulated compliance workflows.
-  </footer>
+      <div class="panel">
+        <h3 style="margin:0 0 8px">Action Timeline</h3>
+        <div class="tl" id="timeline">
+          <!-- lines stream here -->
+        </div>
+        <div class="actions" style="margin-top:10px">
+          <button class="btn-ghost btn" onclick="simulateActions()">▶ Run Trace</button>
+          <button class="btn-ghost btn" onclick="clearTimeline()">🗑 Clear</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 style="margin:0 0 8px">Help</h3>
+        <p class="small">For urgent assistance: <br>
+          <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a><br>
+          <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a><br>
+          <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+        </p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer style="border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;padding:18px 0">
+    <div><b>FundGuard Africa</b><div class="small">© 2025 • Fraud detection & fund recovery</div></div>
+    <div class="small">Privacy • Terms • Security</div>
+  </div>
+</footer>
+
+<script>
+/* Utilities */
+const $ = sel => document.querySelector(sel);
+const timeline = $('#timeline');
+function line(text){ const d=document.createElement('div'); d.className='line'; d.textContent=text; timeline.appendChild(d); timeline.scrollTop=timeline.scrollHeight; }
+function now(){ return new Date().toLocaleTimeString(); }
+
+/* Case bootstrap */
+const caseId = 'FG-' + Date.now().toString().slice(-7) + '-' + Math.floor(Math.random()*899+100);
+$('#caseId').textContent = caseId;
+
+/* Step nav helpers */
+function setStep(active){
+  ['s1','s2','s3','s4'].forEach((id,i)=>{ const el = document.getElementById(id); if(i===active-1) el.classList.add('active'); else el.classList.remove('active'); });
+  ['step1','step2','step3','step4'].forEach((id,i)=>{ const el = document.getElementById(id); el.style.display = (i===active-1)?'block':'none'; });
+}
+function resetAll(){
+  ['name','email','country','summary','time','loss','channel','txid','counterparty','destination','notes','evidenceNotes'].forEach(id=>{const el=$('#'+id); if(!el) return; if(el.tagName==='SELECT') el.value=''; else el.value='';});
+  clearTimeline(); setStep(1);
+  $('#caseCountry').textContent='—'; $('#caseLoss').textContent='—'; $('#caseStatus').innerHTML='<span class="badge warn">OPEN</span>'; $('#riskScore').innerHTML='<span class="badge bad">High</span>';
+  $('#previewBody').textContent = '';
+}
+
+/* Step transitions */
+function toStep2(){
+  const name=$('#name').value.trim(), email=$('#email').value.trim(), country=$('#country').value, loss=$('#loss').value.trim();
+  if(!name || !email || !country){ alert('Please provide name, email, and country.'); return; }
+  $('#caseCountry').textContent = country || '—';
+  $('#caseLoss').textContent = loss? ('$'+Number(loss).toLocaleString()) : '—';
+  line(`[${now()}] Case opened • ${country} • Loss: ${ $('#caseLoss').textContent }`);
+  setStep(2);
+}
+function backStep1(){ setStep(1); }
+function toStep3(){
+  const txid=$('#txid').value.trim(); const channel=$('#channel').value.trim();
+  line(`[${now()}] Transaction recorded • ${txid||'N/A'} via ${channel||'Unknown channel'}`);
+  setStep(3);
+}
+function backStep2(){ setStep(2); }
+function toStep4(){
+  const files = Array.from($('#files').files||[]).map(f=>f.name);
+  line(`[${now()}] Evidence uploaded • ${files.length? files.join(', ') : 'No files'}`);
+  buildPreview();
+  setStep(4);
+}
+function backStep3(){ setStep(3); }
+
+/* Timeline simulation */
+function simulateActions(){
+  clearTimeline();
+  const loss = Number($('#loss').value||0);
+  const steps = [
+    `Intermediate bank detected anomaly — Amount: $${(loss*0.45||441408).toLocaleString()}`,
+    `Wallet Y routed suspicious transfer — $${(loss*0.35||214305).toLocaleString()}`,
+    `Exchange Z cash-out attempt — $${(loss*0.2||266527).toLocaleString()}`,
+    `Freeze request sent to Exchange Z & Wallet Y`,
+    `Recovery action queued`,
+    `Awaiting KYC verification & legal hold`,
+    `Bank compliance ticket opened, regulatory reference generated`,
+    `Recovery success window initiated (pending partner response)`
+  ];
+  steps.forEach((t,i)=> setTimeout(()=> line(`[${now()}] `+t), i*1200));
+  $('#caseStatus').innerHTML = '<span class="badge warn">IN PROGRESS</span>';
+}
+function clearTimeline(){ timeline.innerHTML=''; }
+
+/* Report preview & downloads */
+function buildPreview(){
+  const name=$('#name').value||'—', email=$('#email').value||'—', country=$('#country').value||'—';
+  const time=$('#time').value||'—', loss=$('#loss').value||'—';
+  const txid=$('#txid').value||'—', channel=$('#channel').value||'—', cp=$('#counterparty').value||'—', dest=$('#destination').value||'—';
+  const summary=$('#summary').value||'—', notes=$('#notes').value||'—', eNotes=$('#evidenceNotes').value||'—';
+  const preview = `
+Case ID: ${caseId}
+Complainant: ${name} • ${email} • ${country}
+Incident Time: ${time}
+Estimated Loss (USD): ${loss}
+
+Transaction:
+- Channel: ${channel}
+- Transaction ID: ${txid}
+- Counterparty: ${cp}
+- Destination: ${dest}
+
+Narrative:
+- Summary: ${summary}
+- Notes: ${notes}
+
+Evidence Notes: ${eNotes}
+
+Timeline (sample):
+• Intermediate bank detected — Amount: $441,408
+• Wallet Y routed — $214,305
+• Exchange Z cash-out attempt — $266,527
+• Freeze request sent to Exchange Z & Wallet Y
+• Recovery action queued
+• Awaiting KYC verification & legal hold
+• Bank compliance ticket opened, regulatory reference generated
+  `;
+  $('#previewBody').textContent = preview;
+}
+
+function downloadReport(format){
+  if(!$('#previewBody').textContent.trim()) buildPreview();
+  const content = `FundGuard Africa — Evidence Recovery Report
+
+${$('#previewBody').textContent}
+
+Disclaimer: This document is generated from a demo environment for illustration purposes.`;
+  let blob, filename;
+  if(format==='pdf'){ blob=new Blob([content],{type:"application/pdf"}); filename=`${caseId}_Evidence_Report.pdf`; }
+  else if(format==='docx'){ blob=new Blob([content],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"}); filename=`${caseId}_Evidence_Report.docx`; }
+  else { blob=new Blob([content],{type:"text/plain"}); filename=`${caseId}_Evidence_Report.txt`; }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+}
+</script>
 </body>
 </html>
+
 
 
 
