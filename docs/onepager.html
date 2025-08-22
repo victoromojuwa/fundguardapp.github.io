@@ -4,278 +4,160 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Investor One Pager</title>
-<meta name="description" content="FundGuard Africa is an AI-powered fraud detection and fund recovery platform built for Africa and scaling globally." />
+<meta name="description" content="FundGuard Africa is Africa's premium AI platform for fraud detection and fund recovery, built for scale." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fundguard.css" />
 <style>
-:root{
-  --ink:#0b1e27;           /* deep slate text */
-  --muted:#5f7180;         /* secondary text */
-  --blue:#0f4c81;          /* accent blue */
-  --blue-soft:#f3f7fb;     /* section wash */
-  --gold:#d4af37;          /* accent gold */
-  --line:#e7edf1;          /* subtle borders */
-  --card:#ffffff;          /* cards */
-  --bg:#f8fbfe;            /* page background (light, not pure white) */
-  --shadow:0 10px 30px rgba(11,30,39,.06);
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--ink); background:
-    radial-gradient(1200px 600px at 120% -10%, #e9f3fb 20%, transparent 60%),
-    radial-gradient(1200px 600px at -20% 110%, #eef6ff 20%, transparent 60%),
-    var(--bg);
-  line-height:1.6;
-}
-a{color:var(--blue);text-decoration:none}
-a:hover{text-decoration:underline}
-
-.wrap{max-width:1100px;margin:0 auto;padding:28px 18px}
-.badge{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:800;color:var(--blue);letter-spacing:.2px}
-
-header.hero{
-  background:linear-gradient(180deg,#ffffffcc,#ffffff);
-  border-bottom:1px solid var(--line);
-}
-.hero__inner{max-width:1100px;margin:0 auto;padding:34px 18px}
-.title{
-  font-weight:900; letter-spacing:.3px; margin:4px 0 10px;
-  font-size:clamp(28px,3.6vw,42px); color:#0b1e27;
-}
-.subtitle{color:var(--muted);max-width:820px;margin:0 0 14px}
-.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:11px 14px; border-radius:10px; font-weight:800; border:1px solid transparent;
-  box-shadow:var(--shadow); background:#fff; color:var(--ink);
-}
-.btn--gold{background:var(--gold); color:#0b1e27; border-color:var(--gold)}
-.btn--gold:hover{filter:brightness(1.05); text-decoration:none}
-.btn--ghost{border-color:var(--line)}
-.btn--ghost:hover{background:#f5f9fd}
-.btn--blue{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn--blue:hover{filter:brightness(1.06);text-decoration:none}
-
-.grid{display:grid;gap:18px}
-@media (min-width:980px){.grid--2{grid-template-columns:1.15fr 1fr}}
-@media (min-width:980px){.grid--3{grid-template-columns:1fr 1fr 1fr}}
-
-.card{
-  background:var(--card); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow);
-  padding:18px;
-}
-.card h3{margin:0 0 6px; color:var(--blue); font-size:1.06rem}
-.card p{margin:8px 0 0}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:start}
-.kv b{color:#0b1e27}
-.list{margin:8px 0 0;padding:0 0 0 18px}
-.list li{margin:6px 0}
-.tag{display:inline-block;font-size:.82rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;margin:4px 6px 0 0}
-.section{margin:20px 0}
-.section--wash{background:var(--blue-soft);border:1px solid var(--line);border-radius:14px;padding:18px}
-.kpi{display:flex;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:12px;background:#fff}
-.kpi b{font-size:1.2rem;color:var(--blue)}
-
-footer{
-  border-top:1px solid var(--line);
-  background:#fff; margin-top:22px;
-}
-.footer__inner{max-width:1100px;margin:0 auto;padding:18px}
-.stack{display:flex;flex-direction:column;gap:6px}
-.small{font-size:.92rem;color:var(--muted)}
-
-.logo-word{
-  font-weight:900; font-size:1.35rem; letter-spacing:.6px;
-  color:#0b1e27;
-}
-.logo-word span{color:var(--gold)}
-.email-stack a{
-  display:block; font-weight:700; color:var(--ink);
-}
-.email-stack a:hover{color:var(--blue)}
-.hr{height:1px;background:var(--line);margin:14px 0;border-radius:1px}
-
-/* Print-friendly tweaks for saving as PDF */
-@media print{
-  .btn,.badge{display:none !important}
-  body{background:#fff}
-  .card{box-shadow:none}
-}
+  /* One-pager bright accents on dark */
+  .slide{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:22px;margin-bottom:16px}
+  .slide h2{margin:0 0 8px}
+  .row{display:grid;gap:14px}
+  @media(min-width:900px){ .row{grid-template-columns:1.15fr .85fr} }
+  .kpis{display:grid;gap:10px}
+  .kpi{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .kpi b{color:var(--gold);font-size:1.1rem}
+  .pill{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--text-muted)}
+  .list{display:grid;gap:10px}
+  .list .item{border:1px solid var(--line);border-radius:12px;padding:12px}
+  .bar{height:10px;border-radius:999px;background:#0a1820;overflow:hidden;border:1px solid var(--line)}
+  .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#e2c35a)}
+  .grid-3{display:grid;gap:12px}
+  @media(min-width:860px){.grid-3{grid-template-columns:1fr 1fr 1fr}}
+  .btns .btn{margin:4px 6px 0 0}
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="hero__inner">
-    <div class="badge">AI • Fraud Detection • Fund Recovery</div>
-    <h1 class="title">Fund<span style="color:#d4af37">Guard</span> Africa — Investor One Pager</h1>
-    <p class="subtitle">
-      AI-powered platform to <b>detect</b>, <b>track</b> and <b>recover</b> stolen funds across Africa in real time —
-      built for banks, fintechs and regulators, accessible on web, mobile and API. Now live in
-      Nigeria, Kenya, South Africa, Ghana, Uganda, and Tanzania; expansion underway to MEA, APAC, EU & the America.
-    </p>
+  <div class="container">
+    <div class="brand">Fund<span class="fg">Guard</span> Africa</div>
+    <h1>Investor One Pager</h1>
+    <p class="lead">AI fraud detection & fund recovery — protecting users, banks, fintechs and regulators across Africa.</p>
     <div class="cta-row">
-      <a class="btn btn--gold" href="demo.html">🚀 Investor Demo (Live)</a>
-      <a class="btn btn--blue" href="fundrecovery.html">💸 Start Fund Recovery (Sim)</a>
-      <a class="btn btn--ghost" href="pitch.html">📑 Seed Pitch Deck</a>
-      <a class="btn btn--ghost" href="access.html">📝 Early Access</a>
+      <a class="btn btn-gold" href="/demo.html">🎬 Investor Demo</a>
+      <a class="btn btn-outline" href="/pitch.html">📊 Seed Pitch</a>
+      <a class="btn btn-ghost" href="/">🏠 Home</a>
     </div>
   </div>
 </header>
 
-<main class="wrap">
-  <!-- Top summary -->
-  <section class="grid grid--2 section">
-    <div class="card">
-      <h3>Problem & Why Now</h3>
-      <ul class="list">
-        <li>Digital fraud is draining millions across African banking, wallets, crypto, and mobile money.</li>
-        <li>Victims lack a unified platform for <b>real-time detection and coordinated recovery</b>.</li>
-        <li>Banks/fintechs struggle with fragmented tooling, weak cross-border coordination, and compliance complexity.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Solution</h3>
-      <ul class="list">
-        <li><b>Live fraud alerts & transaction monitoring</b> with AI behavior analysis.</li>
-        <li><b>Fund recovery workflow</b>: freeze requests, compliance tickets, legal references.</li>
-        <li><b>Evidence report engine</b> for law enforcement, insurers and regulators.</li>
-        <li><b>API</b> for banks/fintechs; SDK for partners; secure, scalable infra.</li>
-      </ul>
-    </div>
-  </section>
+<section class="section">
+  <div class="container">
 
-  <!-- Core features -->
-  <section class="section section--wash">
-    <h3 style="margin:0 0 10px;color:#0b1e27">Core Features</h3>
-    <div class="grid grid--3">
-      <div class="card">
-        <h3>Detection & Recovery</h3>
-        <p class="tag">Fraud Alerts</p><p class="tag">Txn Monitor</p><p class="tag">Freeze Ops</p>
-        <ul class="list">
-          <li>Real-time anomaly flags across bank, wallet, card, exchange, mobile money.</li>
-          <li>End-to-end recovery flows with regulatory references and audit trails.</li>
-          <li>Downloadable, time-stamped evidence reports.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Identity & Security</h3>
-        <p class="tag">KYC</p><p class="tag">Biometrics</p><p class="tag">AI Behavior</p>
-        <ul class="list">
-          <li>Biometric/KYC onboarding; NDPR/GDPR-aligned policies.</li>
-          <li>Behavioral risk scoring; blacklist & social-graph checks.</li>
-          <li>Alerts via in-app, email/SMS, and webhooks.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Enterprise & API</h3>
-        <p class="tag">Partner API</p><p class="tag">SDK</p><p class="tag">Dashboards</p>
-        <ul class="list">
-          <li>REST/Edge functions for banks/fintechs and enterprise workflows.</li>
-          <li>Analytics dashboards for compliance teams and regulators.</li>
-          <li>Multi-tenant controls, RLS, and audit logging.</li>
-        </ul>
+    <!-- Slide 1: Problem → Solution -->
+    <div class="slide">
+      <h2>🚨 Problem → ✅ Solution</h2>
+      <div class="row">
+        <div>
+          <p class="lead"><b>Problem:</b> Billions lost annually to mobile money scams, ATO, merchant fraud, and crypto theft. Users can’t trace funds; institutions see fragmented signals.</p>
+          <div class="kpis">
+            <div class="kpi">📉 <b>$4B+</b> annual fraud impact (est. across Africa)</div>
+            <div class="kpi">⏱ <b>Hours–Days</b> to respond using traditional processes</div>
+            <div class="kpi">🧩 <b>Fragmented</b> tooling & reporting</div>
+          </div>
+        </div>
+        <div>
+          <p class="lead"><b>FundGuard:</b> End-to-end platform to <b>detect</b> fraud, <b>track</b> stolen funds, and <b>recover</b> with legal-grade evidence reports & freeze workflows — web, mobile, API.</p>
+          <div class="list">
+            <div class="item">🔍 Real-time anomaly flags & risk scores</div>
+            <div class="item">💸 Fund tracking across banks, wallets, exchanges</div>
+            <div class="item">📑 Evidence PDF + case audit trails</div>
+            <div class="item">🛡️ Identity, AML & sanctions checks (roadmap to live integrations)</div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Traction & Tech -->
-  <section class="grid grid--2 section">
-    <div class="card">
-      <h3>Traction (MVP)</h3>
-      <div class="kpi"><span>Live demo:</span> <b>Fraud Alerts • Txn Monitor • Recovery</b></div>
-      <div class="kpi"><span>Coverage:</span> <b>Nigeria, Kenya, South Africa, Ghana, Uganda, Tanzania</b></div>
-      <div class="kpi"><span>Early users:</span> <b>Pilot onboarding (banks, fintechs, institutions)</b></div>
-      <p class="note">*Demo data simulated; production integrations planned via partner MoUs.</p>
-    </div>
-    <div class="card">
-      <h3>Tech Stack</h3>
-      <ul class="list">
-        <li><b>Frontend</b>: Static site on GitHub Pages</li>
-        <li><b>Backend</b>: Supabase (Postgres, Auth, Storage, Edge Functions)</li>
-        <li><b>Security</b>: RLS, JWT auth, environment-scoped secrets</li>
-        <li><b>Analytics</b>: GA4; evidence reports (JSON/PDF roadmap)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Impact & Model -->
-  <section class="grid grid--2 section">
-    <div class="card">
-      <h3>Sustainable Impact (SDGs)</h3>
-      <ul class="list">
-        <li><b>SDG 16:</b> Peace, justice & strong institutions — actionable fraud evidence.</li>
-        <li><b>SDG 8:</b> Decent work & economic growth — protecting digital commerce.</li>
-        <li><b>SDG 9:</b> Industry, innovation & infrastructure — secure fintech rails.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Business Model</h3>
-      <ul class="list">
-        <li>SaaS tiers: Basic / Premium / Institutional.</li>
-        <li>Enterprise API & compliance dashboards.</li>
-        <li>Recovery-based success fee (eligible cases).</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Compliance & Team -->
-  <section class="grid grid--2 section">
-    <div class="card">
-      <h3>Licensing & Compliance</h3>
-      <ul class="list">
-        <li>Data privacy: NDPR/GDPR aligned; RLS enforced; audit trails.</li>
-        <li>Regulatory roadmap: CBN (where applicable), EFCC collaboration, NITDA guidance.</li>
-        <li>Law-enforcement report packs & insurer-ready evidence exports.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Founder & Team</h3>
-      <div class="kv">
-        <b>Founder/CEO</b><span>Victor Kolawole Omojuwa — Public health professional & tech entrepreneur.</span>
-        <b>Mission</b><span>Protect Africa’s digital economy from fraud, scams & financial crime.</span>
-        <b>Advisors</b><span>Fincrime, compliance, data privacy (in progress).</span>
+    <!-- Slide 2: Core Features -->
+    <div class="slide">
+      <h2>🧠 Core Features</h2>
+      <div class="grid-3">
+        <div class="item card"><h3>Detection</h3><p class="lead">Risk scoring, AI behavior analysis, live alerts.</p></div>
+        <div class="item card"><h3>Recovery</h3><p class="lead">Trace paths, generate evidence, freeze requests.</p></div>
+        <div class="item card"><h3>Compliance</h3><p class="lead">NDPR/GDPR-ready, AML screening, audit trails.</p></div>
+        <div class="item card"><h3>Identity</h3><p class="lead">KYC/biometric readiness, sanctions lists.</p></div>
+        <div class="item card"><h3>Business</h3><p class="lead">APIs for banks/fintechs, alerts & dashboards.</p></div>
+        <div class="item card"><h3>Analytics</h3><p class="lead">Case KPIs, ops console, regulator exports.</p></div>
       </div>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <section class="card section">
-    <h3>Contact & Next Steps</h3>
-    <p>We’re inviting banks, fintechs, regulators, insurers and ecosystem partners to pilot FundGuard.</p>
-    <div class="grid grid--3" style="gap:10px;margin-top:10px">
-      <a class="btn btn--gold" href="demo.html">🚀 Try Investor Demo</a>
-      <a class="btn btn--ghost" href="fundrecovery.html">💸 Run Recovery Sim</a>
-      <a class="btn btn--ghost" href="access.html">📝 Request Early Access</a>
-    </div>
-    <div class="hr"></div>
-    <div class="grid grid--3">
-      <div class="stack">
-        <div class="logo-word">Fund<span>Guard</span> Africa</div>
-        <span class="small">www.fundguardafrica.com</span>
+    <!-- Slide 3: Traction & Rollout -->
+    <div class="slide">
+      <h2>📈 Traction & Rollout</h2>
+      <div class="row">
+        <div>
+          <p class="lead"><b>MVP:</b> Live investor demo, fund recovery simulation, downloadable evidence report. Early Access open; GA4 tracking enabled.</p>
+          <div class="kpis">
+            <div class="kpi">🧪 <b>MVP Live</b> — demo + recovery + reports</div>
+            <div class="kpi">🌍 <b>5+ African markets</b> targeted; scaling to pan-Africa</div>
+            <div class="kpi">🤝 <b>Partnerships</b> in progress (banks/fintechs/exchanges)</div>
+          </div>
+        </div>
+        <div>
+          <p class="lead"><b>Use of Funds (illustrative)</b></p>
+          <div class="item card">
+            <div>🔐 Product & Security (40%)</div>
+            <div class="bar"><span style="width:40%"></span></div>
+          </div>
+          <div class="item card">
+            <div>🧭 Compliance & Certifications (25%)</div>
+            <div class="bar"><span style="width:25%"></span></div>
+          </div>
+          <div class="item card">
+            <div>📣 GTM & Partnerships (25%)</div>
+            <div class="bar"><span style="width:25%"></span></div>
+          </div>
+          <div class="item card">
+            <div>🧱 Operations (10%)</div>
+            <div class="bar"><span style="width:10%"></span></div>
+          </div>
+        </div>
       </div>
-      <div class="stack email-stack">
-        <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+    </div>
+
+    <!-- Slide 4: Team & Vision -->
+    <div class="slide">
+      <h2>👤 Team & Vision</h2>
+      <div class="row">
+        <div>
+          <p class="lead"><b>Founder/CEO:</b> Victor Kolawole Omojuwa — public health professional & tech entrepreneur. Mission: <i>protect Africa’s digital assets and restore trust in the digital economy.</i></p>
+          <div class="pill">Advisors: onboarding</div>
+          <div class="pill">Hiring: security, data, compliance</div>
+        </div>
+        <div>
+          <p class="lead"><b>Vision:</b> Africa-first, globally scalable fraud defense — enterprise-grade APIs, regulator portals, cross-border fund recovery collaboration.</p>
+          <div class="btns">
+            <a class="btn btn-gold" href="/demo.html">View Live Demo</a>
+            <a class="btn btn-outline" href="/access.html">Request Early Access</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Contact -->
+    <div class="slide">
+      <h2>📬 Contact</h2>
+      <div class="contact-block">
         <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
         <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
-      </div>
-      <div class="stack">
-        <span class="small">© 2025 FundGuard Africa</span>
-        <span class="small"><a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></span>
+        <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
       </div>
     </div>
-  </section>
-</main>
+
+  </div>
+</section>
 
 <footer>
-  <div class="footer__inner small">
-    Built for Africa. Scalable to the world.
+  <div class="foot">
+    <div class="brand">Fund<span class="fg">Guard</span> Africa</div>
+    <div>© 2025 • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></div>
   </div>
 </footer>
+
 </body>
 </html>
+
 
 
 
