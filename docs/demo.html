@@ -1,273 +1,157 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FundGuard Africa — Investor Demo (Live)</title>
-<meta name="description" content="Live investor demo for FundGuard Africa — AI-powered fraud detection and fund recovery simulation with evidence report." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fundguard.css" />
-<style>
-/* Page-specific polish (keeps global theme) */
-.demo-wrap{max-width:1100px;margin:0 auto;padding:24px 18px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
-.panel h3{margin:0 0 8px}
-.krow{display:grid;gap:12px}
-@media(min-width:860px){.krow{grid-template-columns:1fr 1fr}}
-.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--text-muted);margin-right:6px}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
-.table th{color:var(--text-muted);font-weight:700}
-.pulse{animation: pulse 1.8s infinite}
-@keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
-.tag-ok{color:#0fd08a}
-.tag-warn{color:#e2c35a}
-.tag-bad{color:#ff6868}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.small{font-size:.95rem;color:var(--text-muted)}
-pre.log{background:#08151c;border:1px solid var(--line);border-radius:12px;padding:12px;max-height:220px;overflow:auto}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FundGuard Africa — Investor Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #0b1e27;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0b1e27;
+      color: #f9d342;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .demo-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f5f8fa;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .log {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      height: 250px;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+    .alert { color: red; font-weight: bold; }
+    .recovered { color: green; font-weight: bold; }
+    .btn {
+      background: #f9d342;
+      color: #0b1e27;
+      font-weight: 600;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #d9b32c; }
+    .report-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+  <header>🚀 FundGuard Africa — Investor Demo</header>
 
-<header class="hero">
-  <div class="container">
-    <div class="brand">Fund<span class="fg">Guard</span> Africa</div>
-    <h1>Investor Demo (Live)</h1>
-    <p class="lead">Live alerts, anomaly detection and downloadable evidence reports (simulation). Country, location & local time included for clarity.</p>
-    <div class="cta-row">
-      <a class="btn btn-gold" href="/fundrecovery.html">💸 Fund Recovery</a>
-      <a class="btn btn-outline" href="/onepager.html">📄 Investor One Pager</a>
-      <a class="btn btn-ghost" href="/">🏠 Back to Home</a>
+  <div class="demo-container">
+    <h2>🔍 Live Fraud Simulation</h2>
+    <div class="log" id="log"></div>
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn" onclick="startSimulation()">▶ Start Simulation</button>
+      <button class="btn" onclick="clearLog()">🗑 Clear</button>
+    </div>
+
+    <div class="report-section">
+      <h2>📑 Generate Evidence Report</h2>
+      <p>Select a format to download a FundGuard sample recovery report:</p>
+      <button onclick="downloadReport('pdf')" class="btn">Download PDF</button>
+      <button onclick="downloadReport('docx')" class="btn">Download Word (DOCX)</button>
+      <button onclick="downloadReport('txt')" class="btn">Download Text</button>
     </div>
   </div>
-</header>
-
-<section class="section">
-  <div class="demo-wrap">
-
-    <!-- Status overview -->
-    <div class="panel">
-      <h3>📡 Live Status</h3>
-      <div class="krow">
-        <div>
-          <span class="badge">Stream: <b class="pulse">ACTIVE</b></span>
-          <span class="badge">Anomalies (last 5 min): <b id="kpiAnom">0</b></span>
-          <span class="badge">Evidence Reports: <b id="kpiReports">0</b></span>
-        </div>
-        <div class="small">
-          <b>Note:</b> This is a simulated investor demo. Flows mirror production behavior without exposing live user data.
-        </div>
-      </div>
-    </div>
-
-    <!-- Live Alerts -->
-    <div class="panel">
-      <h3>🚨 Live Alerts (Simulated)</h3>
-      <table class="table" id="alertsTable" aria-label="Live fraud alerts">
-        <thead>
-          <tr>
-            <th>Time (local)</th>
-            <th>Country</th>
-            <th>Location</th>
-            <th>Channel</th>
-            <th>Amount</th>
-            <th>Signal</th>
-          </tr>
-        </thead>
-        <tbody id="alertsBody">
-          <!-- JS injects rows here -->
-        </tbody>
-      </table>
-      <div class="actions" style="margin-top:10px">
-        <button class="btn btn-outline" id="btnAddBurst">⚡ Simulate Burst</button>
-        <button class="btn btn-outline" id="btnClear">🧹 Clear</button>
-      </div>
-    </div>
-
-    <!-- Transaction Monitor -->
-    <div class="panel">
-      <h3>📊 Transaction Monitor (Dummy)</h3>
-      <table class="table" id="txTable" aria-label="Recent transactions">
-        <thead>
-          <tr>
-            <th>Time (local)</th>
-            <th>Country</th>
-            <th>Location</th>
-            <th>Method</th>
-            <th>Amount</th>
-            <th>Risk</th>
-          </tr>
-        </thead>
-        <tbody id="txBody">
-          <!-- JS injects rows here -->
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Evidence & Case -->
-    <div class="panel">
-      <h3>📑 Evidence & Case Tools</h3>
-      <div class="krow">
-        <div>
-          <div class="small" style="margin-bottom:8px">
-            Generate a time-stamped <b>Evidence Report</b> capturing the latest alerts & transaction context.
-          </div>
-          <div class="actions">
-            <button class="btn btn-gold" id="btnReport">⬇️ Download Evidence Report</button>
-            <button class="btn btn-outline" id="btnFreeze">🧊 Send Freeze Request (Sim)</button>
-          </div>
-        </div>
-        <div>
-          <pre class="log" id="log" aria-live="polite">[ FundGuard Demo Log ]
-– Ready.</pre>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer note -->
-    <div class="small">
-      Need full access? Email <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a> or <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>.
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <div class="foot">
-    <div class="brand">Fund<span class="fg">Guard</span> Africa</div>
-    <div>© 2025 • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></div>
-  </div>
-</footer>
 
 <script>
-/* ---------- Demo data & helpers (client-only, no backend needed) ---------- */
-const countries = [
-  { cc:"NG", name:"Nigeria",    city:["Lagos","Abuja","Port Harcourt"] },
-  { cc:"GH", name:"Ghana",      city:["Accra","Kumasi","Tema"] },
-  { cc:"ZA", name:"South Africa", city:["Johannesburg","Cape Town","Durban"] },
-  { cc:"KE", name:"Kenya",      city:["Nairobi","Mombasa","Kisumu"] },
-  { cc:"TZ", name:"Tanzania",   city:["Dar es Salaam","Arusha","Dodoma"] }
-];
+const log = document.getElementById("log");
 
-const channels  = ["Bank Transfer","Mobile Money","Card","Crypto Wallet","Exchange"];
-const methods   = ["P2P","POS","Online","ATM","Wallet"];
-const signals   = [
-  { label:"Suspected Anomaly", cls:"tag-warn" },
-  { label:"Likely Fraud",      cls:"tag-bad"  },
-  { label:"Under Review",      cls:"tag-warn" },
-  { label:"Cleared",           cls:"tag-ok"   }
-];
-
-const fmtAmt = v => "$" + v.toLocaleString(undefined,{maximumFractionDigits:0});
-const nowStr = () => new Date().toLocaleString();
-
-/* DOM refs */
-const alertsBody = document.getElementById('alertsBody');
-const txBody     = document.getElementById('txBody');
-const kpiAnom    = document.getElementById('kpiAnom');
-const kpiReports = document.getElementById('kpiReports');
-const logEl      = document.getElementById('log');
-let anomalyCount = 0, reportCount = 0;
-
-/* Row factories */
-function addAlertRow() {
-  const c = countries[Math.floor(Math.random()*countries.length)];
-  const city = c.city[Math.floor(Math.random()*c.city.length)];
-  const ch = channels[Math.floor(Math.random()*channels.length)];
-  const sig = signals[Math.floor(Math.random()*signals.length)];
-  const amt = Math.floor(100 + Math.random()*5000);
-
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${nowStr()}</td>
-    <td>${c.name}</td>
-    <td>${city}</td>
-    <td>${ch}</td>
-    <td>${fmtAmt(amt)}</td>
-    <td class="${sig.cls}">${sig.label}</td>
-  `;
-  alertsBody.prepend(tr);
-  if (sig.label !== "Cleared") { anomalyCount++; kpiAnom.textContent = anomalyCount; }
+function logMessage(msg, type="") {
+  const div = document.createElement("div");
+  div.className = type;
+  div.textContent = msg;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
 }
 
-function addTxRow() {
-  const c = countries[Math.floor(Math.random()*countries.length)];
-  const city = c.city[Math.floor(Math.random()*c.city.length)];
-  const m = methods[Math.floor(Math.random()*methods.length)];
-  const risk = ["Low","Medium","High"][Math.floor(Math.random()*3)];
-  const amt = Math.floor(50 + Math.random()*10000);
-
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${nowStr()}</td>
-    <td>${c.name}</td>
-    <td>${city}</td>
-    <td>${m}</td>
-    <td>${fmtAmt(amt)}</td>
-    <td>${risk}</td>
-  `;
-  txBody.prepend(tr);
+function clearLog() {
+  log.innerHTML = "";
 }
 
-/* Sim loops */
-let alertTimer = setInterval(addAlertRow, 2200);
-let txTimer    = setInterval(addTxRow,    1800);
-
-/* Controls */
-document.getElementById('btnAddBurst').addEventListener('click',()=>{
-  for (let i=0;i<5;i++) setTimeout(addAlertRow, i*120);
-  log("Simulated burst of alerts.");
-});
-document.getElementById('btnClear').addEventListener('click',()=>{
-  alertsBody.innerHTML = ""; anomalyCount=0; kpiAnom.textContent=0;
-  txBody.innerHTML = "";
-  log("Cleared tables.");
-});
-
-/* Evidence report (client-side text fallback; if your app exposes window.generateEvidencePDF, we call that) */
-document.getElementById('btnReport').addEventListener('click',()=>{
-  if (typeof window.generateEvidencePDF === 'function') {
-    window.generateEvidencePDF();               // use your existing PDF generator if present
-    reportCount++; kpiReports.textContent = reportCount;
-    log("Triggered built-in Evidence PDF generator.");
-    return;
-  }
-  // Fallback: create a simple .txt file that downloads immediately
-  const lines = [
-    "FundGuard Evidence Report (Demo)",
-    "Timestamp: " + new Date().toISOString(),
-    "Summary: recent alerts & transactions context",
-    "",
-    "Recent Alerts:"
+function startSimulation() {
+  clearLog();
+  const steps = [
+    "🌍 Location: Lagos, Nigeria — Transaction flagged",
+    "⚠️ Intermediate Bank detected anomaly — Amount: $441,408",
+    "💳 Wallet Y routed suspicious transfer — $214,305",
+    "🚨 Exchange Z attempted cash-out — $266,527",
+    "⛔ Freeze request sent to Exchange Z & Wallet Y",
+    "📋 Recovery action queued",
+    "✅ Awaiting KYC verification & legal hold",
+    "📑 Bank compliance ticket opened, regulatory reference generated",
+    "💸 Recovery successful — Funds secured!"
   ];
-  [...alertsBody.querySelectorAll('tr')].slice(0,5).forEach(tr=>{
-    const tds=[...tr.querySelectorAll('td')].map(td=>td.textContent.trim());
-    lines.push(`- ${tds[0]} | ${tds[1]} - ${tds[2]} | ${tds[3]} | ${tds[4]} | ${tds[5]}`);
-  });
-  lines.push("", "Recent Transactions:");
-  [...txBody.querySelectorAll('tr')].slice(0,5).forEach(tr=>{
-    const tds=[...tr.querySelectorAll('td')].map(td=>td.textContent.trim());
-    lines.push(`- ${tds[0]} | ${tds[1]} - ${tds[2]} | ${tds[3]} | ${tds[4]} | Risk ${tds[5]}`);
-  });
-  const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `FundGuard_Evidence_Report_${Date.now()}.txt`;
-  document.body.appendChild(a); a.click(); a.remove();
-  reportCount++; kpiReports.textContent = reportCount;
-  log("Downloaded evidence report (.txt fallback).");
-});
 
-/* Freeze request (sim) */
-document.getElementById('btnFreeze').addEventListener('click',()=>{
-  log("Freeze request queued for last anomaly path → Exchange Z & Wallet Y (demo).");
-});
+  steps.forEach((step, i) => {
+    setTimeout(() => {
+      if (step.includes("⚠️") || step.includes("🚨")) {
+        logMessage(step, "alert");
+      } else if (step.includes("💸") || step.includes("✅")) {
+        logMessage(step, "recovered");
+      } else {
+        logMessage(step);
+      }
+    }, i * 2000);
+  });
+}
 
-function log(msg){ logEl.textContent += "\n– " + msg; logEl.scrollTop = logEl.scrollHeight; }
+function downloadReport(format) {
+  const content = `
+  FundGuard Africa — Evidence Recovery Report
+  ===========================================
+  Timeline of Recovery Actions:
+  • Intermediate bank detected — Amount: $441,408
+  • Wallet Y routed — $214,305
+  • Exchange Z cash-out attempt — $266,527
+  • Freeze request sent to Exchange Z & Wallet Y
+  • Recovery action queued
+  • Awaiting KYC verification & legal hold
+  • Bank compliance ticket opened, regulatory reference generated
+  `;
+
+  let blob, filename;
+  if (format === 'pdf') {
+    blob = new Blob([content], { type: "application/pdf" });
+    filename = "FundGuard_Evidence_Report.pdf";
+  } else if (format === 'docx') {
+    blob = new Blob([content], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+    filename = "FundGuard_Evidence_Report.docx";
+  } else {
+    blob = new Blob([content], { type: "text/plain" });
+    filename = "FundGuard_Evidence_Report.txt";
+  }
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+}
 </script>
-
 </body>
 </html>
+
 
