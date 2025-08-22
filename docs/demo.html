@@ -1,488 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Investor Demo (Live)</title>
-<meta name="description" content="Live investor demo showing fraud alerts, transaction anomalies, recovery workflow and downloadable evidence report, with geo, time and region heatmap." />
+<meta name="description" content="Live investor demo for FundGuard Africa — AI-powered fraud detection and fund recovery simulation with evidence report." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fundguard.css" />
 <style>
-:root{
-  --ink:#0b1e27; --blue:#0f3d66; --gold:#d4af37;
-  --muted:#5f7180; --line:#e7edf1; --bg:#f7f9fb; --card:#ffffff;
-  --shadow:0 8px 24px rgba(11,30,39,.08);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
-
-/* Header */
-header{background:linear-gradient(180deg,#0b1e27,#0e2a36 70%);color:#fff;padding:28px 16px;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,.08)}
-header h1{margin:0 0 6px;font-size:2.25rem;font-weight:900;letter-spacing:.3px}
-header .tag{color:var(--gold);font-weight:700}
-.top-cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px}
-.btn{border-radius:10px;padding:10px 14px;font-weight:800;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px;transition:.18s ease}
-.btn--gold{background:var(--gold);color:#0b1e27;border-color:var(--gold);box-shadow:0 0 0 rgba(212,175,55,0)}
-.btn--gold:hover{filter:brightness(1.05);box-shadow:0 6px 20px rgba(212,175,55,.35);text-decoration:none;transform:translateY(-1px)}
-.btn--ghost{border:1px solid var(--line);background:#fff;color:#0b1e27}
-.btn--ghost:hover{background:#f0f4f7}
-
-/* Optional top nav */
-.nav{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
-.nav a{color:#cfe3ea;font-weight:700;opacity:.9}
-.nav a:hover{opacity:1;color:#fff}
-
-/* Layout */
-.wrap{max-width:1200px;margin:0 auto;padding:22px 16px}
-.grid{display:grid;grid-template-columns:2fr 1.15fr;gap:18px}
-@media (max-width:980px){.grid{grid-template-columns:1fr}}
-
-/* Cards */
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
-.card h2{margin:0 0 6px;color:var(--blue);font-size:1.15rem}
-.sub{color:var(--muted);margin:4px 0 12px;font-size:.96rem}
-
-/* Alerts */
-.alerts{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fcfeff}
-.alert{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);animation:fadeIn .25s ease}
-.row{display:flex;align-items:center;gap:10px}
-.alert:last-child{border-bottom:none}
-.pill{font-size:.72rem;padding:3px 8px;border-radius:999px;font-weight:800;border:1px solid var(--line)}
-.pill--high{background:#fff0f0;color:#8b0000;border-color:#ffd5d5}
-.pill--med{background:#fff9e6;color:#7a4b00;border-color:#ffe8ae}
-.pill--low{background:#eef9ff;color:#07496b;border-color:#cfe8f6}
-.meta{color:var(--muted);font-size:.82rem}
-
-/* Transactions */
-.table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:.95rem}
-.table th{background:#f6f9fb;color:#0b1e27}
-.tag{display:inline-block;font-size:.72rem;padding:3px 8px;border:1px solid var(--line);border-radius:999px;background:#fff}
-
-/* KPIs */
-.kpi{display:flex;align-items:center;gap:12px;background:#f9fbfc;border:1px solid var(--line);border-radius:12px;padding:12px}
-.kpi b{font-size:1.45rem;letter-spacing:.3px}
-.kpi.recovered b{color:#1e7e34} /* green */
-.kpi.anomaly   b{color:#c82333} /* red */
-.kpi.pending   b{color:#a66f00} /* amber */
-
-/* Recovery */
-.progress{height:12px;background:#eef3f6;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
-.progress > div{height:100%;width:0;background:linear-gradient(90deg,#0f3d66,#2a76c6)}
-.timeline{border:1px solid var(--line);border-radius:12px;padding:12px;max-height:220px;overflow:auto;background:#fff}
-
-/* Region heatmap */
-.map-wrap{display:flex;flex-direction:column;gap:10px}
-.map-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
-.legend-item{display:inline-flex;align-items:center;gap:8px}
-.dot{width:12px;height:12px;border-radius:3px;display:inline-block;opacity:.8}
-.region-africa{color:#1e7e34;font-weight:600}
-.region-me{color:#a16600;font-weight:600}
-.region-apac{color:#0069d9;font-weight:600}
-.region-eu{color:#6610f2;font-weight:600}
-.region-amer{color:#c82333;font-weight:600}
-
-/* Footer */
-footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:22px;padding:18px;border-top:1px solid rgba(255,255,255,.08)}
-.contact-stack{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:6px}
-.contact-stack a{color:var(--gold);font-weight:700} .contact-stack a:hover{color:#fff}
-.small{font-size:.9rem;color:#cfe3ea}
-
-/* Animations */
-@keyframes fadeIn{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
+/* Page-specific polish (keeps global theme) */
+.demo-wrap{max-width:1100px;margin:0 auto;padding:24px 18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.panel h3{margin:0 0 8px}
+.krow{display:grid;gap:12px}
+@media(min-width:860px){.krow{grid-template-columns:1fr 1fr}}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--text-muted);margin-right:6px}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+.table th{color:var(--text-muted);font-weight:700}
+.pulse{animation: pulse 1.8s infinite}
+@keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+.tag-ok{color:#0fd08a}
+.tag-warn{color:#e2c35a}
+.tag-bad{color:#ff6868}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.small{font-size:.95rem;color:var(--text-muted)}
+pre.log{background:#08151c;border:1px solid var(--line);border-radius:12px;padding:12px;max-height:220px;overflow:auto}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>FundGuard Africa — Investor Demo</h1>
-  <div class="tag">Live Fraud Alerts • Transaction Monitor • Fund Recovery</div>
-  <div class="top-cta">
-    <a class="btn btn--gold" href="fundrecovery.html">💸 Fund Recovery</a>
-    <a class="btn btn--ghost" href="onepager.html">📄 One Pager</a>
-    <a class="btn btn--ghost" href="pitch.html">🎯 Pitch Deck</a>
+<header class="hero">
+  <div class="container">
+    <div class="brand">Fund<span class="fg">Guard</span> Africa</div>
+    <h1>Investor Demo (Live)</h1>
+    <p class="lead">Live alerts, anomaly detection and downloadable evidence reports (simulation). Country, location & local time included for clarity.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="/fundrecovery.html">💸 Fund Recovery</a>
+      <a class="btn btn-outline" href="/onepager.html">📄 Investor One Pager</a>
+      <a class="btn btn-ghost" href="/">🏠 Back to Home</a>
+    </div>
   </div>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="demo.html">Investor Demo</a>
-    <a href="access.html">Early Access</a>
-    <a href="api.html">API</a>
-  </nav>
 </header>
 
-<main class="wrap">
-  <div class="grid">
-    <!-- LEFT: Alerts -->
-    <section class="card">
-      <h2>🚨 Live Fraud Alerts</h2>
-      <p class="sub">Simulated signals streaming in real-time (severity, geo, amount).</p>
-      <div id="alerts" class="alerts" aria-live="polite"></div>
-    </section>
+<section class="section">
+  <div class="demo-wrap">
 
-    <!-- RIGHT: KPIs -->
-    <aside class="card">
-      <h2>💰 Recovered Funds</h2>
-      <p class="sub">Illustrative metrics for the investor demo (simulated).</p>
-      <div class="kpi recovered">
-        <span>Recovered to date:</span>
-        <b id="recoveredTotal">₦0</b>
+    <!-- Status overview -->
+    <div class="panel">
+      <h3>📡 Live Status</h3>
+      <div class="krow">
+        <div>
+          <span class="badge">Stream: <b class="pulse">ACTIVE</b></span>
+          <span class="badge">Anomalies (last 5 min): <b id="kpiAnom">0</b></span>
+          <span class="badge">Evidence Reports: <b id="kpiReports">0</b></span>
+        </div>
+        <div class="small">
+          <b>Note:</b> This is a simulated investor demo. Flows mirror production behavior without exposing live user data.
+        </div>
       </div>
-      <div class="kpi" style="margin-top:10px">
-        <span>Cases resolved:</span>
-        <b id="casesResolved">0</b>
-      </div>
-      <div class="kpi pending" style="margin-top:10px">
-        <span>Freeze requests sent:</span>
-        <b id="freezeCount">0</b>
-      </div>
-    </aside>
-  </div>
+    </div>
 
-  <!-- Transactions -->
-  <section class="card" style="margin-top:16px">
-    <h2>📊 Transaction Monitor (Dummy)</h2>
-    <p class="sub">Recent anomalies across banks, wallets and exchanges.</p>
-    <div style="overflow:auto">
-      <table class="table" id="txnTable">
+    <!-- Live Alerts -->
+    <div class="panel">
+      <h3>🚨 Live Alerts (Simulated)</h3>
+      <table class="table" id="alertsTable" aria-label="Live fraud alerts">
         <thead>
           <tr>
-            <th>Time (Africa/Lagos)</th>
+            <th>Time (local)</th>
             <th>Country</th>
-            <th>City</th>
+            <th>Location</th>
             <th>Channel</th>
             <th>Amount</th>
-            <th>Risk</th>
-            <th>Status</th>
+            <th>Signal</th>
           </tr>
         </thead>
-        <tbody><!-- injected --></tbody>
+        <tbody id="alertsBody">
+          <!-- JS injects rows here -->
+        </tbody>
+      </table>
+      <div class="actions" style="margin-top:10px">
+        <button class="btn btn-outline" id="btnAddBurst">⚡ Simulate Burst</button>
+        <button class="btn btn-outline" id="btnClear">🧹 Clear</button>
+      </div>
+    </div>
+
+    <!-- Transaction Monitor -->
+    <div class="panel">
+      <h3>📊 Transaction Monitor (Dummy)</h3>
+      <table class="table" id="txTable" aria-label="Recent transactions">
+        <thead>
+          <tr>
+            <th>Time (local)</th>
+            <th>Country</th>
+            <th>Location</th>
+            <th>Method</th>
+            <th>Amount</th>
+            <th>Risk</th>
+          </tr>
+        </thead>
+        <tbody id="txBody">
+          <!-- JS injects rows here -->
+        </tbody>
       </table>
     </div>
-  </section>
 
-  <!-- Region Heatmap -->
-  <section class="card" style="margin-top:16px">
-    <h2>🗺️ Region Heatmap (Sim)</h2>
-    <p class="sub">Activity accumulates by region during this session.</p>
-    <div class="map-wrap">
-      <div class="map-legend">
-        <span class="legend-item"><span class="dot" style="background:#1e7e34"></span> Africa</span>
-        <span class="legend-item"><span class="dot" style="background:#a16600"></span> Middle East</span>
-        <span class="legend-item"><span class="dot" style="background:#0069d9"></span> APAC</span>
-        <span class="legend-item"><span class="dot" style="background:#6610f2"></span> Europe</span>
-        <span class="legend-item"><span class="dot" style="background:#c82333"></span> America</span>
+    <!-- Evidence & Case -->
+    <div class="panel">
+      <h3>📑 Evidence & Case Tools</h3>
+      <div class="krow">
+        <div>
+          <div class="small" style="margin-bottom:8px">
+            Generate a time-stamped <b>Evidence Report</b> capturing the latest alerts & transaction context.
+          </div>
+          <div class="actions">
+            <button class="btn btn-gold" id="btnReport">⬇️ Download Evidence Report</button>
+            <button class="btn btn-outline" id="btnFreeze">🧊 Send Freeze Request (Sim)</button>
+          </div>
+        </div>
+        <div>
+          <pre class="log" id="log" aria-live="polite">[ FundGuard Demo Log ]
+– Ready.</pre>
+        </div>
       </div>
-
-      <!-- Simple SVG heatmap: five rounded blocks that brighten as counts rise -->
-      <svg viewBox="0 0 1000 240" width="100%" height="auto" aria-label="Region heatmap">
-        <!-- Africa -->
-        <rect id="block-africa" x="20"  y="40" rx="16" ry="16" width="180" height="140"
-              fill="#1e7e34" fill-opacity="0.15" stroke="#dce6ec"/>
-        <text x="110" y="95" text-anchor="middle" font-size="18" fill="#1e7e34" font-weight="700">Africa</text>
-        <text id="count-africa" x="110" y="135" text-anchor="middle" font-size="22" fill="#1e7e34" font-weight="900">0</text>
-
-        <!-- Middle East -->
-        <rect id="block-me" x="220" y="40" rx="16" ry="16" width="180" height="140"
-              fill="#a16600" fill-opacity="0.15" stroke="#dce6ec"/>
-        <text x="310" y="95" text-anchor="middle" font-size="18" fill="#a16600" font-weight="700">Middle East</text>
-        <text id="count-me" x="310" y="135" text-anchor="middle" font-size="22" fill="#a16600" font-weight="900">0</text>
-
-        <!-- APAC -->
-        <rect id="block-apac" x="420" y="40" rx="16" ry="16" width="180" height="140"
-              fill="#0069d9" fill-opacity="0.15" stroke="#dce6ec"/>
-        <text x="510" y="95" text-anchor="middle" font-size="18" fill="#0069d9" font-weight="700">APAC</text>
-        <text id="count-apac" x="510" y="135" text-anchor="middle" font-size="22" fill="#0069d9" font-weight="900">0</text>
-
-        <!-- Europe -->
-        <rect id="block-eu" x="620" y="40" rx="16" ry="16" width="180" height="140"
-              fill="#6610f2" fill-opacity="0.15" stroke="#dce6ec"/>
-        <text x="710" y="95" text-anchor="middle" font-size="18" fill="#6610f2" font-weight="700">Europe</text>
-        <text id="count-eu" x="710" y="135" text-anchor="middle" font-size="22" fill="#6610f2" font-weight="900">0</text>
-
-        <!-- America -->
-        <rect id="block-amer" x="820" y="40" rx="16" ry="16" width="160" height="140"
-              fill="#c82333" fill-opacity="0.15" stroke="#dce6ec"/>
-        <text x="900" y="95" text-anchor="middle" font-size="18" fill="#c82333" font-weight="700">America</text>
-        <text id="count-amer" x="900" y="135" text-anchor="middle" font-size="22" fill="#c82333" font-weight="900">0</text>
-      </svg>
-    </div>
-  </section>
-
-  <!-- Recovery -->
-  <section class="card" style="margin-top:16px">
-    <h2>🔐 Fund Recovery Workflow (Sim)</h2>
-    <p class="sub">Kick off a simulated recovery and generate an Evidence Report (downloadable).</p>
-
-    <div class="kpi pending" style="margin-bottom:10px">
-      <span>Progress:</span>
-      <div class="progress" style="flex:1"><div id="progressBar"></div></div>
-      <b id="progressPct">0%</b>
     </div>
 
-    <div class="timeline" id="timeline"></div>
-
-    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-      <button id="startRecovery" class="btn btn--gold" type="button">▶ Start Recovery Simulation</button>
-      <button id="downloadReport" class="btn btn--ghost" type="button" disabled>⬇ Download Evidence Report</button>
+    <!-- Footer note -->
+    <div class="small">
+      Need full access? Email <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a> or <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>.
     </div>
 
-    <p class="small" style="margin-top:8px">Demo only — no real PII required or stored.</p>
-  </section>
-</main>
+  </div>
+</section>
 
 <footer>
-  <div class="contact-stack">
-    <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
-    <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
-    <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+  <div class="foot">
+    <div class="brand">Fund<span class="fg">Guard</span> Africa</div>
+    <div>© 2025 • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></div>
   </div>
-  <div class="small">&copy; 2025 FundGuard Africa — <a href="terms.html" style="color:#cfe3ea">Terms</a> • <a href="privacy.html" style="color:#cfe3ea">Privacy</a></div>
 </footer>
 
 <script>
-/* ---------- Helpers ---------- */
-function rand(n){ return Math.floor(Math.random()*n); }
-function formatNaira(v){ return '₦' + v.toLocaleString(); }
-function nowTime() {
-  return new Date().toLocaleString("en-GB", {
-    timeZone: "Africa/Lagos",
-    day: "2-digit",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  });
-}
-
-/* ---------- Data ---------- */
-const alertsEl = document.getElementById('alerts');
-
-const severities = [
-  {label:'HIGH', cls:'pill pill--high'},
-  {label:'MED',  cls:'pill pill--med'},
-  {label:'LOW',  cls:'pill pill--low'}
-];
-const channels = ['Bank','Wallet','Card','Exchange','Mobile Money'];
-const risks = ['Very High','High','Medium','Low'];
-const statuses = ['Flagged','Investigating','Frozen','Escalated'];
-
-/* Region styling classes for table labels */
-const regionClass = {
-  africa: 'region-africa',
-  me: 'region-me',
-  apac: 'region-apac',
-  eu: 'region-eu',
-  amer: 'region-amer'
-};
-
-const locations = [
-  { country: 'Nigeria',       city: 'Lagos',          region: 'africa', flag: '🇳🇬' },
-  { country: 'Kenya',         city: 'Nairobi',        region: 'africa', flag: '🇰🇪' },
-  { country: 'South Africa',  city: 'Johannesburg',   region: 'africa', flag: '🇿🇦' },
-  { country: 'Ghana',         city: 'Accra',          region: 'africa', flag: '🇬🇭' },
-  { country: 'Uganda',        city: 'Kampala',        region: 'africa', flag: '🇺🇬' },
-  { country: 'Tanzania',      city: 'Dar es Salaam',  region: 'africa', flag: '🇹🇿' },
-
-  { country: 'UAE',           city: 'Dubai',          region: 'me',     flag: '🇦🇪' },
-  { country: 'Saudi Arabia',  city: 'Riyadh',         region: 'me',     flag: '🇸🇦' },
-  { country: 'Qatar',         city: 'Doha',           region: 'me',     flag: '🇶🇦' },
-  { country: 'Kuwait',        city: 'Kuwait City',    region: 'me',     flag: '🇰🇼' },
-
-  { country: 'Singapore',     city: 'Singapore',      region: 'apac',   flag: '🇸🇬' },
-  { country: 'Malaysia',      city: 'Kuala Lumpur',   region: 'apac',   flag: '🇲🇾' },
-  { country: 'Philippines',   city: 'Manila',         region: 'apac',   flag: '🇵🇭' },
-  { country: 'Indonesia',     city: 'Jakarta',        region: 'apac',   flag: '🇮🇩' },
-
-  { country: 'UK',            city: 'London',         region: 'eu',     flag: '🇬🇧' },
-  { country: 'Germany',       city: 'Berlin',         region: 'eu',     flag: '🇩🇪' },
-  { country: 'France',        city: 'Paris',          region: 'eu',     flag: '🇫🇷' },
-  { country: 'Netherlands',   city: 'Amsterdam',      region: 'eu',     flag: '🇳🇱' },
-
-  { country: 'Brazil',        city: 'São Paulo',      region: 'amer',   flag: '🇧🇷' },
-  { country: 'Mexico',        city: 'Mexico City',    region: 'amer',   flag: '🇲🇽' },
-  { country: 'Colombia',      city: 'Bogotá',         region: 'amer',   flag: '🇨🇴' },
-  { country: 'Argentina',     city: 'Buenos Aires',   region: 'amer',   flag: '🇦🇷' }
+/* ---------- Demo data & helpers (client-only, no backend needed) ---------- */
+const countries = [
+  { cc:"NG", name:"Nigeria",    city:["Lagos","Abuja","Port Harcourt"] },
+  { cc:"GH", name:"Ghana",      city:["Accra","Kumasi","Tema"] },
+  { cc:"ZA", name:"South Africa", city:["Johannesburg","Cape Town","Durban"] },
+  { cc:"KE", name:"Kenya",      city:["Nairobi","Mombasa","Kisumu"] },
+  { cc:"TZ", name:"Tanzania",   city:["Dar es Salaam","Arusha","Dodoma"] }
 ];
 
-/* ---------- KPIs ---------- */
-let recovered = 0, resolved = 0, freezes = 0;
-const recoveredEl = document.getElementById('recoveredTotal');
-const casesEl = document.getElementById('casesResolved');
-const freezeEl = document.getElementById('freezeCount');
+const channels  = ["Bank Transfer","Mobile Money","Card","Crypto Wallet","Exchange"];
+const methods   = ["P2P","POS","Online","ATM","Wallet"];
+const signals   = [
+  { label:"Suspected Anomaly", cls:"tag-warn" },
+  { label:"Likely Fraud",      cls:"tag-bad"  },
+  { label:"Under Review",      cls:"tag-warn" },
+  { label:"Cleared",           cls:"tag-ok"   }
+];
 
-function bumpKPIs(){
-  recovered += Math.floor(Math.random()*120000) + 18000;
-  resolved  += Math.random() < 0.40 ? 1 : 0;
-  freezes   += Math.random() < 0.35 ? 1 : 0;
-  recoveredEl.textContent = formatNaira(recovered);
-  casesEl.textContent = resolved;
-  freezeEl.textContent = freezes;
-}
-setInterval(bumpKPIs, 3000);
+const fmtAmt = v => "$" + v.toLocaleString(undefined,{maximumFractionDigits:0});
+const nowStr = () => new Date().toLocaleString();
 
-/* ---------- Region Heatmap ---------- */
-const regionCounts = { africa:0, me:0, apac:0, eu:0, amer:0 };
-const regionBlocks = {
-  africa: document.getElementById('block-africa'),
-  me:     document.getElementById('block-me'),
-  apac:   document.getElementById('block-apac'),
-  eu:     document.getElementById('block-eu'),
-  amer:   document.getElementById('block-amer')
-};
-const regionCountsText = {
-  africa: document.getElementById('count-africa'),
-  me:     document.getElementById('count-me'),
-  apac:   document.getElementById('count-apac'),
-  eu:     document.getElementById('count-eu'),
-  amer:   document.getElementById('count-amer')
-};
-const regionBaseColors = {
-  africa:'#1e7e34', me:'#a16600', apac:'#0069d9', eu:'#6610f2', amer:'#c82333'
-};
+/* DOM refs */
+const alertsBody = document.getElementById('alertsBody');
+const txBody     = document.getElementById('txBody');
+const kpiAnom    = document.getElementById('kpiAnom');
+const kpiReports = document.getElementById('kpiReports');
+const logEl      = document.getElementById('log');
+let anomalyCount = 0, reportCount = 0;
 
-function updateHeatmap(){
-  const vals = Object.values(regionCounts);
-  const max = Math.max(1, ...vals); // avoid division by zero
-  for (const key of Object.keys(regionCounts)){
-    const intensity = regionCounts[key] / max; // 0..1
-    const op = 0.15 + intensity * 0.65;       // 0.15 → 0.80
-    regionBlocks[key].setAttribute('fill-opacity', op.toFixed(2));
-    regionCountsText[key].textContent = regionCounts[key];
-  }
-}
-function regionBump(region){
-  regionCounts[region] = (regionCounts[region]||0) + 1;
-  updateHeatmap();
-}
-
-/* ---------- Live Fraud Alerts (sim) ---------- */
-function pushAlert(){
-  const sev = severities[rand(severities.length)];
-  const ch  = channels[rand(channels.length)];
-  const amt = Math.floor(Math.random()*900000) + 50000;
-  const loc = locations[rand(locations.length)];
-  const t   = nowTime();
-
-  const item = document.createElement('div');
-  item.className = 'alert';
-  item.innerHTML = `
-    <div class="row">
-      <span class="${sev.cls}">${sev.label}</span>
-      <strong>${ch}</strong>
-      <span>event</span>
-      <span style="margin-left:auto;font-weight:800">${formatNaira(amt)}</span>
-    </div>
-    <div class="meta">📍 <span class="${regionClass[loc.region]}">${loc.flag} ${loc.city}, ${loc.country}</span> • 🕒 ${t}</div>
-  `;
-  alertsEl.prepend(item);
-  while (alertsEl.childElementCount > 12) alertsEl.removeChild(alertsEl.lastChild);
-
-  regionBump(loc.region);
-}
-for(let i=0;i<6;i++) pushAlert();
-setInterval(pushAlert, 1800);
-
-/* ---------- Transaction Monitor (dummy) ---------- */
-const txnBody = document.querySelector('#txnTable tbody');
-
-function pushTxn(){
-  const amt = Math.floor(Math.random()*800000) + 80000;
-  const r = risks[rand(risks.length)];
-  const s = statuses[rand(statuses.length)];
-  const ch  = channels[rand(channels.length)];
-  const loc = locations[rand(locations.length)];
-  const t   = nowTime();
+/* Row factories */
+function addAlertRow() {
+  const c = countries[Math.floor(Math.random()*countries.length)];
+  const city = c.city[Math.floor(Math.random()*c.city.length)];
+  const ch = channels[Math.floor(Math.random()*channels.length)];
+  const sig = signals[Math.floor(Math.random()*signals.length)];
+  const amt = Math.floor(100 + Math.random()*5000);
 
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td>${t}</td>
-    <td><span class="${regionClass[loc.region]}">${loc.flag} ${loc.country}</span></td>
-    <td>${loc.city}</td>
+    <td>${nowStr()}</td>
+    <td>${c.name}</td>
+    <td>${city}</td>
     <td>${ch}</td>
-    <td><b>${formatNaira(amt)}</b></td>
-    <td><span class="tag">${r}</span></td>
-    <td>${s}</td>
+    <td>${fmtAmt(amt)}</td>
+    <td class="${sig.cls}">${sig.label}</td>
   `;
-  txnBody.prepend(tr);
-  while (txnBody.childElementCount > 10) txnBody.removeChild(txnBody.lastChild);
-
-  regionBump(loc.region);
+  alertsBody.prepend(tr);
+  if (sig.label !== "Cleared") { anomalyCount++; kpiAnom.textContent = anomalyCount; }
 }
-for(let i=0;i<5;i++) pushTxn();
-setInterval(pushTxn, 2500);
 
-/* ---------- Recovery Simulation + Evidence Report ---------- */
-const timelineEl = document.getElementById('timeline');
-const progressEl = document.getElementById('progressBar');
-const pctEl      = document.getElementById('progressPct');
-const startBtn   = document.getElementById('startRecovery');
-const dlBtn      = document.getElementById('downloadReport');
+function addTxRow() {
+  const c = countries[Math.floor(Math.random()*countries.length)];
+  const city = c.city[Math.floor(Math.random()*c.city.length)];
+  const m = methods[Math.floor(Math.random()*methods.length)];
+  const risk = ["Low","Medium","High"][Math.floor(Math.random()*3)];
+  const amt = Math.floor(50 + Math.random()*10000);
 
-const steps = [
-  `Case received — parsing details (${nowTime()})`,
-  `Intermediate bank detected: ₦441,408 — 📍 Lagos, Nigeria (${nowTime()})`,
-  `Wallet Y routed: ₦214,305 — 📍 Nairobi, Kenya (${nowTime()})`,
-  `Exchange Z cash-out attempt: ₦266,527 — 📍 Dubai, UAE (${nowTime()})`,
-  `Freeze request sent to Exchange Z & Wallet Y (${nowTime()})`,
-  `Recovery action queued (${nowTime()})`,
-  `Awaiting KYC verification & legal hold (${nowTime()})`,
-  `Bank compliance ticket opened; regulatory reference generated (${nowTime()})`,
-  `Evidence report assembled (${nowTime()})`
-];
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${nowStr()}</td>
+    <td>${c.name}</td>
+    <td>${city}</td>
+    <td>${m}</td>
+    <td>${fmtAmt(amt)}</td>
+    <td>${risk}</td>
+  `;
+  txBody.prepend(tr);
+}
 
-let running = false;
-startBtn.onclick = () => {
-  if (running) return;
-  running = true; dlBtn.disabled = true;
-  timelineEl.innerHTML = "";
-  let step = 0;
-  const stepPct = Math.floor(100 / steps.length);
-  progressEl.style.width = '0%'; pctEl.textContent = '0%';
+/* Sim loops */
+let alertTimer = setInterval(addAlertRow, 2200);
+let txTimer    = setInterval(addTxRow,    1800);
 
-  const iv = setInterval(() => {
-    const p = Math.min((step+1)*stepPct, 100);
-    const li = document.createElement('div');
-    li.textContent = "• " + steps[step];
-    timelineEl.appendChild(li);
-    timelineEl.scrollTop = timelineEl.scrollHeight;
+/* Controls */
+document.getElementById('btnAddBurst').addEventListener('click',()=>{
+  for (let i=0;i<5;i++) setTimeout(addAlertRow, i*120);
+  log("Simulated burst of alerts.");
+});
+document.getElementById('btnClear').addEventListener('click',()=>{
+  alertsBody.innerHTML = ""; anomalyCount=0; kpiAnom.textContent=0;
+  txBody.innerHTML = "";
+  log("Cleared tables.");
+});
 
-    progressEl.style.width = p + '%';
-    pctEl.textContent = p + '%';
-    step++;
-    if (step >= steps.length){
-      clearInterval(iv);
-      running = false;
-      dlBtn.disabled = false;
-      // KPI bump to reflect successful flow
-      recovered += 95000; resolved += 1; freezes += 1;
-      recoveredEl.textContent = formatNaira(recovered);
-      casesEl.textContent = resolved;
-      freezeEl.textContent = freezes;
-    }
-  }, 1100);
-};
-
-dlBtn.onclick = () => {
-  const report = {
-    title: "FundGuard Evidence Report (DEMO)",
-    generated_at: new Date().toISOString(),
-    case_id: "FG-" + Date.now(),
-    timeline: steps,
-    amounts: { intermediate_bank: 441408, wallet_y: 214305, exchange_z_attempt: 266527 },
-    actions: ["Freeze requests sent","Compliance ticket opened","Regulatory reference created"],
-    compliance: ["NDPR-ready","GDPR-aligned","RLS enforced"],
-    regions: regionCounts,
-    disclaimer: "Demonstration data only. No real PII is collected or stored."
-  };
-  const blob = new Blob([JSON.stringify(report, null, 2)], {type:"application/json"});
+/* Evidence report (client-side text fallback; if your app exposes window.generateEvidencePDF, we call that) */
+document.getElementById('btnReport').addEventListener('click',()=>{
+  if (typeof window.generateEvidencePDF === 'function') {
+    window.generateEvidencePDF();               // use your existing PDF generator if present
+    reportCount++; kpiReports.textContent = reportCount;
+    log("Triggered built-in Evidence PDF generator.");
+    return;
+  }
+  // Fallback: create a simple .txt file that downloads immediately
+  const lines = [
+    "FundGuard Evidence Report (Demo)",
+    "Timestamp: " + new Date().toISOString(),
+    "Summary: recent alerts & transactions context",
+    "",
+    "Recent Alerts:"
+  ];
+  [...alertsBody.querySelectorAll('tr')].slice(0,5).forEach(tr=>{
+    const tds=[...tr.querySelectorAll('td')].map(td=>td.textContent.trim());
+    lines.push(`- ${tds[0]} | ${tds[1]} - ${tds[2]} | ${tds[3]} | ${tds[4]} | ${tds[5]}`);
+  });
+  lines.push("", "Recent Transactions:");
+  [...txBody.querySelectorAll('tr')].slice(0,5).forEach(tr=>{
+    const tds=[...tr.querySelectorAll('td')].map(td=>td.textContent.trim());
+    lines.push(`- ${tds[0]} | ${tds[1]} - ${tds[2]} | ${tds[3]} | ${tds[4]} | Risk ${tds[5]}`);
+  });
+  const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = "fundguard_evidence_report_demo.json";
-  document.body.appendChild(a);
-  a.click();
-  URL.revokeObjectURL(a.href);
-  a.remove();
-};
+  a.download = `FundGuard_Evidence_Report_${Date.now()}.txt`;
+  document.body.appendChild(a); a.click(); a.remove();
+  reportCount++; kpiReports.textContent = reportCount;
+  log("Downloaded evidence report (.txt fallback).");
+});
+
+/* Freeze request (sim) */
+document.getElementById('btnFreeze').addEventListener('click',()=>{
+  log("Freeze request queued for last anomaly path → Exchange Z & Wallet Y (demo).");
+});
+
+function log(msg){ logEl.textContent += "\n– " + msg; logEl.scrollTop = logEl.scrollHeight; }
 </script>
+
 </body>
 </html>
+
