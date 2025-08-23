@@ -308,6 +308,46 @@
       </div>
     </div>
   </section>
+  
+  <!-- Live MVP Preview Section -->
+<section class="mvp-preview">
+  <h2>🚨 Live Fraud Detection Preview</h2>
+  <p>Simulated feed of FundGuard detecting fraud across Africa. 
+     <a href="mvp.html" class="btn btn-primary">Launch Full Investor Demo →</a>
+  </p>
+
+  <div class="mvp-widget">
+    <table>
+      <thead>
+        <tr><th>Time</th><th>Location</th><th>Amount</th><th>Status</th></tr>
+      </thead>
+      <tbody id="mini-rows"></tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+const miniRows = document.getElementById('mini-rows');
+function miniNow(){ return new Date().toLocaleTimeString() }
+function miniRand(min,max){ return Math.floor(Math.random()*(max-min+1))+min }
+
+function miniRow(){
+  const locs = ["🇳🇬 Lagos","🇰🇪 Nairobi","🇬🇭 Accra","🇿🇦 Cape Town"];
+  const status = ["<span style='color:#e03e3e'>ALERT</span>",
+                  "<span style='color:#ff9f1a'>SUSPECT</span>",
+                  "<span style='color:#17a673'>RECOVERED</span>"];
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${miniNow()}</td>
+    <td>${locs[miniRand(0,locs.length-1)]}</td>
+    <td><b>$${miniRand(1200,85000).toLocaleString()}</b></td>
+    <td>${status[miniRand(0,2)]}</td>`;
+  miniRows.prepend(tr);
+  while(miniRows.children.length > 4) miniRows.removeChild(miniRows.lastChild);
+}
+setInterval(miniRow, 2000);
+</script>
+
 
   <!-- SDGs / IMPACT & TECH -->
   <section>
