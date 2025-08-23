@@ -152,6 +152,96 @@
           <a class="btn" href="access.html">🔔 Early Access</a>
         </div>
       </div>
+      <!-- Live Fraud Stream (Homepage Widget) -->
+<section id="live-stream" style="max-width:1100px;margin:18px auto;padding:0 20px">
+  <div style="background:#f6f8fa;border:1px solid #e7ecf0;border-radius:12px;padding:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;">
+      <h3 style="margin:0;font:800 18px/1.2 Inter,system-ui;color:#0b1e27">Live Fraud Stream (Demo)</h3>
+      <div>
+        <a href="mvp.html" class="btn" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid #e7ecf0;background:#fff;font-weight:800;color:#0b1e27;text-decoration:none">🔎 Open Full Demo</a>
+        <a href="fundrecovery.html#report" class="btn" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid #e7ecf0;background:#fff;font-weight:800;color:#0b1e27;text-decoration:none">📑 Evidence Report</a>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
+      <div style="background:#fff;border:1px solid #e7ecf0;border-radius:10px;padding:10px">
+        <div style="color:#5b6a78;font:700 11px Inter,system-ui;text-transform:uppercase;letter-spacing:.3px">Live Alerts</div>
+        <div id="hs_alerts" style="font:900 22px Inter,system-ui">0</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e7ecf0;border-radius:10px;padding:10px">
+        <div style="color:#5b6a78;font:700 11px Inter,system-ui;text-transform:uppercase;letter-spacing:.3px">Recovered (USD)</div>
+        <div id="hs_rec" style="font:900 22px Inter,system-ui">$0</div>
+      </div>
+      <div style="background:#fff;border:1px solid #e7ecf0;border-radius:10px;padding:10px">
+        <div style="color:#5b6a78;font:700 11px Inter,system-ui;text-transform:uppercase;letter-spacing:.3px">High-Risk Cases</div>
+        <div id="hs_high" style="font:900 22px Inter,system-ui">0</div>
+      </div>
+    </div>
+
+    <!-- mini table -->
+    <div style="overflow:auto;border:1px solid #e7ecf0;border-radius:10px;background:#fff">
+      <table style="border-collapse:collapse;width:100%;font-size:14px">
+        <thead>
+          <tr style="background:#fdfdfd;color:#5f6e7b;font-size:12px;text-transform:uppercase;letter-spacing:.3px">
+            <th style="text-align:left;padding:10px;border-bottom:1px solid #e7ecf0">Time</th>
+            <th style="text-align:left;padding:10px;border-bottom:1px solid #e7ecf0">Txn ID</th>
+            <th style="text-align:left;padding:10px;border-bottom:1px solid #e7ecf0">Location</th>
+            <th style="text-align:left;padding:10px;border-bottom:1px solid #e7ecf0">Amount</th>
+            <th style="text-align:left;padding:10px;border-bottom:1px solid #e7ecf0">Status</th>
+          </tr>
+        </thead>
+        <tbody id="hs_rows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const LOCS=["Lagos, Nigeria 🇳🇬","Nairobi, Kenya 🇰🇪","Accra, Ghana 🇬🇭","Cape Town, South Africa 🇿🇦","Kampala, Uganda 🇺🇬","Dar es Salaam, Tanzania 🇹🇿"];
+  const STATUS=[{k:"ALERT",cls:"bad"},{k:"SUSPECT",cls:"warn"},{k:"RECOVERED",cls:"ok"}];
+  const rows=document.getElementById('hs_rows');
+  const kA=document.getElementById('hs_alerts'), kR=document.getElementById('hs_rec'), kH=document.getElementById('hs_high');
+  let alerts=0, recovered=0, high=0, timer;
+
+  function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+  function now(){return new Date().toLocaleTimeString()}
+  function id(){return "TXN-"+rand(10000,99999).toString(36).toUpperCase()+rand(10,99)}
+
+  function addRow(){
+    const loc=LOCS[rand(0,LOCS.length-1)];
+    const amt=rand(900,350000);
+    const st=STATUS[rand(0,STATUS.length-1)];
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td style="padding:10px;border-bottom:1px solid #e7ecf0">${now()}</td>
+      <td style="padding:10px;border-bottom:1px solid #e7ecf0">${id()}</td>
+      <td style="padding:10px;border-bottom:1px solid #e7ecf0">${loc}</td>
+      <td style="padding:10px;border-bottom:1px solid #e7ecf0"><b>$${amt.toLocaleString()}</b></td>
+      <td style="padding:10px;border-bottom:1px solid #e7ecf0">
+        <span style="display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid #e7ecf0;
+          ${st.k==='ALERT'?'color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)':
+            st.k==='SUSPECT'?'color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)':
+            'color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)'}">
+          ${st.k}
+        </span>
+      </td>`;
+    rows.prepend(tr);
+
+    alerts++; if(st.k==="RECOVERED"){recovered+=amt;} if(st.k==="ALERT"&&amt>150000){high++;}
+    kA.textContent=alerts.toLocaleString(); kR.textContent="$"+recovered.toLocaleString(); kH.textContent=high.toLocaleString();
+  }
+
+  function start(){ if(timer) return; timer=setInterval(addRow, 1400); addRow(); }
+  function stop(){ if(timer) clearInterval(timer); timer=null; }
+
+  // Start automatically; pause when tab hidden to save CPU
+  start();
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden) stop(); else start(); });
+})();
+</script>
+
 
       <!-- Live-look panel -->
       <div class="hero-card">
