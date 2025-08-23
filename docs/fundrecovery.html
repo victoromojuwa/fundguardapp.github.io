@@ -373,6 +373,22 @@ Disclaimer: This document is generated from a demo environment for illustration 
   else { blob=new Blob([content],{type:"text/plain"}); filename=`${caseId}_Evidence_Report.txt`; }
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
 }
+ <script>
+  // If URL has #report, open the report step automatically
+  (function(){
+    if (location.hash === '#report') {
+      try {
+        // jump steps quickly with minimal data
+        document.getElementById('name').value = 'Investor Preview';
+        document.getElementById('email').value = 'investor@fundguardafrica.com';
+        document.getElementById('country').value = 'Nigeria';
+        document.getElementById('loss').value = '250000';
+        toStep2(); toStep3(); toStep4(); // use existing functions
+        simulateActions();               // populate timeline
+        buildPreview();                  // fill report preview
+      } catch(e) { /* safely ignore */ }
+    }
+  })();
 </script>
 </body>
 </html>
