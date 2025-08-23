@@ -68,6 +68,72 @@ footer {
 footer strong {
   color: var(--gold);
 }
+/* ===== FundGuard Gold/Blue Theme for Homepage Mini Demo ===== */
+:root{
+  --fg-ink:#0b1e27;
+  --fg-muted:#5b6a78;
+  --fg-gold:#d4af37;
+  --fg-gold-2:#b9972b;
+  --fg-blue:#0f2530;
+  --fg-blue-2:#0c1f29;
+  --fg-pane:#f6f8fa;
+  --fg-line:#e7ecf0;
+  --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
+}
+
+/* Buttons (shared) */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:10px;font-weight:800;
+  border:1px solid var(--fg-line);background:#fff;color:var(--fg-ink);
+  text-decoration:none;transition:.2s
+}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
+.btn-primary{background:var(--fg-gold);border-color:transparent;color:#0b1e27}
+.btn-primary:hover{background:var(--fg-gold-2)}
+
+/* Cards */
+.card{background:#fff;border:1px solid var(--fg-line);border-radius:12px}
+
+/* Section */
+.mvp-preview.themed{
+  margin:40px auto;max-width:980px;
+  background:linear-gradient(180deg, var(--fg-blue), var(--fg-blue-2));
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;padding:18px;
+  color:#e6edf2;
+}
+.mvp-preview .mvp-head{
+  text-align:center;padding:10px 12px 6px;
+}
+.mvp-preview .mvp-head h2{
+  margin:6px 0 4px;font-size:24px;color:#fff;font-weight:900;
+}
+.mvp-preview .mvp-head p{margin:0 0 10px;color:#cfe3ea}
+
+/* Table */
+.mvp-widget{margin:10px auto;overflow:hidden}
+.mvp-table{width:100%;border-collapse:collapse;font-size:14px}
+.mvp-table th,.mvp-table td{
+  padding:10px;border-bottom:1px solid var(--fg-line);text-align:left;white-space:nowrap
+}
+.mvp-table thead th{
+  background:#fdfdfd;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px;font-size:12px
+}
+
+/* Badges */
+.badge{
+  display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--fg-line);background:#fff
+}
+.badge-ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
+.badge-warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
+.badge-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+
+@media (max-width: 720px){
+  .mvp-preview.themed{padding:14px}
+  .mvp-preview .mvp-head h2{font-size:20px}
+}
+
 
 
 
