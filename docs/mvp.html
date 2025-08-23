@@ -1,112 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FundGuard Africa — MVP Demo</title>
-  <meta name="description" content="FundGuard MVP demo: live simulation of fraud alerts, transaction monitoring, and evidence report generation." />
-  <style>
-    :root{
-      --ink:#0b1e27;
-      --blue:#004080;
-      --gold:#d4af37;
-      --muted:#5f7180;
-      --line:#e7edf1;
-      --card:#f9fbfc;
-      --bg:#ffffff;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    a{color:#0f4c81;text-decoration:none} a:hover{text-decoration:underline}
-    header{background:#0b1e27;color:#fff;text-align:center;padding:28px 16px}
-    header h1{margin:0;font-size:2.2rem;font-weight:900;letter-spacing:.5px}
-    header .tag{color:var(--gold);font-weight:700;margin-top:6px}
-    .wrap{max-width:1100px;margin:0 auto;padding:28px 16px}
-    h2{color:#004080;margin:8px 0 6px}
-    .sub{color:var(--muted);margin:0 0 14px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr}}
-    .card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.05);padding:18px}
-    .badge{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin:4px 6px 0 0;font-weight:700}
-    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:14px 0 0}
-    .btn{border-radius:10px;padding:12px 16px;font-weight:800;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
-    .btn--gold{background:var(--gold);color:#0b1e27;border-color:var(--gold)} .btn--gold:hover{filter:brightness(1.07);text-decoration:none}
-    .btn--ghost{border:1px solid var(--line);background:#fff;color:#0b1e27}
-    .list{margin:0;padding-left:18px}
-    .muted{color:var(--muted)}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:10px}
-    footer{background:#0b1e27;color:#eaf3f6;text-align:center;margin-top:24px;padding:18px 16px;border-top:1px solid rgba(255,255,255,.08)}
-    .contact-stack{display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px}
-    .contact-stack a{color:var(--gold);font-weight:700} .contact-stack a:hover{color:#0f4c81;text-shadow:0 0 6px rgba(212,175,55,.6)}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FundGuard Africa — MVP Demo (Investor Sandbox)</title>
+<meta name="description" content="Live investor demo for FundGuard Africa. Real-time fraud alerts (simulated), recovery workflow, and evidence report generation." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config','G-GD0PGHCN57');
+</script>
+
+<style>
+:root{
+  --ink:#0b1e27; --muted:#5b6a78; --gold:#d4af37; --gold-2:#b9972b;
+  --bg:#ffffff; --pane:#f6f8fa; --line:#e7ecf0;
+  --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+a{color:var(--ink);text-decoration:none}
+
+header{
+  background:linear-gradient(180deg,#0f2530,#0c1f29);color:#fff;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.top{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px}
+.logo-dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+.brand b{color:#fff;font-weight:900;letter-spacing:.2px}
+.brand b span{color:var(--gold)}
+nav a{color:#e9f1f5;margin-left:16px;font-weight:600;opacity:.92} nav a:hover{opacity:1}
+
+.hero{max-width:1100px;margin:0 auto;padding:26px 20px 18px}
+.hero h1{margin:0 0 6px;color:#fff;font-size:34px;font-weight:900}
+.hero p{margin:0;color:#dbe7ee}
+
+.wrap{max-width:1100px;margin:0 auto;padding:18px 20px 40px}
+
+/* KPI cards */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0 18px}
+.card{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h4{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.card .num{font-weight:900;font-size:26px}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--line);background:#fff}
+.ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
+.bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+.warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
+
+/* Layout */
+.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+.panel{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:14px}
+.panel h3{margin:0 0 10px}
+
+/* Live table */
+.table{border-collapse:collapse;width:100%;font-size:14px;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.table th{background:#fdfdfd;font-size:12px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
+.table tr:last-child td{border-bottom:none}
+
+/* Controls */
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-weight:800;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s
+}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
+.btn-primary{background:var(--gold);border-color:transparent;color:#0b1e27}
+.btn-primary:hover{background:var(--gold-2)}
+
+/* Mini chart */
+canvas{width:100%;height:160px;background:#fff;border:1px solid var(--line);border-radius:10px}
+
+/* Marquee */
+.ticker{border:1px solid var(--line);background:#fff;border-radius:10px;overflow:hidden}
+.ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:t 24s linear infinite;padding:10px}
+@keyframes t { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* Footer */
+footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2}
+.foot{max-width:1100px;margin:0 auto;padding:20px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+.foot a{color:#cfe3ea}
+
+@media(max-width:1000px){
+  .kpis{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>FundGuard Africa — MVP Demo</h1>
-    <div class="tag">Live simulation: Fraud Alerts • Transactions Monitor • Evidence Report</div>
-    <div class="hero-cta">
-      <a class="btn btn--gold" href="fundrecovery.html">💸 Start Fund Recovery (Sim)</a>
-      <a class="btn btn--ghost" href="demo.html">🎥 Watch Investor Demo</a>
-      <a class="btn btn--ghost" href="onepager.html">📄 Investor One Pager</a>
+<header>
+  <div class="top">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <b>FundGuard <span>Africa</span></b>
     </div>
-  </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="onepager.html">One Pager</a>
+      <a href="pitch.html">Seed Pitch</a>
+    </nav>
+  </div>
+  <div class="hero">
+    <h1>Investor MVP Demo</h1>
+    <p>Real-time fraud alerts (simulated), transaction monitoring, and recovery workflow preview.</p>
+  </div>
+</header>
 
-  <main class="wrap">
-    <section class="card">
-      <h2>What’s Included in the MVP</h2>
-      <ul class="list">
-        <li><strong>Fraud Alerts (Simulated):</strong> live alert cards to showcase signal quality.</li>
-        <li><strong>Transaction Monitor (Dummy):</strong> shows how anomalies surface in real time.</li>
-        <li><strong>Fund Recovery Flow:</strong> enter case details → generate a time‑stamped <em>Evidence Report</em>.</li>
-        <li><strong>Case Management (UI):</strong> guided steps from report → recovery → compliance pack.</li>
-      </ul>
-      <p class="muted">Note: Certain government/banking integrations are simulated in the MVP to avoid compliance dependencies before seed.</p>
-    </section>
+<main class="wrap">
 
-    <section class="grid">
-      <div class="card">
-        <h2>How to Test Quickly</h2>
-        <ol class="list">
-          <li>Open <a href="fundrecovery.html">Fund Recovery</a> and submit a test case (use dummy details).</li>
-          <li>Download the generated <strong>Evidence Report</strong> PDF at the end.</li>
-          <li>Review the audit trail and timeline steps (freeze requests, compliance ticket, etc.).</li>
-          <li>Optionally watch the <a href="demo.html">Investor Demo</a> for a guided walkthrough.</li>
-        </ol>
+  <!-- KPI CARDS -->
+  <section class="kpis" aria-label="Key metrics">
+    <div class="card"><h4>Live Alerts</h4><div class="num" id="k_alerts">0</div></div>
+    <div class="card"><h4>Recovered (USD)</h4><div class="num" id="k_recovered">$0</div></div>
+    <div class="card"><h4>High-Risk Cases</h4><div class="num" id="k_high">0 <span class="tag bad">HIGH</span></div></div>
+    <div class="card"><h4>Avg. Response</h4><div class="num" id="k_sla">—</div></div>
+  </section>
+
+  <div class="grid">
+    <!-- LEFT: Live table + controls -->
+    <section class="panel">
+      <h3>Live Fraud Stream</h3>
+      <div class="controls">
+        <button class="btn btn-primary" id="start">🚨 Start Simulation</button>
+        <button class="btn" id="stop">⏸ Pause</button>
+        <a class="btn" href="fundrecovery.html#report" onclick="gtag('event','cta_click',{event_category:'MVP',event_label:'Fund Recovery Jump'})">📑 View Evidence Report</a>
       </div>
-      <div class="card">
-        <h2>Known MVP Limitations</h2>
-        <ul class="list">
-          <li>Some data sources are mocked; production partners will replace them post‑seed.</li>
-          <li>No live PII processing beyond test mode; RLS/ACLs are configured.</li>
-          <li>Mobile apps are web-based previews; native clients planned.</li>
-        </ul>
-        <div class="badge">NDPR-ready</div>
-        <div class="badge">GDPR-aligned</div>
-        <div class="badge">RLS enforced</div>
+
+      <table class="table" aria-label="Fraud events">
+        <thead>
+          <tr>
+            <th>Time</th><th>Txn ID</th><th>Location</th><th>Amount</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+
+    <!-- RIGHT: Chart + marquee -->
+    <aside class="panel">
+      <h3>Risk & Recovery Trend</h3>
+      <canvas id="chart" width="480" height="160" aria-label="Recovery trend"></canvas>
+      <div style="height:10px"></div>
+      <h3>Global Ticker</h3>
+      <div class="ticker">
+        <div class="ticker-inner" id="ticker">
+          <!-- filled by JS -->
+        </div>
       </div>
-    </section>
+    </aside>
+  </div>
+</main>
 
-    <section class="card">
-      <h2>Security & Compliance Notes</h2>
-      <ul class="list">
-        <li>Row Level Security (RLS) and least-privilege roles for data access.</li>
-        <li>Secrets stored in environment variables (no hard-coded keys).</li>
-        <li>Evidence packs watermarked and time‑stamped.</li>
-      </ul>
-      <p class="mono">Contact: invest@fundguardafrica.com • support@fundguardafrica.com</p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="contact-stack">
-      <a href="mailto:fundguardafrica@gmail.com">✉️ fundguardafrica@gmail.com</a>
-      <a href="mailto:invest@fundguardafrica.com">🎯 invest@fundguardafrica.com</a>
-      <a href="mailto:support@fundguardafrica.com">💼 support@fundguardafrica.com</a>
+<footer>
+  <div class="foot">
+    <div>© 2025 FundGuard Africa — Fraud detection & fund recovery</div>
+    <div>
+      <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a> •
+      <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a> •
+      <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
     </div>
-    <div>&copy; 2025 FundGuard Africa — <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
-  </footer>
+  </div>
+</footer>
 
+<script>
+/* --- Data --- */
+const LOCS = [
+  "Lagos, Nigeria 🇳🇬","Nairobi, Kenya 🇰🇪","Accra, Ghana 🇬🇭",
+  "Cape Town, South Africa 🇿🇦","Kampala, Uganda 🇺🇬","Dar es Salaam, Tanzania 🇹🇿"
+];
+const STATUS = [
+  {k:"ALERT", cls:"bad"}, {k:"SUSPECT", cls:"warn"}, {k:"RECOVERED", cls:"ok"}
+];
+let running=false, timer=null, alerts=0, recovered=0, high=0;
+let points = []; // for chart
+
+/* --- Helpers --- */
+const $ = s => document.querySelector(s);
+const rows = $('#rows');
+const kAlerts = $('#k_alerts'), kRec = $('#k_recovered'), kHigh = $('#k_high'), kSLA = $('#k_sla');
+
+function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+function now(){ return new Date().toLocaleTimeString() }
+function id(){ return "TXN-"+rand(10000,99999).toString(36).toUpperCase()+rand(10,99) }
+
+function addRow(){
+  const loc = LOCS[rand(0,LOCS.length-1)];
+  const amt = rand(1200,450000);
+  const st  = STATUS[rand(0,STATUS.length-1)];
+  const tr  = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${now()}</td>
+    <td>${id()}</td>
+    <td>${loc}</td>
+    <td><b>$${amt.toLocaleString()}</b></td>
+    <td><span class="tag ${st.cls}">${st.k}</span></td>`;
+  rows.prepend(tr);
+
+  alerts++;
+  if(st.k==="RECOVERED"){ recovered += amt; }
+  if(st.k==="ALERT" && amt>150000){ high++; }
+  kAlerts.textContent = alerts.toLocaleString();
+  kRec.textContent = "$"+recovered.toLocaleString();
+  kHigh.innerHTML   = high.toLocaleString()+' <span class="tag bad">HIGH</span>';
+  kSLA.textContent  = rand(2,7)+" min";
+
+  // chart point (recovered rolling)
+  points.push({x:Date.now(), y:recovered});
+  if(points.length>40) points.shift();
+  drawChart();
+}
+
+function start(){
+  if(running) return;
+  running=true;
+  gtag('event','demo_start',{event_category:'Demo',event_label:'MVP Live'});
+  timer=setInterval(addRow, 1200);
+}
+function stop(){
+  running=false;
+  if(timer) clearInterval(timer);
+}
+
+/* --- Chart (vanilla canvas) --- */
+const ctx = document.getElementById('chart').getContext('2d');
+function drawChart(){
+  const W = ctx.canvas.width, H = ctx.canvas.height;
+  ctx.clearRect(0,0,W,H);
+  // axes
+  ctx.strokeStyle = '#e7ecf0'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(30,10); ctx.lineTo(30,H-20); ctx.lineTo(W-10,H-20); ctx.stroke();
+
+  if(points.length<2) return;
+  const ys = points.map(p=>p.y);
+  const min = Math.min(...ys), max = Math.max(...ys);
+  const span = Math.max(1, max-min);
+  const xs = points.map((_,i)=> 30 + (i/(points.length-1))*(W-50));
+  const yOf = v => (H-20) - ((v-min)/span)*(H-40);
+
+  ctx.strokeStyle = '#0b1e27'; ctx.lineWidth=2;
+  ctx.beginPath();
+  ctx.moveTo(xs[0], yOf(points[0].y));
+  for(let i=1;i<points.length;i++) ctx.lineTo(xs[i], yOf(points[i].y));
+  ctx.stroke();
+
+  // gold dots
+  ctx.fillStyle = '#d4af37';
+  points.forEach((p,i)=>{ ctx.beginPath(); ctx.arc(xs[i], yOf(p.y), 2.5, 0, Math.PI*2); ctx.fill(); });
+}
+
+/* --- Ticker --- */
+const TICK = [
+  "Nigeria: Freeze request sent to Exchange Z",
+  "Kenya: Wallet Y flagged for unusual routing",
+  "Ghana: Cash-out attempt blocked",
+  "South Africa: Recovery action queued",
+  "Uganda: KYC verification in progress",
+  "Tanzania: Compliance ticket opened"
+];
+$('#ticker').innerHTML = TICK.concat(TICK).map(t=>`<span>• ${t}</span>`).join('  ');
+
+/* --- Wire buttons --- */
+document.getElementById('start').addEventListener('click', start);
+document.getElementById('stop').addEventListener('click', stop);
+
+/* --- Auto-start for investor wow --- */
+window.addEventListener('load', ()=>{ start(); });
+</script>
 </body>
 </html>
+
+
 
