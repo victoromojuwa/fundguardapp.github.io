@@ -149,7 +149,7 @@ footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap"
 
   <!-- COMPACT LIVE PREVIEW (one only) -->
   <section class="mvp-preview themed">
@@ -167,6 +167,138 @@ footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-
       </table>
     </div>
   </section>
+  <!-- ==== Compact Live Fraud Preview (with Global Ticker) ==== -->
+<section class="mini-demo">
+  <div class="mini-wrap">
+    <header class="mini-head">
+      <h3>Live Fraud Preview</h3>
+      <div class="mini-kpis">
+        <div class="k"><span class="l">Live Alerts</span><b id="md_alerts">0</b></div>
+        <div class="k"><span class="l">Recovered (Sim.)</span><b id="md_recovered">$0</b></div>
+        <div class="k"><span class="l">High-Risk</span><b id="md_high">0</b></div>
+      </div>
+    </header>
+
+    <div class="mini-grid">
+      <!-- Compact table (max 4 rows) -->
+      <div class="mini-card">
+        <table class="mini-table" aria-label="Fraud events (preview)">
+          <thead><tr><th>Time</th><th>Txn</th><th>Location</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody id="md_rows"></tbody>
+        </table>
+        <div class="mini-cta">
+          <a class="mini-btn" href="mvp.html">View Full Live Demo →</a>
+        </div>
+      </div>
+
+      <!-- Global ticker -->
+      <div class="mini-card">
+        <h4 class="mini-sub">Global Ticker</h4>
+        <div class="mini-ticker"><div id="md_ticker" class="mini-ticker-inner"></div></div>
+        <p class="mini-note">Preview is simulated for investors. Full stream available in the live demo.</p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .mini-demo{background:#fff;border-top:1px solid #e7ecf0;border-bottom:1px solid #e7ecf0}
+    .mini-wrap{max-width:1100px;margin:0 auto;padding:18px 20px}
+    .mini-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+    .mini-head h3{margin:0;font:900 18px/1.1 Inter,system-ui,sans-serif;color:#0b1e27}
+    .mini-kpis{display:flex;gap:12px;flex-wrap:wrap}
+    .mini-kpis .k{background:#f7fafc;border:1px solid #e7ecf0;border-radius:10px;padding:8px 10px;min-width:130px}
+    .mini-kpis .l{display:block;color:#5b6a78;font:600 11px Inter,sans-serif;text-transform:uppercase;letter-spacing:.3px}
+    .mini-kpis b{font:900 18px Inter,sans-serif;color:#0b1e27}
+    .mini-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
+    .mini-card{background:#fff;border:1px solid #e7ecf0;border-radius:12px;padding:12px}
+    .mini-table{width:100%;border-collapse:collapse;font:600 13px Inter,sans-serif}
+    .mini-table th,.mini-table td{padding:8px;border-bottom:1px solid #e7ecf0;text-align:left;white-space:nowrap}
+    .mini-table th{font:800 10px Inter,sans-serif;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px;background:#fbfcfd}
+    .mini-tag{display:inline-block;padding:2px 6px;border-radius:999px;font:800 11px Inter,sans-serif;border:1px solid #e7ecf0;background:#fff}
+    .mini-ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
+    .mini-warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
+    .mini-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+    .mini-cta{display:flex;justify-content:flex-end;margin-top:8px}
+    .mini-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;
+      border:1px solid #e7ecf0;background:#d4af37;color:#0b1e27;font:900 12px Inter,sans-serif;text-decoration:none}
+    .mini-btn:hover{background:#b9972b}
+    .mini-sub{margin:0 0 8px;font:800 12px Inter,sans-serif;color:#5b6a78;letter-spacing:.3px;text-transform:uppercase}
+    .mini-ticker{border:1px solid #e7ecf0;border-radius:10px;overflow:hidden;background:#fff}
+    .mini-ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:mdscroll 26s linear infinite;padding:8px}
+    @keyframes mdscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .mini-note{margin:8px 0 0;color:#5b6a78;font:600 12px Inter,sans-serif}
+    @media(max-width:960px){.mini-grid{grid-template-columns:1fr}}
+  </style>
+
+  <script>
+    (function(){
+      const $ = s => document.querySelector(s);
+      const rows = $('#md_rows');
+      const kAlerts = $('#md_alerts'), kRec = $('#md_recovered'), kHigh = $('#md_high');
+      const LOCS = ["Lagos 🇳🇬","Nairobi 🇰🇪","Accra 🇬🇭","Cape Town 🇿🇦","Kampala 🇺🇬","Dar es Salaam 🇹🇿"];
+      const STATUS = [
+        {k:"ALERT", cls:"mini-bad"}, {k:"SUSPECT", cls:"mini-warn"}, {k:"RECOVERED", cls:"mini-ok"}
+      ];
+      const TICK = [
+        "Freeze request sent to Exchange Z",
+        "Wallet Y flagged for unusual routing",
+        "KYC verification in progress",
+        "Compliance ticket opened",
+        "Cash-out attempt blocked",
+        "Recovery action queued"
+      ];
+      const ticker = $('#md_ticker');
+
+      let alerts=0, recovered=0, high=0, timer=null;
+
+      function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+      function now(){ return new Date().toLocaleTimeString() }
+      function id(){ return "TXN-"+rand(10000,99999).toString(36).toUpperCase()+rand(10,99) }
+
+      function addRow(){
+        const loc = LOCS[rand(0,LOCS.length-1)];
+        const amt = rand(1200,450000);
+        const st  = STATUS[rand(0,STATUS.length-1)];
+        const tr  = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${now()}</td>
+          <td>${id()}</td>
+          <td>${loc}</td>
+          <td><b>$${amt.toLocaleString()}</b></td>
+          <td><span class="mini-tag ${st.cls}">${st.k}</span></td>`;
+        rows.prepend(tr);
+
+        // keep only 4 rows visible
+        while(rows.children.length>4) rows.removeChild(rows.lastChild);
+
+        alerts++;
+        if(st.k==="RECOVERED"){ recovered += amt; }
+        if(st.k==="ALERT" && amt>150000){ high++; }
+        kAlerts.textContent = alerts.toLocaleString();
+        kRec.textContent    = "$"+recovered.toLocaleString();
+        kHigh.textContent   = high.toLocaleString();
+      }
+
+      // Build ticker content (looped)
+      function buildTicker(){
+        const parts = [];
+        for(let i=0;i<16;i++){
+          const a = rand(1500,420000);
+          const l = LOCS[rand(0,LOCS.length-1)];
+          const t = TICK[rand(0,TICK.length-1)];
+          parts.push(`${l} • ${t} • $${a.toLocaleString()}`);
+        }
+        ticker.innerHTML = parts.join("  •  ");
+      }
+
+      buildTicker();
+      timer = setInterval(addRow, 1400);
+      addRow();
+    })();
+  </script>
+</section>
+<!-- ==== /Compact Live Fraud Preview ==== -->
+
 
   <!-- About / Trust sections (brief, optional) -->
   <section class="section">
