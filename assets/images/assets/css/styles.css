@@ -1,172 +1,42 @@
-/* ===========================
-   FundGuard Premium Theme
-   =========================== */
-
-:root {
-  --dark-bg: #0b1e27;     /* deep navy/charcoal */
-  --ink: #1a1a1a;         /* dark text */
-  --light: #ffffff;       /* white */
-  --muted: #5f7180;       /* muted gray */
-  --gold: #C9A227;        /* metallic gold */
-  --blue: #1e3a5f;        /* royal blue */
+:root{
+  --ink:#0b1e27; --muted:#5b6a78; --gold:#d4af37; --gold-2:#b9972b;
+  --bg:#ffffff; --pane:#f7fafc; --line:#e7ecf0;
 }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 
-/* Hero Section */
-.hero {
-  background: linear-gradient(180deg, var(--dark-bg), #0f2530);
-  color: var(--light);
-  text-align: center;
-  padding: 4rem 2rem;
-}
+/* Layout */
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--light);
-}
-
-.hero h1 span {
-  color: var(--gold);   /* FundGuard Africa in gold */
-}
+/* Hero */
+.hero{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#e9f1f5;padding:36px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.hero h1{margin:0 0 8px;font-weight:900;font-size:36px;color:#fff}
+.hero .gold{color:var(--gold)}
+.lead{margin:0 0 14px;color:#d3e3ea}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
 
 /* Buttons */
-.btn {
-  display: inline-block;
-  padding: 0.9rem 1.6rem;
-  margin: 0.5rem;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  background: transparent;
-}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;
+     font-weight:800;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.08);transform:translateY(-1px);transition:.2s}
+.btn.gold{background:var(--gold);border-color:transparent;color:#0b1e27}
+.btn.gold:hover{background:var(--gold-2)}
+.btn.outline{background:#fff}
 
-.btn:hover {
-  background: var(--gold);
-  color: var(--dark-bg);
-}
+/* Sections */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+.card h2,.card h3{margin:0 0 8px}
+.bullets{margin:6px 0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:960px){.grid{grid-template-columns:1fr}}
 
-/* Section Titles */
-section h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  color: var(--blue);
-  text-align: center;
-}
+/* Contact pills */
+.contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.contacts a{background:var(--pane);border:1px solid var(--line);border-radius:10px;padding:8px 10px;
+            font-weight:800;color:var(--ink);text-decoration:none}
 
 /* Footer */
-footer {
-  background: var(--dark-bg);
-  color: var(--light);
-  text-align: center;
-  padding: 2rem;
-}
-
-footer strong {
-  color: var(--gold);
-}
-/* ===== FundGuard Gold/Blue Theme for Homepage Mini Demo ===== */
-:root{
-  --fg-ink:#0b1e27;
-  --fg-muted:#5b6a78;
-  --fg-gold:#d4af37;
-  --fg-gold-2:#b9972b;
-  --fg-blue:#0f2530;
-  --fg-blue-2:#0c1f29;
-  --fg-pane:#f6f8fa;
-  --fg-line:#e7ecf0;
-  --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
-}
-
-/* Buttons (shared) */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 14px;border-radius:10px;font-weight:800;
-  border:1px solid var(--fg-line);background:#fff;color:var(--fg-ink);
-  text-decoration:none;transition:.2s
-}
-.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
-.btn-primary{background:var(--fg-gold);border-color:transparent;color:#0b1e27}
-.btn-primary:hover{background:var(--fg-gold-2)}
-
-/* Cards */
-.card{background:#fff;border:1px solid var(--fg-line);border-radius:12px}
-
-/* Section */
-.mvp-preview.themed{
-  margin:40px auto;max-width:980px;
-  background:linear-gradient(180deg, var(--fg-blue), var(--fg-blue-2));
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:16px;padding:18px;
-  color:#e6edf2;
-}
-.mvp-preview .mvp-head{
-  text-align:center;padding:10px 12px 6px;
-}
-.mvp-preview .mvp-head h2{
-  margin:6px 0 4px;font-size:24px;color:#fff;font-weight:900;
-}
-.mvp-preview .mvp-head p{margin:0 0 10px;color:#cfe3ea}
-
-/* Table */
-.mvp-widget{margin:10px auto;overflow:hidden}
-.mvp-table{width:100%;border-collapse:collapse;font-size:14px}
-.mvp-table th,.mvp-table td{
-  padding:10px;border-bottom:1px solid var(--fg-line);text-align:left;white-space:nowrap
-}
-.mvp-table thead th{
-  background:#fdfdfd;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px;font-size:12px
-}
-
-/* Badges */
-.badge{
-  display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--fg-line);background:#fff
-}
-.badge-ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
-.badge-warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
-.badge-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
-
-@media (max-width: 720px){
-  .mvp-preview.themed{padding:14px}
-  .mvp-preview .mvp-head h2{font-size:20px}
-}
-/* Layout helpers */
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 10px}
-.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 16px}
-.secondary-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:8px 0 24px}
-
-/* Badges + link CTAs */
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e7ecf0;background:#fff;font-weight:700;font-size:12px;color:#0b1e27}
-.link-cta{font-weight:800;text-decoration:none;border-bottom:2px solid transparent}
-.link-cta:hover{border-color:#d4af37}
-
-/* Compact mini preview */
-.mvp-preview.compact .mvp-widget{max-height:220px;overflow:auto}
-.mvp-preview.compact .mvp-head h2{font-size:20px}
-.mvp-preview.compact .mvp-head p{font-size:14px}
-
-/* Button style (if not already present) */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-weight:800;
-  border:1px solid #e7ecf0;background:#fff;color:#0b1e27;text-decoration:none;transition:.2s
-}
-.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
-.btn-primary{background:#d4af37;border-color:transparent;color:#0b1e27}
-.btn-primary:hover{background:#b9972b}
-
-/* Status badges used in mini table */
-.badge-ok{color:#0d5e46;background:rgba(23,166,115,.10);border:1px solid rgba(23,166,115,.35)}
-.badge-warn{color:#7a4a00;background:rgba(255,159,26,.10);border:1px solid rgba(255,159,26,.35)}
-.badge-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border:1px solid rgba(224,62,62,.35)}
-
-
-
-
-
-
-
-
-
+.foot{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-top:20px}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.foot-links a{color:#cfe3ea;margin-left:12px;text-decoration:none}
+.foot-links a:hover{color:#fff}
