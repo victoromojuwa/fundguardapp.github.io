@@ -133,6 +133,34 @@ footer strong {
   .mvp-preview.themed{padding:14px}
   .mvp-preview .mvp-head h2{font-size:20px}
 }
+/* Layout helpers */
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 10px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 16px}
+.secondary-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:8px 0 24px}
+
+/* Badges + link CTAs */
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e7ecf0;background:#fff;font-weight:700;font-size:12px;color:#0b1e27}
+.link-cta{font-weight:800;text-decoration:none;border-bottom:2px solid transparent}
+.link-cta:hover{border-color:#d4af37}
+
+/* Compact mini preview */
+.mvp-preview.compact .mvp-widget{max-height:220px;overflow:auto}
+.mvp-preview.compact .mvp-head h2{font-size:20px}
+.mvp-preview.compact .mvp-head p{font-size:14px}
+
+/* Button style (if not already present) */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-weight:800;
+  border:1px solid #e7ecf0;background:#fff;color:#0b1e27;text-decoration:none;transition:.2s
+}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
+.btn-primary{background:#d4af37;border-color:transparent;color:#0b1e27}
+.btn-primary:hover{background:#b9972b}
+
+/* Status badges used in mini table */
+.badge-ok{color:#0d5e46;background:rgba(23,166,115,.10);border:1px solid rgba(23,166,115,.35)}
+.badge-warn{color:#7a4a00;background:rgba(255,159,26,.10);border:1px solid rgba(255,159,26,.35)}
+.badge-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border:1px solid rgba(224,62,62,.35)}
 
 
 
