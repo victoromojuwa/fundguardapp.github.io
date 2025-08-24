@@ -4,14 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — MVP Demo (Investor Sandbox)</title>
-<meta name="description" content="Live investor demo for FundGuard Africa. Real-time fraud alerts (simulated), transaction monitoring, recovery workflow, and evidence report generation." />
+<meta name="description" content="Live investor demo for FundGuard Africa: simulated fraud alerts, transaction monitoring, KPIs, and recovery workflow preview." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
   gtag('config','G-GD0PGHCN57');
 </script>
@@ -19,151 +19,153 @@
 <style>
 :root{
   --ink:#0b1e27; --muted:#5b6a78; --gold:#d4af37; --gold-2:#b9972b;
-  --bg:#ffffff; --pane:#f6f8fa; --line:#e7ecf0;
+  --bg:#ffffff; --pane:#ffffff; --line:#e7ecf0;
   --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
-a{color:var(--ink);text-decoration:none}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 
-header{
-  background:linear-gradient(180deg,#0f2530,#0c1f29);color:#fff;border-bottom:1px solid rgba(255,255,255,.1);
-}
-.top{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+/* Topbar */
+.topbar{background:#081a22;color:#dbe7ee;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px}
-.logo-dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
-.brand b{color:#fff;font-weight:900;letter-spacing:.2px}
+.brand .dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+.brand b{font-weight:900;color:#fff}
 .brand b span{color:var(--gold)}
-nav a{color:#e9f1f5;margin-left:16px;font-weight:600;opacity:.92} nav a:hover{opacity:1}
+.nav a{color:#dbe7ee;margin-left:16px;font-weight:800;opacity:.92}
+.nav a:hover{opacity:1}
 
-.hero{max-width:1100px;margin:0 auto;padding:26px 20px 18px}
-.hero h1{margin:0 0 6px;color:#fff;font-size:34px;font-weight:900}
-.hero p{margin:0;color:#dbe7ee}
-
-.wrap{max-width:1100px;margin:0 auto;padding:18px 20px 40px}
+/* Hero */
+.hero{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#e9f1f5;border-bottom:1px solid rgba(255,255,255,.06);padding:40px 0 28px}
+.hero h1{margin:0 0 8px;color:#fff;font-weight:900;font-size:34px}
+.hero .lead{margin:0;color:#cfe3ea}
 
 /* KPI cards */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0 18px}
-.card{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:14px}
-.card h4{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.section{padding:18px 0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:980px){.kpis{grid-template-columns:1fr 1fr}}
+.card{background:var(--pane);border:1px solid var(--line);border-radius:16px;padding:14px}
+.card h4{margin:0 6px 6px 0;font-size:12px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
 .card .num{font-weight:900;font-size:26px}
-.subtle{color:#5b6a78;font-weight:600;font-size:12px;margin-top:4px}
-.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--line);background:#fff}
-.ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
-.bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
-.warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
+.subtle{color:var(--muted);font-weight:600;font-size:12px;margin-top:4px}
 
 /* Layout */
 .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
-.panel{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:14px}
-.panel h3{margin:0 0 10px}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
 
-/* Live table */
-.table{border-collapse:collapse;width:100%;font-size:14px;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
-.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-.table th{background:#fdfdfd;font-size:12px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
-.table tr:last-child td{border-bottom:none}
+/* Panels */
+.panel{background:var(--pane);border:1px solid var(--line);border-radius:16px;padding:14px}
+.panel h3{margin:0 0 10px}
 
 /* Controls */
 .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-weight:800;
+  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:900;
   border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s
 }
-.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.06);transform:translateY(-1px)}
-.btn-primary{background:var(--gold);border-color:transparent;color:#0b1e27}
-.btn-primary:hover{background:var(--gold-2)}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.08);transform:translateY(-1px)}
+.btn.primary{background:var(--gold);border-color:transparent}
+.btn.primary:hover{background:var(--gold-2)}
+
+/* Table */
+.table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.table th{background:#f9fbfd;font-size:12px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
+.table tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:900;font-size:12px;border:1px solid var(--line)}
+.ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
+.bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+.warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
 
 /* Chart */
-canvas{width:100%;height:180px;background:#fff;border:1px solid var(--line);border-radius:10px}
+canvas{width:100%;height:190px;background:#fff;border:1px solid var(--line);border-radius:12px}
 
-/* Marquee */
-.ticker{border:1px solid var(--line);background:#fff;border-radius:10px;overflow:hidden}
-.ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:t 24s linear infinite;padding:10px}
-@keyframes t { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+/* Ticker */
+.ticker{border:1px solid var(--line);background:#fff;border-radius:12px;overflow:hidden}
+.ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:t 24s linear infinite;padding:10px;font-weight:900}
+@keyframes t{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 
 /* Footer */
-footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2}
-.foot{max-width:1100px;margin:0 auto;padding:20px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
-.foot a{color:#cfe3ea}
-
-@media(max-width:1000px){
-  .kpis{grid-template-columns:1fr 1fr}
-  .grid{grid-template-columns:1fr}
-}
+.footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-top:22px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0;flex-wrap:wrap;gap:10px}
+.footer a{color:#cfe3ea}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="top">
+<!-- Topbar -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
     <div class="brand">
-      <span class="logo-dot"></span>
+      <span class="dot"></span>
       <b>FundGuard <span>Africa</span></b>
     </div>
-    <nav>
+    <nav class="nav">
       <a href="index.html">Home</a>
       <a href="onepager.html">One Pager</a>
-      <a href="pitch.html">Seed Pitch</a>
+      <a href="pitch.html">Pitch</a>
+      <a href="fundrecovery.html">Recovery</a>
     </nav>
   </div>
-  <div class="hero">
+</div>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="wrap">
     <h1>Investor MVP Demo</h1>
-    <p>Real-time fraud alerts (simulated), transaction monitoring, and recovery workflow preview.</p>
+    <p class="lead">Real-time fraud alerts (simulated), transaction monitoring, KPI tracking, and recovery workflow preview.</p>
   </div>
 </header>
 
-<main class="wrap">
+<!-- KPIs -->
+<section class="section">
+  <div class="wrap">
+    <div class="kpis">
+      <div class="card"><h4>Live Alerts</h4><div class="num" id="k_alerts">0</div></div>
+      <div class="card"><h4>Recovered (USD)</h4><div class="num" id="k_recovered">$0</div><div class="subtle" id="k_reports">Evidence reports: 0</div></div>
+      <div class="card"><h4>High-Risk Cases</h4><div class="num" id="k_high">0 <span class="tag bad">HIGH</span></div></div>
+      <div class="card"><h4>Avg. Response</h4><div class="num" id="k_sla">—</div></div>
+    </div>
+  </div>
+</section>
 
-  <!-- KPI CARDS -->
-  <section class="kpis" aria-label="Key metrics">
-    <div class="card"><h4>Live Alerts</h4><div class="num" id="k_alerts">0</div></div>
-    <div class="card"><h4>Recovered (USD)</h4><div class="num" id="k_recovered">$0</div><div class="subtle" id="k_reports">Evidence reports today: 0</div></div>
-    <div class="card"><h4>High-Risk Cases</h4><div class="num" id="k_high">0 <span class="tag bad">HIGH</span></div></div>
-    <div class="card"><h4>Avg. Response</h4><div class="num" id="k_sla">—</div></div>
-  </section>
+<!-- Main grid -->
+<section class="section">
+  <div class="wrap grid">
 
-  <div class="grid">
-    <!-- LEFT: Live table + controls -->
-    <section class="panel">
+    <!-- LEFT: Stream -->
+    <div class="panel" id="stream">
       <h3>Live Fraud Stream</h3>
       <div class="controls">
-        <button class="btn btn-primary" id="start">🚨 Start Simulation</button>
+        <button class="btn primary" id="start">🚨 Start Simulation</button>
         <button class="btn" id="stop">⏸ Pause</button>
-        <a class="btn" href="fundrecovery.html#report" onclick="gtag('event','cta_click',{event_category:'MVP',event_label:'Fund Recovery Jump'})">📑 Evidence Report</a>
+        <a class="btn" href="fundrecovery.html#report" onclick="gtag('event','cta_click',{event_category:'MVP',event_label:'Evidence Link'})">📑 Evidence Report</a>
       </div>
 
       <table class="table" aria-label="Fraud events">
-        <thead>
-          <tr>
-            <th>Time</th><th>Txn ID</th><th>Location</th><th>Amount</th><th>Status</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Time</th><th>Txn ID</th><th>Location</th><th>Amount</th><th>Status</th></tr></thead>
         <tbody id="rows"></tbody>
       </table>
-
-      <!-- Last action detail -->
-      <div id="lastAction" style="margin-top:10px;color:#5b6a78;font-weight:600;font-size:13px">
-        Last action — <em>waiting for events…</em>
-      </div>
-    </section>
+    </div>
 
     <!-- RIGHT: Chart + ticker -->
     <aside class="panel">
       <h3>Risk & Recovery Trend</h3>
-      <canvas id="chart" style="width:100%;height:180px" aria-label="Recovery trend"></canvas>
+      <canvas id="chart" aria-label="Recovery trend"></canvas>
       <div style="height:10px"></div>
       <h3>Global Ticker</h3>
-      <div class="ticker">
-        <div class="ticker-inner" id="ticker"></div>
-      </div>
+      <div class="ticker"><div class="ticker-inner" id="ticker"></div></div>
     </aside>
-  </div>
-</main>
 
-<footer>
-  <div class="foot">
-    <div>© 2025 FundGuard Africa — Fraud detection & fund recovery</div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© 2025 FundGuard Africa — www.fundguardafrica.com</span>
     <div>
       <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a> •
       <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a> •
@@ -173,7 +175,7 @@ footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2}
 </footer>
 
 <script>
-/* --- Data --- */
+/* ---------- Constants & Helpers ---------- */
 const LOCS = [
   "Lagos, Nigeria 🇳🇬","Nairobi, Kenya 🇰🇪","Accra, Ghana 🇬🇭",
   "Cape Town, South Africa 🇿🇦","Kampala, Uganda 🇺🇬","Dar es Salaam, Tanzania 🇹🇿"
@@ -191,36 +193,35 @@ const STATUS = [
 ];
 
 let running=false, timer=null, alerts=0, recovered=0, high=0, reports=0;
-let points=[]; // chart
+let points=[];
 const $ = s => document.querySelector(s);
 const rows = $('#rows');
 const kAlerts = $('#k_alerts'), kRec = $('#k_recovered'), kHigh = $('#k_high'), kSLA = $('#k_sla'), kReports = $('#k_reports');
-const lastAction = $('#lastAction');
+const ticker = $('#ticker');
 
 function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
 function now(){ return new Date().toLocaleTimeString() }
-function id(){ return "TXN-"+rand(10000,99999).toString(36).toUpperCase()+rand(10,99) }
+function id(){ return "TXN-"+rand(10000,99999) }
 
-/* --- Row add --- */
+/* ---------- Row add ---------- */
 function addRow(){
   const loc = LOCS[rand(0,LOCS.length-1)];
   const amt = rand(1200,450000);
   const st  = STATUS[rand(0,STATUS.length-1)];
+
   const tr  = document.createElement('tr');
   const statusStyle =
-    st.k==='ALERT'   ? 'color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)' :
-    st.k==='SUSPECT' ? 'color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)' :
-                       'color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)';
+    st.k==='ALERT'   ? 'tag bad' :
+    st.k==='SUSPECT' ? 'tag warn' : 'tag ok';
 
   tr.innerHTML = `
     <td>${now()}</td>
     <td>${id()}</td>
     <td>${loc}</td>
     <td><b>$${amt.toLocaleString()}</b></td>
-    <td><span class="tag" style="${statusStyle}">${st.k}</span></td>`;
-  rows.prepend(tr);
+    <td><span class="${statusStyle}">${st.k}</span></td>`;
 
-  // Limit table to last 8 rows to feel like a ticker
+  rows.prepend(tr);
   while (rows.children.length > 8) rows.removeChild(rows.lastChild);
 
   alerts++;
@@ -230,18 +231,22 @@ function addRow(){
   kRec.textContent = "$"+recovered.toLocaleString();
   kHigh.innerHTML   = high.toLocaleString()+' <span class="tag bad">HIGH</span>';
   kSLA.textContent  = rand(2,7)+" min";
-  kReports.textContent = "Evidence reports today: " + reports.toLocaleString();
+  kReports.textContent = "Evidence reports: " + reports.toLocaleString();
 
-  // last action text
-  lastAction.innerHTML = `Last action — <strong>${loc}</strong>: ${ACTIONS[rand(0,ACTIONS.length-1)]} &nbsp;•&nbsp; Amount: <strong>$${amt.toLocaleString()}</strong> &nbsp;•&nbsp; Status: <strong>${st.k}</strong>`;
+  // update ticker
+  const chip = document.createElement('span');
+  chip.textContent = `${loc} • $${amt.toLocaleString()} ${st.k}`;
+  chip.style.marginRight='28px'; chip.style.fontWeight='900';
+  ticker.appendChild(chip);
+  if(ticker.childNodes.length>30) ticker.removeChild(ticker.firstChild);
 
-  // chart point (recovered rolling)
+  // chart point
   points.push({x:Date.now(), y:recovered});
   if(points.length>60) points.shift();
   drawChart();
 }
 
-/* --- Controls --- */
+/* ---------- Controls ---------- */
 function start(){
   if(running) return;
   running=true;
@@ -256,7 +261,7 @@ function stop(){
 document.getElementById('start').addEventListener('click', start);
 document.getElementById('stop').addEventListener('click', stop);
 
-/* --- Hi-DPI sharp chart (vanilla canvas) --- */
+/* ---------- Hi-DPI chart (vanilla canvas) ---------- */
 const canvas = document.getElementById('chart');
 const ctx = canvas.getContext('2d', { alpha: false });
 let DPR = 1;
@@ -265,11 +270,9 @@ function resizeChart() {
   const rect = canvas.getBoundingClientRect();
   DPR = Math.max(1, Math.floor(window.devicePixelRatio || 1));
   const cssW = Math.max(320, Math.floor(rect.width));
-  const cssH = Math.max(120, Math.floor(rect.height || 180));
-
+  const cssH = Math.max(130, Math.floor(rect.height || 190));
   canvas.width  = cssW * DPR;
   canvas.height = cssH * DPR;
-
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   drawChart();
 }
@@ -277,95 +280,50 @@ function resizeChart() {
 function drawChart() {
   const W = canvas.width / DPR;
   const H = canvas.height / DPR;
-
   ctx.clearRect(0, 0, W, H);
 
-  // Background
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(0, 0, W, H);
+  // background
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
 
-  // Grid
-  ctx.strokeStyle = '#d7dee4';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (let i = 1; i <= 4; i++) {
-    const y = Math.round(((H - 30) * i / 5) + 10) + 0.5;
-    ctx.moveTo(30, y);
-    ctx.lineTo(W - 10, y);
-  }
+  // grid
+  ctx.strokeStyle = '#d7dee4'; ctx.lineWidth = 1; ctx.beginPath();
+  for (let i=1;i<=4;i++){ const y=Math.round(((H-30)*i/5)+10)+.5; ctx.moveTo(30, y); ctx.lineTo(W-10, y); }
   ctx.stroke();
 
-  // Axes
-  ctx.strokeStyle = '#94a7b2';
-  ctx.beginPath();
-  ctx.moveTo(30.5, 10.5);
-  ctx.lineTo(30.5, H - 20.5);
-  ctx.lineTo(W - 10.5, H - 20.5);
-  ctx.stroke();
+  // axes
+  ctx.strokeStyle = '#94a7b2'; ctx.beginPath();
+  ctx.moveTo(30.5, 10.5); ctx.lineTo(30.5, H-20.5); ctx.lineTo(W-10.5, H-20.5); ctx.stroke();
 
   if (points.length < 2) return;
 
-  // Scale
-  const ys = points.map(p => p.y);
+  // scale
+  const ys = points.map(p=>p.y);
   const min = Math.min(...ys), max = Math.max(...ys);
   const span = Math.max(1, max - min);
   const xs = points.map((_, i) => 30 + (i / (points.length - 1)) * (W - 50));
   const yOf = v => (H - 20) - ((v - min) / span) * (H - 40);
 
-  // Line
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = '#0b1e27';
-  ctx.beginPath();
+  // line
+  ctx.lineWidth = 2; ctx.strokeStyle = '#0b1e27'; ctx.beginPath();
   ctx.moveTo(xs[0], yOf(points[0].y));
-  for (let i = 1; i < points.length; i++) ctx.lineTo(xs[i], yOf(points[i].y));
+  for (let i=1;i<points.length;i++) ctx.lineTo(xs[i], yOf(points[i].y));
   ctx.stroke();
 
-  // Area fill under line (green)
-  ctx.fillStyle = 'rgba(23,166,115,0.15)';
-  ctx.beginPath();
-  ctx.moveTo(xs[0], H - 20);
-  for (let i = 0; i < points.length; i++) ctx.lineTo(xs[i], yOf(points[i].y));
-  ctx.lineTo(xs[xs.length - 1], H - 20);
-  ctx.closePath();
-  ctx.fill();
-
-  // Dots
-  ctx.fillStyle = '#d4af37';
-  for (let i = 0; i < points.length; i++) {
-    ctx.beginPath();
-    ctx.arc(xs[i], yOf(points[i].y), 2.5, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // Last value label
-  const last = points[points.length - 1];
-  ctx.fillStyle = '#0b1e27';
-  ctx.font = "12px Inter, sans-serif";
-  ctx.fillText(last.y.toLocaleString(), xs[xs.length - 1] + 6, yOf(last.y) - 6);
+  // area fill (green)
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, 'rgba(23,166,115,0.25)');
+  grad.addColorStop(1, 'rgba(23,166,115,0.02)');
+  ctx.fillStyle = grad; ctx.beginPath();
+  ctx.moveTo(xs[0], yOf(points[0].y));
+  for (let i=1;i<points.length;i++) ctx.lineTo(xs[i], yOf(points[i].y));
+  ctx.lineTo(W-10, H-20); ctx.lineTo(30, H-20); ctx.closePath(); ctx.fill();
 }
+window.addEventListener('resize', resizeChart);
+resizeChart();
 
-// Resize on load and window resize
-let _rt;
-window.addEventListener('resize', () => { clearTimeout(_rt); _rt = setTimeout(resizeChart, 120); });
-
-/* --- Ticker --- */
-const TICK = [
-  "Nigeria: Freeze request sent to Exchange Z",
-  "Kenya: Wallet Y flagged for unusual routing",
-  "Ghana: Cash-out attempt blocked",
-  "South Africa: Recovery action queued",
-  "Uganda: KYC verification in progress",
-  "Tanzania: Compliance ticket opened"
-];
-document.getElementById('ticker').innerHTML = TICK.concat(TICK).map(t=>`<span>• ${t}</span>`).join('  ');
-
-/* --- Auto-start & power-save --- */
-window.addEventListener('load', ()=>{ resizeChart(); start(); });
-document.addEventListener('visibilitychange',()=>{ if(document.hidden) stop(); else start(); });
+/* ---------- Auto start on load ---------- */
+document.addEventListener('DOMContentLoaded', ()=> { start(); });
 </script>
+
 </body>
 </html>
-
-
-
-
