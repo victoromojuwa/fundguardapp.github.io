@@ -4,376 +4,436 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Fund Recovery</title>
-<meta name="description" content="Submit a fund recovery request. Generate a legal-ready evidence report and simulate freeze requests and compliance flow." />
+<meta name="description" content="Submit a fraud incident, trace suspected routes, and generate a legal-ready evidence report. Built in Africa. Scaling globally." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- GA4 (optional) -->
+<!-- Open Graph -->
+<meta property="og:title" content="FundGuard Africa — Fund Recovery">
+<meta property="og:description" content="Evidence-ready recovery workflow with trace, timeline, and report generation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.fundguardafrica.com/fundrecovery.html">
+
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
   gtag('config','G-GD0PGHCN57');
 </script>
 
 <style>
 :root{
-  --ink:#0b1e27; --muted:#5b6a78; --line:#e7ecf0; --pane:#f6f8fa; --white:#fff;
-  --gold:#d4af37; --gold-2:#b9972b; --blue:#0f2530; --blue-2:#0c1f29;
-  --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
+  --ink:#0b1e27; --muted:#5b6a78; --gold:#d4af37; --gold-2:#b9972b;
+  --blue:#0f2530; --bg:#ffffff; --pane:#ffffff; --line:#e7ecf0;
+  --ok:#17a673; --bad:#e03e3e; --warn:#ff9f1a;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
-a{color:var(--ink);text-decoration:none}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 
-.header{background:linear-gradient(180deg,var(--blue),var(--blue-2));color:#eaf3f6;border-bottom:1px solid rgba(255,255,255,.08)}
-.top{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+/* Topbar */
+.topbar{background:#081a22;color:#dbe7ee;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px}
-.dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
-.brand b{font-weight:900;letter-spacing:.25px;color:#fff}
+.brand .dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+.brand b{font-weight:900;color:#fff}
 .brand b span{color:var(--gold)}
-nav a{color:#e9f1f5;margin-left:16px;font-weight:800;opacity:.92}
-nav a:hover{opacity:1}
+.nav a{color:#dbe7ee;margin-left:16px;font-weight:800;opacity:.92}
+.nav a:hover{opacity:1}
 
-.hero{max-width:1100px;margin:0 auto;padding:22px 20px 18px}
-.hero h1{margin:0 0 6px;color:#fff;font-size:32px;font-weight:900}
-.hero p{margin:0;color:#dbe7ee}
+/* Hero */
+.hero{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#e9f1f5;border-bottom:1px solid rgba(255,255,255,.06);padding:40px 0 28px}
+.hero h1{margin:0 0 8px;color:#fff;font-weight:900;font-size:36px}
+.hero .lead{margin:0;color:#cfe3ea}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{padding:8px 10px;border-radius:10px;background:#18323f;color:#e9f1f5;border:1px solid rgba(255,255,255,.12);font-weight:800}
 
-.wrap{max-width:1100px;margin:0 auto;padding:22px 20px 40px}
-.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}
-@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+/* Sections / cards */
+.section{padding:18px 0}
+.card{background:var(--pane);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+.card h2{margin:0 0 10px;font-size:22px}
+.help{color:var(--muted);font-weight:600}
 
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
-.card h3{margin:0 0 8px;font-size:18px}
-.sub{color:var(--muted);font-size:14px;margin:2px 0 10px}
-
-fieldset{border:none;padding:0;margin:0 0 14px}
-label{font-weight:800;font-size:13px;display:block;margin:10px 0 6px}
-input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
-textarea{min-height:90px;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:720px){.row{grid-template-columns:1fr}}
-
-.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:900;
-  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s;text-decoration:none
+/* Form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:980px){.form-grid{grid-template-columns:1fr}}
+label{display:block;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.3px;color:#5b6a78;margin-bottom:6px}
+input,select,textarea{
+  width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);
+  font:600 14px/1.3 Inter,sans-serif; outline:none;
 }
-.btn:hover{box-shadow:0 8px 18px rgba(0,0,0,.06);transform:translateY(-1px)}
-.btn-primary{background:var(--gold);border-color:transparent;color:#0b1e27}
-.btn-primary:hover{background:var(--gold-2)}
-.btn-ghost{background:#fff}
-.badge{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);font-weight:800;font-size:12px}
-.badge-ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
-.badge-warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
-.badge-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+textarea{min-height:110px;resize:vertical}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;font-weight:900;border:1px solid var(--line);
+  background:#fff;color:var(--ink);cursor:pointer;transition:.2s
+}
+.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.10);transform:translateY(-1px)}
+.btn.primary{background:var(--gold);border-color:transparent;color:#0b1e27}
+.btn.primary:hover{background:var(--gold-2)}
+.btn.ghost{background:#fff}
+.note{font-size:12px;color:var(--muted);margin-top:6px}
 
-.side .card{margin-bottom:16px}
-
-/* Timeline/status */
-.timeline{list-style:none;margin:10px 0 0;padding:0}
-.timeline li{display:flex;gap:10px;align-items:flex-start;border-bottom:1px dashed var(--line);padding:10px 0}
-.dot-s{width:10px;height:10px;border-radius:50%;background:#cbd6dd;margin-top:6px}
-.ok{background:#21b07f}.bad{background:#e03e3e}.warn{background:#ff9f1a}
+/* Report */
+.report{display:none}
+.report.visible{display:block}
+.kv{display:grid;grid-template-columns:200px 1fr;gap:10px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.kv div{padding:10px;background:#fff;border-bottom:1px solid var(--line)}
+.kv div:nth-child(odd){background:#f9fbfd;font-weight:800;color:#5b6a78}
+.kv div:last-child{border-bottom:none}
+.timeline{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.timeline h3{margin:0;padding:12px;background:#f7fafc;border-bottom:1px solid var(--line);font-size:16px}
+.step{display:flex;gap:10px;padding:10px;border-bottom:1px solid var(--line);background:#fff}
+.step:last-child{border-bottom:none}
+.bullet{width:10px;height:10px;border-radius:999px;margin-top:6px;background:#d4af37}
+.tag{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);font-weight:900;font-size:12px}
+.ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
+.bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+.warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
 
 /* Footer */
-footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2}
-.foot{max-width:1100px;margin:0 auto;padding:20px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
-.foot a{color:#cfe3ea}
-.emails{display:flex;flex-direction:column;gap:4px}
-.small{color:var(--muted);font-size:12px}
+.footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-top:22px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0;flex-wrap:wrap;gap:10px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.linkpill{background:#18323f;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:8px 10px;font-weight:800;color:#e9f1f5}
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-  <div class="top">
+<!-- Topbar -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
     <div class="brand">
       <span class="dot"></span>
       <b>FundGuard <span>Africa</span></b>
     </div>
-    <nav>
+    <nav class="nav">
       <a href="index.html">Home</a>
       <a href="onepager.html">One Pager</a>
-      <a href="pitch.html">Seed Pitch</a>
-      <a href="mvp.html">Investor Demo</a>
+      <a href="pitch.html">Pitch</a>
+      <a href="mvp.html">MVP Demo</a>
     </nav>
-  </div>
-  <div class="hero">
-    <h1>Fund Recovery</h1>
-    <p>Submit a recovery request, generate a legal-ready Evidence Report, and simulate freeze + compliance actions.</p>
   </div>
 </div>
 
-<!-- Main -->
-<main class="wrap grid">
-  <!-- FORM SIDE -->
-  <section class="card">
-    <h3>1) Eligibility & Case Details</h3>
-    <p class="sub">Tell us what happened. We’ll generate a case ID and begin recovery simulation.</p>
+<!-- Hero -->
+<header class="hero">
+  <div class="wrap">
+    <h1>Fund Recovery</h1>
+    <p class="lead">Submit an incident, trace suspected routes, and generate a <b>legal-ready evidence report</b> for banks, exchanges, and regulators.</p>
+    <div class="pills">
+      <span class="pill">NDPR/GDPR-ready</span>
+      <span class="pill">CBN roadmap</span>
+      <span class="pill">Audit trails</span>
+    </div>
+  </div>
+</header>
 
-    <form id="recoveryForm">
-      <fieldset class="row">
+<!-- Intake -->
+<section class="section">
+  <div class="wrap">
+    <div class="card">
+      <h2>1) Case Intake</h2>
+      <p class="help">Fields marked * are required. Choose the most accurate <b>Case Type</b> and provide the details you know.</p>
+      <div class="form-grid">
         <div>
-          <label>Incident Type</label>
-          <select id="incidentType" required>
-            <option value="">Select…</option>
-            <option>Card Fraud</option>
+          <label for="caseType">Case Type *</label>
+          <select id="caseType" required>
+            <option value="">Select case type…</option>
+            <option>Fraud Investigation</option>
+            <option>Identity Theft</option>
+            <option>Payment Fraud</option>
             <option>Account Takeover</option>
-            <option>Mobile Money Scam</option>
-            <option>Crypto Theft</option>
-            <option>Social Engineering</option>
+            <option>Phishing Attack</option>
+            <option>Cyber Crime</option>
+            <option>Other</option>
           </select>
         </div>
         <div>
-          <label>Incident Date/Time</label>
-          <input type="datetime-local" id="incidentTime" required />
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <label>Incident Summary</label>
-        <textarea id="summary" placeholder="Briefly describe what happened…" required></textarea>
-      </fieldset>
-
-      <div class="row">
-        <fieldset>
-          <label>Country</label>
+          <label for="country">Country *</label>
           <select id="country" required>
-            <option value="">Select…</option>
-            <option>Nigeria</option><option>Kenya</option><option>Ghana</option>
-            <option>South Africa</option><option>Uganda</option><option>Tanzania</option>
+            <option value="">Select country…</option>
+            <option>Nigeria 🇳🇬</option>
+            <option>Kenya 🇰🇪</option>
+            <option>Ghana 🇬🇭</option>
+            <option>Uganda 🇺🇬</option>
+            <option>Tanzania 🇹🇿</option>
+            <option>South Africa 🇿🇦</option>
           </select>
-        </fieldset>
-        <fieldset>
-          <label>City</label>
-          <input type="text" id="city" placeholder="e.g., Lagos" required />
-        </fieldset>
-      </div>
+        </div>
 
-      <div class="row">
-        <fieldset>
-          <label>Amount Lost (USD)</label>
-          <input type="number" id="amount" min="1" step="0.01" placeholder="e.g., 12500" required />
-        </fieldset>
-        <fieldset>
-          <label>Channel</label>
-          <select id="channel" required>
-            <option value="">Select…</option>
-            <option>Bank Transfer</option><option>Card</option><option>Mobile Money</option>
-            <option>Crypto</option><option>Online Payment Gateway</option>
-          </select>
-        </fieldset>
-      </div>
-
-      <fieldset class="row">
         <div>
-          <label>Receiving Account / Wallet</label>
-          <input type="text" id="dest" placeholder="Acct / Wallet / Exchange tag" required />
+          <label for="amount">Amount Lost (USD) *</label>
+          <input id="amount" type="number" min="1" placeholder="e.g., 12500" required />
         </div>
         <div>
-          <label>Reference / Txn ID</label>
-          <input type="text" id="txid" placeholder="If available" />
+          <label for="date">Incident Date/Time *</label>
+          <input id="date" type="datetime-local" required />
         </div>
-      </fieldset>
 
-      <fieldset>
-        <label>Victim Full Name</label>
-        <input type="text" id="victim" placeholder="Your legal name" required />
-      </fieldset>
+        <div>
+          <label for="channels">Channels Involved</label>
+          <select id="channels" multiple>
+            <option>Bank</option>
+            <option>Mobile Money</option>
+            <option>Crypto</option>
+            <option>Card</option>
+            <option>Other</option>
+          </select>
+          <div class="note">Tip: hold Ctrl/Cmd to select multiple</div>
+        </div>
+        <div>
+          <label for="txnId">Transaction / Reference ID</label>
+          <input id="txnId" type="text" placeholder="Optional: bank ref, hash, etc." />
+        </div>
 
-      <fieldset>
-        <label>
-          <input type="checkbox" id="consent" required /> I confirm the information is accurate and consent to FundGuard processing this data for recovery actions.
-        </label>
-      </fieldset>
+        <div>
+          <label for="suspectAcct">Suspect Account / Wallet</label>
+          <input id="suspectAcct" type="text" placeholder="IBAN/Acct No./Wallet address" />
+        </div>
+        <div>
+          <label for="suspectName">Suspect Name / Handle</label>
+          <input id="suspectName" type="text" placeholder="Optional" />
+        </div>
 
-      <div class="ctas">
-        <button type="button" class="btn btn-ghost" id="simulate">▶ Start Recovery Simulation</button>
-        <button type="button" class="btn btn-primary" id="genReport">📑 Generate Evidence Report</button>
+        <div style="grid-column:1/-1">
+          <label for="desc">What happened? *</label>
+          <textarea id="desc" placeholder="Describe the incident, where funds went, screenshots you have, institutions contacted…" required></textarea>
+        </div>
       </div>
 
-      <p class="small">Note: This investor MVP simulates freeze/notify actions. Live banking/PSP integrations are part of the rollout plan.</p>
-    </form>
-  </section>
-
-  <!-- STATUS / TIPS SIDE -->
-  <aside class="side">
-    <div class="card">
-      <h3>Recovery Status</h3>
-      <p class="sub">Actions are simulated to demonstrate workflow speed and audit traceability.</p>
-      <ul class="timeline" id="timeline">
-        <li><span class="dot-s"></span>Waiting to start…</li>
-      </ul>
-      <div class="ctas">
-        <a href="mvp.html" class="btn">🔍 View Full Live Demo</a>
+      <div class="btns">
+        <button class="btn primary" id="generate">Generate Evidence Report</button>
+        <button class="btn ghost" id="reset">Reset Form</button>
       </div>
+      <div class="note">By generating, you agree this is an MVP simulation. In production, FundGuard will integrate partner rails to automate trace and recovery actions.</div>
     </div>
+  </div>
+</section>
 
+<!-- Report -->
+<section class="section report" id="report">
+  <div class="wrap">
     <div class="card">
-      <h3>What’s in the Evidence Report?</h3>
-      <ul>
-        <li>Case ID, timestamps, jurisdiction</li>
-        <li>Victim + transaction details</li>
-        <li>Routing highlights (wallets/exchanges/banks)</li>
-        <li>Actions timeline (freeze, KYC, compliance)</li>
-        <li>Hash signature & disclaimer</li>
-      </ul>
-      <p class="sub">Reports are for lawful use only; production exports (PDF/Docx) are available in enterprise plans.</p>
-    </div>
+      <h2>2) Evidence Report (MVP Simulation)</h2>
+      <p class="help">Use this report to brief banks, exchanges, and law enforcement. In production, IDs and evidence hashes will be verifiable.</p>
 
-    <div class="card">
-      <h3>Contact</h3>
-      <p class="sub">For pilots, integrations, and partnerships:</p>
-      <div class="emails">
-        <div>✉️ <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a></div>
-        <div>✉️ <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a></div>
-        <div>✉️ <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a></div>
+      <!-- Key/Value summary -->
+      <div class="kv" id="kv"></div>
+
+      <!-- Timeline -->
+      <div class="timeline" style="margin-top:16px">
+        <h3>Automated Trace & Recovery Timeline</h3>
+        <div id="tl"></div>
       </div>
-    </div>
-  </aside>
-</main>
 
-<footer>
-  <div class="foot">
-    <div>© 2025 FundGuard Africa — Fraud detection & fund recovery</div>
-    <div class="emails">
-      <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
-      <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
-      <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+      <div class="btns" style="margin-top:12px">
+        <button class="btn primary" id="downloadHtml">⬇️ Download Report (HTML)</button>
+        <button class="btn ghost" id="downloadJson">⬇️ Download JSON</button>
+      </div>
+      <div class="note">Report ID and timestamps are generated for demonstration. Do not reuse for legal proceedings without validation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© 2025 FundGuard Africa — www.fundguardafrica.com</span>
+    <nav class="links">
+      <a class="linkpill" href="onepager.html">One Pager</a>
+      <a class="linkpill" href="pitch.html">Pitch</a>
+      <a class="linkpill" href="mvp.html">MVP</a>
+      <a class="linkpill" href="index.html">Home</a>
+    </nav>
+    <div class="links">
+      <a class="linkpill" href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+      <a class="linkpill" href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+      <a class="linkpill" href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
     </div>
   </div>
 </footer>
 
 <script>
-(function(){
-  const $ = s => document.querySelector(s);
-  const timeline = $('#timeline');
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const el = {
+  caseType: $('#caseType'), country: $('#country'), amount: $('#amount'), date: $('#date'),
+  channels: $('#channels'), txnId: $('#txnId'), suspectAcct: $('#suspectAcct'),
+  suspectName: $('#suspectName'), desc: $('#desc'),
+  generate: $('#generate'), reset: $('#reset'),
+  report: $('#report'), kv: $('#kv'), tl: $('#tl'),
+  dlHtml: $('#downloadHtml'), dlJson: $('#downloadJson'),
+};
 
-  function addStep(text, cls){
-    const li = document.createElement('li');
-    li.innerHTML = `<span class="dot-s ${cls||''}"></span>${text}`;
-    timeline.appendChild(li);
-    gtag && gtag('event','recovery_step',{event_category:'FundRecovery',event_label:text});
-  }
+function nowISO(){ return new Date().toISOString(); }
+function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function caseId(){ return `FG-${Date.now()}-${rand(100,999)}`; }
 
-  // Simulated steps with random amounts/refs
-  function id(){ return 'FG-' + Date.now().toString(36).toUpperCase() + '-' + Math.floor(Math.random()*999).toString().padStart(3,'0') }
-  function fmt(n){ return new Intl.NumberFormat().format(n) }
+function getMultiSelectValues(sel){
+  return [...sel.options].filter(o=>o.selected).map(o=>o.value);
+}
 
-  // Start simulation
-  $('#simulate').addEventListener('click', ()=>{
-    const amount = Number($('#amount').value||0);
-    const loc = ($('#city').value||'City') + ', ' + ($('#country').value||'Country');
-    if(!$('#incidentType').value || !amount || !$('#victim').value || !$('#consent').checked){
-      alert('Please complete required fields and consent first.');
-      return;
-    }
-    timeline.innerHTML = '';
-    const caseId = id();
+function buildKV(data){
+  const rows = [
+    ['Report ID', data.reportId],
+    ['Case Type', data.caseType],
+    ['Country', data.country],
+    ['Amount (USD)', `$${Number(data.amount||0).toLocaleString()}`],
+    ['Incident Time', data.date || '—'],
+    ['Channels', (data.channels && data.channels.length)? data.channels.join(', ') : '—'],
+    ['Transaction Ref', data.txnId || '—'],
+    ['Suspect Account/Wallet', data.suspectAcct || '—'],
+    ['Suspect Name/Handle', data.suspectName || '—'],
+    ['Description', data.desc || '—'],
+    ['Generated At', nowISO()],
+  ];
+  el.kv.innerHTML = rows.map(r=>`<div>${r[0]}</div><div>${r[1]}</div>`).join('');
+}
 
-    addStep(`<b>Case created:</b> ${caseId}`, 'ok');
-    setTimeout(()=>addStep(`<b>Intermediate bank detected</b> • Amount $${fmt(Math.round(amount*0.42))}`, 'warn'), 600);
-    setTimeout(()=>addStep(`<b>Wallet Y routed</b> • $${fmt(Math.round(amount*0.26))}`, 'warn'), 1400);
-    setTimeout(()=>addStep(`<b>Exchange Z cash-out attempt</b> • $${fmt(Math.round(amount*0.32))}`, 'bad'), 2200);
-    setTimeout(()=>addStep(`<b>Freeze request sent</b> → Exchange Z & Wallet Y`, 'ok'), 3000);
-    setTimeout(()=>addStep(`<b>KYC verification</b> & legal hold initiated`, 'ok'), 3800);
-    setTimeout(()=>addStep(`<b>Compliance ticket opened</b> • Jurisdiction: ${loc}`, 'ok'), 4600);
-    setTimeout(()=>addStep(`<b>Evidence report queued</b> • See download`, 'ok'), 5200);
+function buildTimeline(data){
+  const steps = [
+    {t:'Signal Correlation', s:'SUSPECT', txt:`Unusual routing patterns detected for ${data.country}`},
+    {t:'Intermediate Bank Detected', s:'ALERT', txt:`Intermediary flagged on route • Est. $${Math.floor(data.amount*0.42).toLocaleString()}`},
+    {t:'Wallet/Account Route', s:'SUSPECT', txt:`Suspect path via ${data.suspectAcct || 'Wallet Y'} • Est. $${Math.floor(data.amount*0.32).toLocaleString()}`},
+    {t:'Cash-out Attempt', s:'ALERT', txt:`Exchange Z attempt observed • Est. $${Math.floor(data.amount*0.26).toLocaleString()}`},
+    {t:'Freeze/Notify', s:'RECOVERY', txt:`Freeze request sent to Exchange Z & route entity; compliance tickets opened`},
+    {t:'Compliance & Legal', s:'PENDING', txt:`Awaiting KYC verification & legal hold; evidence bundle packaged`},
+  ];
+  const badge = s => {
+    if(s==='ALERT') return '<span class="tag bad">ALERT</span>';
+    if(s==='SUSPECT') return '<span class="tag warn">SUSPECT</span>';
+    if(s==='RECOVERY') return '<span class="tag ok">RECOVERY</span>';
+    return '<span class="tag">PENDING</span>';
+  };
+  el.tl.innerHTML = steps.map(st=>`
+    <div class="step">
+      <span class="bullet"></span>
+      <div>
+        <div style="font-weight:900">${st.t} ${badge(st.s)}</div>
+        <div style="color:#5b6a78;font-weight:600">${st.txt}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function validate(){
+  const required = [el.caseType, el.country, el.amount, el.date, el.desc];
+  let ok = true;
+  required.forEach(f=>{
+    if(!f.value){ f.style.borderColor = '#e03e3e'; ok=false; }
+    else { f.style.borderColor = 'var(--line)'; }
   });
+  return ok;
+}
 
-  // Generate Evidence Report (HTML download)
-  $('#genReport').addEventListener('click', ()=>{
-    const dt = new Date();
-    const caseId = id();
-    const data = {
-      caseId,
-      incidentType: $('#incidentType').value,
-      time: $('#incidentTime').value,
-      summary: $('#summary').value,
-      country: $('#country').value,
-      city: $('#city').value,
-      amount: $('#amount').value,
-      channel: $('#channel').value,
-      dest: $('#dest').value,
-      txid: $('#txid').value,
-      victim: $('#victim').value,
-      generatedAt: dt.toISOString()
-    };
+function buildData(){
+  return {
+    reportId: caseId(),
+    caseType: el.caseType.value,
+    country: el.country.value,
+    amount: Number(el.amount.value||0),
+    date: el.date.value,
+    channels: getMultiSelectValues(el.channels),
+    txnId: el.txnId.value.trim(),
+    suspectAcct: el.suspectAcct.value.trim(),
+    suspectName: el.suspectName.value.trim(),
+    desc: el.desc.value.trim(),
+  };
+}
 
-    const timelineText = [...document.querySelectorAll('#timeline li')].map(li=>li.textContent.trim()).join('\n');
+function download(filename, content, type='text/html'){
+  const blob = new Blob([content], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 200);
+}
 
-    const html = `
-<!doctype html>
-<html><head><meta charset="utf-8">
-<title>FundGuard Evidence Report — ${data.caseId}</title>
-<style>
-body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;color:#0b1e27;background:#fff;margin:20px}
-h1{font-size:22px;margin:0 0 6px}
-h2{font-size:16px;margin:16px 0 6px}
-code,b{font-weight:800}
-.box{border:1px solid #e7ecf0;border-radius:12px;padding:12px;margin:10px 0;background:#f7fafc}
-.small{color:#5b6a78;font-size:12px}
-</style>
-</head><body>
-<h1>FundGuard Evidence Report</h1>
-<div class="small">Generated: ${data.generatedAt}</div>
+function htmlReport(data){
+  const kv = `
+    <table style="width:100%;border-collapse:collapse;font-family:Inter,Arial,sans-serif">
+      <tbody>
+        <tr><th align="left">Report ID</th><td>${data.reportId}</td></tr>
+        <tr><th align="left">Case Type</th><td>${data.caseType}</td></tr>
+        <tr><th align="left">Country</th><td>${data.country}</td></tr>
+        <tr><th align="left">Amount (USD)</th><td>$${data.amount.toLocaleString()}</td></tr>
+        <tr><th align="left">Incident Time</th><td>${data.date||'—'}</td></tr>
+        <tr><th align="left">Channels</th><td>${(data.channels||[]).join(', ')||'—'}</td></tr>
+        <tr><th align="left">Transaction Ref</th><td>${data.txnId||'—'}</td></tr>
+        <tr><th align="left">Suspect Account/Wallet</th><td>${data.suspectAcct||'—'}</td></tr>
+        <tr><th align="left">Suspect Name/Handle</th><td>${data.suspectName||'—'}</td></tr>
+        <tr><th align="left">Description</th><td>${data.desc||'—'}</td></tr>
+        <tr><th align="left">Generated At</th><td>${nowISO()}</td></tr>
+      </tbody>
+    </table>`;
 
-<h2>Case</h2>
-<div class="box">
-<b>Case ID:</b> ${data.caseId}<br/>
-<b>Type:</b> ${data.incidentType||'-'}<br/>
-<b>Incident Time:</b> ${data.time||'-'}<br/>
-<b>Jurisdiction:</b> ${data.city||''}${data.city?', ':''}${data.country||''}
-</div>
+  const timeline = `
+    <ol>
+      <li>Signal Correlation — unusual routing patterns detected for ${data.country} (SUSPECT)</li>
+      <li>Intermediate Bank Detected — est. $${Math.floor(data.amount*0.42).toLocaleString()} (ALERT)</li>
+      <li>Wallet/Account Route — ${data.suspectAcct||'Wallet Y'} est. $${Math.floor(data.amount*0.32).toLocaleString()} (SUSPECT)</li>
+      <li>Cash-out Attempt — Exchange Z est. $${Math.floor(data.amount*0.26).toLocaleString()} (ALERT)</li>
+      <li>Freeze/Notify — freeze request sent; compliance tickets opened (RECOVERY)</li>
+      <li>Compliance & Legal — awaiting KYC verification & legal hold (PENDING)</li>
+    </ol>`;
 
-<h2>Victim</h2>
-<div class="box">
-<b>Name:</b> ${data.victim||'-'}
-</div>
+  return `<!doctype html><html><head>
+    <meta charset="utf-8"><title>FundGuard Evidence Report — ${data.reportId}</title>
+    <style>
+      body{font-family:Inter,Arial,sans-serif;color:#0b1e27;margin:24px}
+      h1{margin:0 0 6px} h2{margin:16px 0 8px}
+      th{background:#f7fafc;border:1px solid #e7ecf0;padding:8px}
+      td{border:1px solid #e7ecf0;padding:8px}
+      ol{margin:0 0 0 18px}
+      .muted{color:#5b6a78}
+    </style>
+  </head><body>
+    <h1>FundGuard Evidence Report</h1>
+    <div class="muted">Report: ${data.reportId}</div>
+    <h2>Summary</h2>
+    ${kv}
+    <h2>Automated Trace & Recovery Timeline</h2>
+    ${timeline}
+    <p class="muted">© 2025 FundGuard Africa — Generated via MVP simulation</p>
+  </body></html>`;
+}
 
-<h2>Transaction</h2>
-<div class="box">
-<b>Amount (USD):</b> ${data.amount||'-'}<br/>
-<b>Channel:</b> ${data.channel||'-'}<br/>
-<b>Destination:</b> ${data.dest||'-'}<br/>
-<b>Reference / Txn ID:</b> ${data.txid||'-'}
-</div>
+/* Event wiring */
+el.generate.addEventListener('click', ()=>{
+  if(!validate()) { alert('Please complete required fields.'); return; }
+  const data = buildData();
+  buildKV(data);
+  buildTimeline(data);
+  el.report.classList.add('visible');
+  gtag('event','evidence_generate',{event_category:'Recovery',value:data.amount||0});
+  // auto-scroll to report
+  document.getElementById('report').scrollIntoView({behavior:'smooth'});
+});
 
-<h2>Incident Summary</h2>
-<div class="box">${(data.summary||'').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+el.reset.addEventListener('click', ()=>{
+  $$('input, textarea').forEach(i=>i.value='');
+  $$('select').forEach(s=>{ if(s.multiple) [...s.options].forEach(o=>o.selected=false); else s.value=''; });
+  el.report.classList.remove('visible');
+});
 
-<h2>Recovery Timeline</h2>
-<div class="box"><pre style="white-space:pre-wrap">${timelineText||'-'}</pre></div>
+el.dlHtml.addEventListener('click', ()=>{
+  const data = buildData();
+  const html = htmlReport(data);
+  download(`FundGuard_Evidence_Report_${data.reportId}.html`, html, 'text/html');
+  gtag('event','report_download_html',{event_category:'Recovery'});
+});
 
-<h2>Disclaimer</h2>
-<div class="small">This report is generated from a simulated investor MVP workflow. Production exports (PDF/DOCX + hash signatures) are available in enterprise plans. Do not distribute without authorization.</div>
-
-</body></html>`;
-
-    const blob = new Blob([html], {type:'text/html'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `FundGuard_Evidence_Report_${caseId}.html`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-
-    gtag && gtag('event','report_download',{event_category:'FundRecovery',event_label:'HTML Report'});
-  });
-})();
+el.dlJson.addEventListener('click', ()=>{
+  const data = buildData();
+  download(`FundGuard_Evidence_Report_${data.reportId}.json`, JSON.stringify(data,null,2), 'application/json');
+  gtag('event','report_download_json',{event_category:'Recovery'});
+});
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
