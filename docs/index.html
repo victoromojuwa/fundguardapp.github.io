@@ -4,354 +4,254 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Fraud Detection & Fund Recovery</title>
-<meta name="description" content="FundGuard Africa is an AI-powered fraud detection and fund recovery platform. Built in Africa, scaling globally." />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-<!-- GA4 (optional but recommended) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config','G-GD0PGHCN57');
-</script>
-
-<style>
-:root{
-  --ink:#0b1e27; --muted:#5b6a78;
-  --gold:#d4af37; --gold-2:#b9972b;
-  --blue:#0f2530; --blue-2:#0c1f29;
-  --pane:#f6f8fa; --line:#e7ecf0; --white:#fff;
-  --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#ffffff;color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
-a{color:var(--ink);text-decoration:none}
-
-/* Header / Hero */
-header{
-  background:linear-gradient(180deg,var(--blue),var(--blue-2));
-  color:#eaf3f6;border-bottom:1px solid rgba(255,255,255,0.08);
-}
-.top{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-.brand{display:flex;align-items:center;gap:10px}
-.brand .dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
-.brand b{font-weight:900;letter-spacing:.3px;color:#fff}
-.brand b span{color:var(--gold)}
-nav a{color:#e9f1f5;margin-left:16px;font-weight:700;opacity:.92}
-nav a:hover{opacity:1}
-
-.hero{max-width:1100px;margin:0 auto;padding:26px 20px 24px;text-align:center}
-.hero h1{margin:0 0 8px;font-size:38px;line-height:1.12;color:#fff;font-weight:900}
-.hero p{margin:0 auto 16px;max-width:840px;color:#dbe7ee;font-size:16px}
-
-/* CTA buttons */
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 8px}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;font-weight:900;
-  border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;transition:.2s
-}
-.btn:hover{box-shadow:0 8px 18px rgba(0,0,0,.08);transform:translateY(-1px)}
-.btn-primary{background:var(--gold);border-color:transparent;color:#0b1e27}
-.btn-primary:hover{background:var(--gold-2)}
-
-/* Badges row */
-.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 18px}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);
-       background:#fff;font-weight:800;font-size:12px;color:var(--ink)}
-
-/* Secondary product CTAs */
-.secondary-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:6px 0 24px}
-.link-cta{font-weight:900;border-bottom:2px solid transparent}
-.link-cta:hover{border-color:var(--gold)}
-
-/* Main container */
-.wrap{max-width:1100px;margin:0 auto;padding:26px 20px}
-
-/* Mini Live Preview (compact) */
-.mvp-preview.themed{
-  margin:14px auto 26px;max-width:980px;
-  background:linear-gradient(180deg,var(--blue),var(--blue-2));
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:16px;padding:18px;color:#e6edf2;
-}
-.mvp-preview .mvp-head{text-align:center;padding:6px 12px 8px}
-.mvp-preview .mvp-head h2{margin:6px 0 4px;font-size:22px;color:#fff;font-weight:900}
-.mvp-preview .mvp-head p{margin:0 0 10px;color:#cfe3ea}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px}
-.mvp-widget{margin:10px auto;overflow:auto;max-height:220px}
-.mvp-table{width:100%;border-collapse:collapse;font-size:14px}
-.mvp-table th,.mvp-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-.mvp-table thead th{background:#fdfdfd;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px;font-size:12px}
-.badge-ok{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;
-  color:#0d5e46;background:rgba(23,166,115,.10);border:1px solid rgba(23,166,115,.35)}
-.badge-warn{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;
-  color:#7a4a00;background:rgba(255,159,26,.10);border:1px solid rgba(255,159,26,.35)}
-.badge-bad{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;
-  color:#7d1f1f;background:rgba(224,62,62,.10);border:1px solid rgba(224,62,62,.35)}
-
-/* Sections below */
-.section{margin:22px 0 14px}
-.section h3{font-size:20px;margin:0 0 6px}
-.section p{margin:0 0 10px;color:var(--muted)}
-
-/* Footer */
-footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-top:20px}
-.foot{max-width:1100px;margin:0 auto;padding:20px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
-.foot a{color:#cfe3ea}
-.emails{display:flex;flex-direction:column;gap:4px}
-
-@media(max-width:900px){
-  .hero h1{font-size:32px}
-}
-</style>
+<meta name="description" content="FundGuard Africa is an AI-powered fraud detection and fund recovery platform built in Africa, scaling globally." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<header>
-  <div class="top">
-    <div class="brand">
-      <span class="dot"></span>
-      <b>FundGuard <span>Africa</span></b>
+<header class="hero">
+  <div class="wrap">
+    <h1>FundGuard <span class="gold">Africa</span></h1>
+    <p class="lead">Africa’s first AI-powered fraud detection & fund recovery platform — built in Africa, scaling globally.</p>
+    <div class="cta-row">
+      <a class="btn gold" href="onepager.html">Investor One Pager</a>
+      <a class="btn outline" href="pitch.html">Seed Pitch Deck</a>
+      <a class="btn outline" href="mvp.html">View Live Demo</a>
+      <!-- ================== MINI LIVE FRAUD PREVIEW (COMPACT) ================== -->
+<section class="mini-wrap" aria-label="Live Fraud Preview">
+  <h2 class="mini-title">Live Fraud Preview (Simulated)</h2>
+
+  <!-- Ticker -->
+  <div class="mini-ticker">
+    <div class="mini-ticker-inner" id="miniTicker">
+      Lagos 🇳🇬 • $24,920 ALERT • Nairobi 🇰🇪 • $3,140 RECOVERED • Accra 🇬🇭 • $11,480 SUSPECT •
+      Cape Town 🇿🇦 • $182,300 ALERT • Kampala 🇺🇬 • $6,210 RECOVERED • Dar es Salaam 🇹🇿 • $8,090 SUSPECT
     </div>
-    <nav>
-      <a href="onepager.html">One Pager</a>
-      <a href="pitch.html">Seed Pitch</a>
-      <a href="mvp.html">Investor Demo</a>
-    </nav>
   </div>
 
-  <div class="hero">
-    <h1>Fraud Detection & Fund Recovery for Africa — Built to Scale Globally</h1>
-    <p>AI-powered detection, case management, evidence reports, and recovery workflows. Live today in 6 African countries, expanding worldwide.</p>
-
-    <!-- HERO CTAS (3 only) -->
-    <div class="hero-ctas">
-      <a href="onepager.html" class="btn btn-primary">📑 Investor One Pager</a>
-      <a href="pitch.html" class="btn btn-primary">🎯 Seed Pitch Deck</a>
-      <a href="mvp.html" class="btn btn-primary">🚀 Investor Demo (Live)</a>
+  <!-- Table -->
+  <div class="mini-card">
+    <table class="mini-table" aria-label="Recent events">
+      <thead>
+        <tr><th>Time</th><th>Txn</th><th>Location</th><th>Amount</th><th>Status</th></tr>
+      </thead>
+      <tbody id="miniRows"></tbody>
+    </table>
+    <div class="mini-cta">
+      <a class="mini-btn" href="mvp.html" title="Open full investor demo">Open Full Demo</a>
+      <a class="mini-btn mini-outline" href="fundrecovery.html" title="Try recovery flow">Try Recovery</a>
     </div>
+  </div>
+</section>
 
-    <!-- TRUST BADGES -->
-    <div class="badges">
-      <span class="badge">🌍 Live in 6 African countries</span>
-      <span class="badge">🔐 NDPR/GDPR-ready posture</span>
-      <span class="badge">📑 Evidence reports export</span>
+<style>
+  /* ------- Scoped styles for the mini preview ------- */
+  .mini-wrap{max-width:1100px;margin:18px auto 8px;padding:0 20px}
+  .mini-title{margin:0 0 10px;font:900 20px/1.2 Inter,system-ui,sans-serif;color:#0b1e27}
+  .mini-ticker{border:1px solid #e7ecf0;background:#fff;border-radius:12px;overflow:hidden}
+  .mini-ticker-inner{display:flex;gap:28px;white-space:nowrap;padding:10px;
+    animation:mini-t 26s linear infinite;color:#0b1e27;font-weight:700}
+  @keyframes mini-t {from{transform:translateX(0)} to{transform:translateX(-50%)}}
+  .mini-card{margin-top:10px;background:#fff;border:1px solid #e7ecf0;border-radius:12px;padding:10px}
+  .mini-table{width:100%;border-collapse:collapse;font-size:13px}
+  .mini-table th,.mini-table td{padding:8px 10px;border-bottom:1px solid #e7ecf0;text-align:left;white-space:nowrap}
+  .mini-table thead th{font-size:11px;color:#5b6a78;text-transform:uppercase;letter-spacing:.3px;background:#f9fbfd}
+  .mini-table tr:last-child td{border-bottom:none}
+  .mini-tag{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:11px;border:1px solid #e7ecf0;background:#fff}
+  .mini-ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
+  .mini-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
+  .mini-warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
+  .mini-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
+  .mini-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;border:1px solid #e7ecf0;
+    background:#d4af37;color:#0b1e27;font-weight:900;text-decoration:none}
+  .mini-btn:hover{background:#b9972b}
+  .mini-outline{background:#fff}
+  @media (max-width: 900px){
+    .mini-title{font-size:18px}
+    .mini-table{font-size:12px}
+  }
+</style>
+
+<script>
+  // ---- Compact simulation (no external libs) ----
+  (function(){
+    const LOCS = [
+      "Lagos, Nigeria 🇳🇬","Nairobi, Kenya 🇰🇪","Accra, Ghana 🇬🇭",
+      "Cape Town, South Africa 🇿🇦","Kampala, Uganda 🇺🇬","Dar es Salaam, Tanzania 🇹🇿"
+    ];
+    const STATUS = [
+      {k:"ALERT", cls:"mini-bad"},
+      {k:"SUSPECT", cls:"mini-warn"},
+      {k:"RECOVERED", cls:"mini-ok"}
+    ];
+
+    const rows = document.getElementById('miniRows');
+    let running = true, timer = null;
+
+    function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+    function now(){ return new Date().toLocaleTimeString() }
+    function id(){ return "TX-"+rand(10000,99999) }
+
+    function addRow(){
+      const loc = LOCS[rand(0,LOCS.length-1)];
+      const amt = rand(1200,180000);
+      const st  = STATUS[rand(0,STATUS.length-1)];
+      const tr  = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${now()}</td>
+        <td>${id()}</td>
+        <td>${loc}</td>
+        <td><b>$${amt.toLocaleString()}</b></td>
+        <td><span class="mini-tag ${st.cls}">${st.k}</span></td>
+      `;
+      rows.prepend(tr);
+      while (rows.children.length > 4) rows.removeChild(rows.lastChild); // keep it compact (4 rows)
+    }
+
+    function start(){
+      if(running) return;
+      running = true;
+      timer = setInterval(addRow, 1800);
+      addRow();
+    }
+    function stop(){
+      running = false;
+      if(timer) clearInterval(timer);
+    }
+
+    // Start automatically after a short delay to avoid blocking initial paint
+    setTimeout(()=>{ stop(); start(); }, 600);
+
+    // Pause when tab hidden, resume when visible (save CPU)
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden) stop(); else start();
+    });
+  })();
+</script>
+<!-- ================== /MINI LIVE FRAUD PREVIEW (COMPACT) ================== -->
+   <!-- ===== BUILT IN AFRICA, SCALING GLOBALLY ===== -->
+<section class="mini-wrap">
+  <div class="mini-card">
+    <h2 class="mini-title">Built in Africa, Scaling Globally 🌍</h2>
+    <p style="margin:6px 0 12px;color:#22323d">
+      Live presence across 6 African markets with an expansion roadmap to MEA, APAC, Europe and the Americas.
+    </p>
+    <div class="mini-stats" style="display:grid;gap:10px">
+      <div class="mini-bar"><span>Africa</span><em>100%</em><i style="--w:100%"></i></div>
+      <div class="mini-bar"><span>Middle East</span><em>75%</em><i style="--w:75%"></i></div>
+      <div class="mini-bar"><span>APAC</span><em>60%</em><i style="--w:60%"></i></div>
+      <div class="mini-bar"><span>Europe</span><em>25%</em><i style="--w:25%"></i></div>
+      <div class="mini-bar"><span>Americas</span><em>15%</em><i style="--w:15%"></i></div>
     </div>
+    <div style="margin-top:10px;color:#5b6a78;font-weight:600;font-size:13px">
+      Active: Nigeria, Kenya, Ghana, Uganda, Tanzania, South Africa
+    </div>
+  </div>
+</section>
 
-    <!-- SECONDARY PRODUCT ACTIONS -->
-    <div class="secondary-ctas">
-      <a href="fundrecovery.html" class="link-cta">💸 Fund Recovery</a>
-      <a href="access.html" class="link-cta">📝 Early Access</a>
-      <!-- If API docs not ready, remove the next line -->
-      <a href="api.html" class="link-cta">🔗 API Docs</a>
+<style>
+  .mini-stats .mini-bar{display:grid;grid-template-columns:120px 50px 1fr;align-items:center;gap:10px}
+  .mini-stats .mini-bar span{font-weight:800;color:#0b1e27}
+  .mini-stats .mini-bar em{font-style:normal;color:#5b6a78;font-weight:800}
+  .mini-stats .mini-bar i{display:block;height:10px;border-radius:8px;background:linear-gradient(90deg,#0b1e27,#d4af37);width:var(--w);box-shadow:inset 0 0 0 1px #e7ecf0}
+</style>
+ <!-- ===== COMPLIANCE & TRUST ===== -->
+<section class="mini-wrap">
+  <div class="mini-card">
+    <h2 class="mini-title">Compliance &amp; Trust</h2>
+    <div class="mini-grid-2">
+      <ul class="mini-list">
+        <li><strong>CBN-aligned roadmap</strong> for required licensing</li>
+        <li><strong>NDPR/GDPR-ready</strong> data protection posture</li>
+        <li>Role-based access, Row-Level Security (RLS), audit logs</li>
+      </ul>
+      <ul class="mini-list">
+        <li>Lawful data use & retention policies</li>
+        <li>Evidence continuity for regulators and partners</li>
+        <li>Enterprise SLAs & incident response playbooks</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mini-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mini-list{margin:6px 0 0 18px;color:#22323d}
+  @media(max-width:900px){.mini-grid-2{grid-template-columns:1fr}}
+</style>
+
     </div>
   </div>
 </header>
 
-<main class="wrap"
-
-  <!-- COMPACT LIVE PREVIEW (one only) -->
-  <section class="mvp-preview themed">
-    <div class="mvp-head">
-      <h2>🚨 Live Fraud Detection Preview</h2>
-      <p>Simulated alerts across Africa. <a href="mvp.html" class="btn btn-primary">View Full Live Demo →</a></p>
-    </div>
-
-    <div class="mvp-widget card">
-      <table class="mvp-table" aria-label="Live mini stream">
-        <thead>
-          <tr><th>Time</th><th>Location</th><th>Amount</th><th>Status</th></tr>
-        </thead>
-        <tbody id="mini-rows"></tbody>
-      </table>
+<main class="wrap">
+  <section class="card">
+    <h2>Why FundGuard</h2>
+    <p>Fraud is draining Africa’s digital economy. FundGuard helps users, banks, and fintechs detect suspicious activity, trace funds across banks/wallets/exchanges, and generate legal-ready evidence reports to accelerate recovery.</p>
+    <ul class="bullets">
+      <li>Real-time alerts & recovery workflows</li>
+      <li>Evidence report generator (legal/compliance)</li>
+      <li>Bank, mobile money & crypto monitoring</li>
+      <li>AI behavior & predictive analytics</li>
+    </ul>
+    <div class="cta-row">
+      <a class="btn" href="fundrecovery.html">Try Fund Recovery</a>
+      <a class="btn" href="access.html">Request Early Access</a>
     </div>
   </section>
-  <!-- ==== Compact Live Fraud Preview (with Global Ticker) ==== -->
-<section class="mini-demo">
-  <div class="mini-wrap">
-    <header class="mini-head">
-      <h3>Live Fraud Preview</h3>
-      <div class="mini-kpis">
-        <div class="k"><span class="l">Live Alerts</span><b id="md_alerts">0</b></div>
-        <div class="k"><span class="l">Recovered (Sim.)</span><b id="md_recovered">$0</b></div>
-        <div class="k"><span class="l">High-Risk</span><b id="md_high">0</b></div>
-      </div>
-    </header>
 
-    <div class="mini-grid">
-      <!-- Compact table (max 4 rows) -->
-      <div class="mini-card">
-        <table class="mini-table" aria-label="Fraud events (preview)">
-          <thead><tr><th>Time</th><th>Txn</th><th>Location</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody id="md_rows"></tbody>
-        </table>
-        <div class="mini-cta">
-          <a class="mini-btn" href="mvp.html">View Full Live Demo →</a>
-        </div>
-      </div>
-
-      <!-- Global ticker -->
-      <div class="mini-card">
-        <h4 class="mini-sub">Global Ticker</h4>
-        <div class="mini-ticker"><div id="md_ticker" class="mini-ticker-inner"></div></div>
-        <p class="mini-note">Preview is simulated for investors. Full stream available in the live demo.</p>
-      </div>
+  <section class="grid">
+    <div class="card">
+      <h3>Built in Africa, Scaling Globally 🌍</h3>
+      <p>Live presence: Nigeria, Kenya, Ghana, Uganda, Tanzania, South Africa. Expansion to MEA, APAC, Europe, and the Americas.</p>
     </div>
-  </div>
-
-  <style>
-    .mini-demo{background:#fff;border-top:1px solid #e7ecf0;border-bottom:1px solid #e7ecf0}
-    .mini-wrap{max-width:1100px;margin:0 auto;padding:18px 20px}
-    .mini-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
-    .mini-head h3{margin:0;font:900 18px/1.1 Inter,system-ui,sans-serif;color:#0b1e27}
-    .mini-kpis{display:flex;gap:12px;flex-wrap:wrap}
-    .mini-kpis .k{background:#f7fafc;border:1px solid #e7ecf0;border-radius:10px;padding:8px 10px;min-width:130px}
-    .mini-kpis .l{display:block;color:#5b6a78;font:600 11px Inter,sans-serif;text-transform:uppercase;letter-spacing:.3px}
-    .mini-kpis b{font:900 18px Inter,sans-serif;color:#0b1e27}
-    .mini-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
-    .mini-card{background:#fff;border:1px solid #e7ecf0;border-radius:12px;padding:12px}
-    .mini-table{width:100%;border-collapse:collapse;font:600 13px Inter,sans-serif}
-    .mini-table th,.mini-table td{padding:8px;border-bottom:1px solid #e7ecf0;text-align:left;white-space:nowrap}
-    .mini-table th{font:800 10px Inter,sans-serif;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px;background:#fbfcfd}
-    .mini-tag{display:inline-block;padding:2px 6px;border-radius:999px;font:800 11px Inter,sans-serif;border:1px solid #e7ecf0;background:#fff}
-    .mini-ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
-    .mini-warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
-    .mini-bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
-    .mini-cta{display:flex;justify-content:flex-end;margin-top:8px}
-    .mini-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;
-      border:1px solid #e7ecf0;background:#d4af37;color:#0b1e27;font:900 12px Inter,sans-serif;text-decoration:none}
-    .mini-btn:hover{background:#b9972b}
-    .mini-sub{margin:0 0 8px;font:800 12px Inter,sans-serif;color:#5b6a78;letter-spacing:.3px;text-transform:uppercase}
-    .mini-ticker{border:1px solid #e7ecf0;border-radius:10px;overflow:hidden;background:#fff}
-    .mini-ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:mdscroll 26s linear infinite;padding:8px}
-    @keyframes mdscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .mini-note{margin:8px 0 0;color:#5b6a78;font:600 12px Inter,sans-serif}
-    @media(max-width:960px){.mini-grid{grid-template-columns:1fr}}
-  </style>
-
-  <script>
-    (function(){
-      const $ = s => document.querySelector(s);
-      const rows = $('#md_rows');
-      const kAlerts = $('#md_alerts'), kRec = $('#md_recovered'), kHigh = $('#md_high');
-      const LOCS = ["Lagos 🇳🇬","Nairobi 🇰🇪","Accra 🇬🇭","Cape Town 🇿🇦","Kampala 🇺🇬","Dar es Salaam 🇹🇿"];
-      const STATUS = [
-        {k:"ALERT", cls:"mini-bad"}, {k:"SUSPECT", cls:"mini-warn"}, {k:"RECOVERED", cls:"mini-ok"}
-      ];
-      const TICK = [
-        "Freeze request sent to Exchange Z",
-        "Wallet Y flagged for unusual routing",
-        "KYC verification in progress",
-        "Compliance ticket opened",
-        "Cash-out attempt blocked",
-        "Recovery action queued"
-      ];
-      const ticker = $('#md_ticker');
-
-      let alerts=0, recovered=0, high=0, timer=null;
-
-      function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
-      function now(){ return new Date().toLocaleTimeString() }
-      function id(){ return "TXN-"+rand(10000,99999).toString(36).toUpperCase()+rand(10,99) }
-
-      function addRow(){
-        const loc = LOCS[rand(0,LOCS.length-1)];
-        const amt = rand(1200,450000);
-        const st  = STATUS[rand(0,STATUS.length-1)];
-        const tr  = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${now()}</td>
-          <td>${id()}</td>
-          <td>${loc}</td>
-          <td><b>$${amt.toLocaleString()}</b></td>
-          <td><span class="mini-tag ${st.cls}">${st.k}</span></td>`;
-        rows.prepend(tr);
-
-        // keep only 4 rows visible
-        while(rows.children.length>4) rows.removeChild(rows.lastChild);
-
-        alerts++;
-        if(st.k==="RECOVERED"){ recovered += amt; }
-        if(st.k==="ALERT" && amt>150000){ high++; }
-        kAlerts.textContent = alerts.toLocaleString();
-        kRec.textContent    = "$"+recovered.toLocaleString();
-        kHigh.textContent   = high.toLocaleString();
-      }
-
-      // Build ticker content (looped)
-      function buildTicker(){
-        const parts = [];
-        for(let i=0;i<16;i++){
-          const a = rand(1500,420000);
-          const l = LOCS[rand(0,LOCS.length-1)];
-          const t = TICK[rand(0,TICK.length-1)];
-          parts.push(`${l} • ${t} • $${a.toLocaleString()}`);
-        }
-        ticker.innerHTML = parts.join("  •  ");
-      }
-
-      buildTicker();
-      timer = setInterval(addRow, 1400);
-      addRow();
-    })();
-  </script>
-</section>
-<!-- ==== /Compact Live Fraud Preview ==== -->
-
-
-  <!-- About / Trust sections (brief, optional) -->
-  <section class="section">
-    <h3>Why FundGuard</h3>
-    <p>We combine fraud intelligence, identity verification, AML posture, and case-based recovery tooling so banks, fintechs, and users can detect fraud and recover funds fast.</p>
+    <div class="card">
+      <h3>Compliance & Trust</h3>
+      <p>CBN licensing roadmap. NDPR/GDPR-ready posture. Audit trails and evidence continuity for regulators and partners.</p>
+    </div>
   </section>
 
-  <section class="section">
-    <h3>Built in Africa, Scaling Globally</h3>
-    <p>Currently serving Nigeria, Kenya, South Africa, Ghana, Uganda, and Tanzania — with planned expansion to MENA, APAC, Europe, and the Americas.</p>
-  </section>
-
-</main>
-
-<footer>
-  <div class="foot">
-    <div>© 2025 FundGuard Africa — Fraud detection & fund recovery</div>
-    <div class="emails">
+  <section class="card">
+    <h2>Contact & Partnerships</h2>
+    <p>We’re onboarding pilot partners in banking, fintech, mobile money, and exchanges.</p>
+    <div class="contacts">
       <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
       <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
       <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
     </div>
+  </section>
+</main>
+   <!-- ===== CONTACT STRIP ===== -->
+<section class="mini-wrap">
+  <div class="mini-card" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between">
+    <h3 style="margin:0;font:900 16px/1.2 Inter,sans-serif;color:#0b1e27">Contact & Partnerships</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a class="mini-pill" href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+      <a class="mini-pill" href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+      <a class="mini-pill" href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mini-pill{background:#f7fafc;border:1px solid #e7ecf0;border-radius:10px;padding:8px 10px;
+    font-weight:800;color:#0b1e27;text-decoration:none}
+</style>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© 2025 FundGuard Africa</span>
+    <nav class="foot-links">
+      <a href="onepager.html">One Pager</a>
+      <a href="pitch.html">Pitch</a>
+      <a href="mvp.html">MVP</a>
+      <a href="fundrecovery.html">Recovery</a>
+      <a href="access.html">Early Access</a>
+    </nav>
   </div>
 </footer>
 
-<!-- Mini live preview script -->
-<script>
-(function(){
-  const miniRows = document.getElementById('mini-rows');
-  function miniNow(){ return new Date().toLocaleTimeString() }
-  function miniRand(min,max){ return Math.floor(Math.random()*(max-min+1))+min }
-
-  const LOCS = ["🇳🇬 Lagos","🇰🇪 Nairobi","🇬🇭 Accra","🇿🇦 Cape Town","🇺🇬 Kampala","🇹🇿 Dar es Salaam"];
-  const STATUS = [
-    "<span class='badge-bad'>ALERT</span>",
-    "<span class='badge-warn'>SUSPECT</span>",
-    "<span class='badge-ok'>RECOVERED</span>"
-  ];
-
-  function addRow(){
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${miniNow()}</td>
-      <td>${LOCS[miniRand(0,LOCS.length-1)]}</td>
-      <td><b>$${miniRand(1_200, 85_000).toLocaleString()}</b></td>
-      <td>${STATUS[miniRand(0,2)]}</td>`;
-    miniRows.prepend(tr);
-    while(miniRows.children.length > 4) miniRows.removeChild(miniRows.lastChild);
-  }
-  addRow();
-  setInterval(addRow, 2200);
-})();
-</script>
-
 </body>
 </html>
+
