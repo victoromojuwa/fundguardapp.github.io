@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FundGuard Africa — MVP Build & Marketing Contract Checklist</title>
+<meta name="description" content="Scope, ownership, milestones, and security requirements for FundGuard Africa build and marketing engagement." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b1e27; --muted:#5c6b78; --gold:#d4af37; --bg:#ffffff; --line:#e7ecf0; --panel:#f7f9fb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+  .bar{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+  .wrap{max-width:1000px;margin:0 auto;padding:28px 18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+  h1.logo{margin:0;font-size:20px;font-weight:900;letter-spacing:.3px}
+  h1.logo span{color:var(--gold)}
+  .title{margin:18px 0 0;font-size:28px;font-weight:900;color:#fff}
+  .sub{margin:6px 0 16px;color:#cfe3ea}
+
+  main{padding:24px 18px}
+  h2{font-size:22px;margin:18px 0 10px}
+  h3{font-size:16px;margin:16px 0 8px;color:#21313a}
+  p{line-height:1.7;margin:8px 0}
+  ul{margin:8px 0 16px 22px}
+  li{margin:6px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+  .badge{display:inline-block;background:var(--gold);color:#0b1e27;font-weight:900;font-size:12px;padding:4px 8px;border-radius:999px;margin-right:8px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+  .muted{color:var(--muted)}
+  .cta{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;font-weight:800;text-decoration:none;color:var(--ink)}
+  .cta:hover{box-shadow:0 8px 18px rgba(0,0,0,.06);transform:translateY(-1px)}
+  .cta.gold{background:var(--gold);color:#0b1e27;border-color:transparent}
+  footer{margin:26px 0 40px;color:var(--muted);font-size:13px;text-align:center}
+
+  @media(max-width:900px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- Top bar / branding -->
+<div class="bar">
+  <div class="wrap">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1 class="logo">FundGuard <span>Africa</span></h1>
+    </div>
+    <div class="title">MVP Build & Marketing Contract Checklist</div>
+    <div class="sub">Scope • Ownership • Milestones • Security • Support</div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="card">
+    <span class="badge">Purpose</span>
+    This checklist defines the baseline requirements for any build/marketing partner working on FundGuard Africa’s MVP and go-to-market.
+    It protects code ownership, sets clear milestones, and establishes security expectations.
+  </div>
+
+  <h2>1) Scope of Work</h2>
+  <div class="grid">
+    <div class="panel">
+      <h3>Product (MVP)</h3>
+      <ul>
+        <li>Web app (clarify: desktop/mobile responsive) — frontend + backend + database.</li>
+        <li>Fraud simulation: live alerts, recovery flow, evidence report generation.</li>
+        <li>Auth & roles (basic/premium/institutional).</li>
+        <li>Deployment to <b>www.fundguardafrica.com</b> and GitHub Pages (investor demo).</li>
+        <li>Technical & user documentation.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Marketing (if included)</h3>
+      <ul>
+        <li>Channels: Google/Meta/LinkedIn (specify).</li>
+        <li>Ad spend is <b>separate</b> from build fee (state budget & billing).</li>
+        <li>Deliverables: # of graphics, videos, captions, landing pages.</li>
+        <li>Run period, targeting (regions, industries), reports cadence.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>2) Ownership & Access</h2>
+  <ul>
+    <li>All source code, designs, content, and accounts belong to <b>FundGuard Africa Ltd</b>.</li>
+    <li>Code must be committed to <b>FundGuard’s GitHub repos</b> (not contractor’s private repos).</li>
+    <li>FundGuard retains admin access to hosting, analytics, domains, ad accounts.</li>
+  </ul>
+
+  <h2>3) Payments (Milestone-based)</h2>
+  <ul>
+    <li>30% — Kickoff (project plan agreed & repo set up).</li>
+    <li>40% — MVP deployed on FundGuard domain with agreed features working.</li>
+    <li>30% — Final handover (docs, code, access, bug-fix window active).</li>
+    <li>No full payment until all deliverables are confirmed.</li>
+  </ul>
+
+  <h2>4) Timeline & Delivery</h2>
+  <ul>
+    <li>MVP Build: <b>__ weeks</b></li>
+    <li>Deployment & polish: <b>__ days</b></li>
+    <li>Marketing run (if any): <b>__ weeks/months</b></li>
+    <li>Weekly demos; status reports every Friday.</li>
+  </ul>
+
+  <h2>5) Quality & Security Baseline</h2>
+  <ul>
+    <li>HTTPS enforced; secure auth; secrets not hard-coded.</li>
+    <li>Clean, documented code; handover includes setup instructions.</li>
+    <li>Data handling aligned to NDPR/GDPR posture (no sensitive PII stored unnecessarily).</li>
+    <li>Error monitoring + basic analytics enabled.</li>
+  </ul>
+
+  <h2>6) Post-Launch Support</h2>
+  <ul>
+    <li>Bug-fix window: <b>__ days</b> included after handover.</li>
+    <li>Optional paid support (SLA, hourly/day rate) — define in addendum.</li>
+  </ul>
+
+  <h2>7) Exit, Non-Lock-In & Refund</h2>
+  <ul>
+    <li>FundGuard can terminate for non-delivery; partial refund for undelivered milestones.</li>
+    <li>No vendor lock-in: full code + assets + credentials returned at termination.</li>
+  </ul>
+
+  <div class="card">
+    <h3 style="margin-top:0">Sign-off</h3>
+    <p><b>Company:</b> FundGuard Africa Ltd</p>
+    <p><b>Representative:</b> ____________________________</p>
+    <p><b>Development Partner:</b> ____________________________</p>
+    <p><b>Representative:</b> ____________________________</p>
+    <p><b>Date:</b> ____________________________</p>
+  </div>
+
+  <div class="card">
+    <span class="badge">Helpful Links</span>
+    <p class="muted">Send the cover letter first, then share this page when the partner is qualified.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="cta" href="/cover-letter.html">← Back to Cover Letter</a>
+      <a class="cta gold" href="mailto:fundguardafrica@gmail.com">Email: fundguardafrica@gmail.com</a>
+      <a class="cta" href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
+      <a class="cta" href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 FundGuard Africa — Fraud detection & fund recovery · NDPR/GDPR-ready posture
+</footer>
+
+</body>
+</html>
