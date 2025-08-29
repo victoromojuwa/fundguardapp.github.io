@@ -4,105 +4,91 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Investor Slide</title>
-<meta name="description" content="FundGuard Africa: Investor slide summarizing problem, solution, market, traction, raise, and team." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="A one-slide investor snapshot for FundGuard Africa: problem, solution, market, traction, raise, and team." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0b1e27;       /* deep slate */
-  --muted:#5b6a78;     /* secondary */
-  --gold:#d4af37;      /* brand gold */
+  --ink:#0b1e27;
+  --muted:#5b6a78;
+  --gold:#d4af37;
   --gold-2:#b9972b;
-  --blue:#0f2530;      /* header gradient start */
-  --blue-2:#0b1e27;    /* header gradient end */
-  --card:#f8fafc;      /* light card */
-  --line:#e5ebef;
+  --blue:#102431;
+  --blue-2:#0c1e29;
+  --line:#e6edf2;
+  --card:#f7f9fb;
   --bg:#ffffff;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+html,body{margin:0;padding:0;font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
 
-/* Slide canvas */
-.wrapper{max-width:1200px;margin:24px auto;padding:0 18px}
-.slide{
-  background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
-  box-shadow:0 12px 28px rgba(0,0,0,.08);
-}
+/* Canvas */
+.wrap{max-width:1200px;margin:26px auto;padding:0 18px}
+.slide{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.08)}
 
-/* Header */
-.header{
+/* Header band */
+.head{
   background:linear-gradient(180deg,var(--blue),var(--blue-2));
-  color:#eaf3f6;border-bottom:1px solid rgba(255,255,255,.15);
-  padding:18px 22px; display:flex; align-items:center; gap:16px; justify-content:space-between;
+  padding:18px 22px; color:#eaf3f6; display:flex; justify-content:space-between; align-items:center; gap:16px;
+  border-bottom:1px solid rgba(255,255,255,.14);
 }
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:26px; width:auto; display:block}
-.brand .title{display:flex;flex-direction:column}
-.brand b{color:#fff;font-size:18px;letter-spacing:.2px}
-.brand small{color:#cfe3ea;font-weight:700}
-.badge{
-  display:inline-block;color:#0b1e27;background:var(--gold);border-radius:999px;
-  padding:6px 10px;font-weight:900;letter-spacing:.2px;border:1px solid rgba(0,0,0,.08)
-}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{height:28px;width:auto;display:block}
+.brand .t1{font-weight:900;font-size:18px;letter-spacing:.2px;color:#fff}
+.brand .t2{font-weight:700;font-size:12px;color:#cfe3ea}
+.badge{display:inline-block;background:var(--gold);color:#0b1e27;font-weight:900;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.08)}
 
 /* Body grid */
 .body{padding:18px}
-.grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
-.card{
-  background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px;
-}
-.card h3{margin:0 0 8px; font-size:16px; font-weight:900}
-.card p{margin:6px 0; color:var(--ink)}
-ul.clean{margin:6px 0 0 16px; padding:0}
+.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h3{margin:0 0 8px;font-size:16px;font-weight:900}
+ul.clean{margin:6px 0 0 16px;padding:0}
 ul.clean li{margin:6px 0}
 
-/* Right column extras */
-.kv{display:grid;grid-template-columns:1fr 1fr; gap:10px}
-.kv .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
-.kv b{font-size:18px}
-
+/* Right rail blocks */
 .pill{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:800;font-size:12px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.kv .box{background:#fdfefe;border:1px solid var(--line);border-radius:10px;padding:12px}
+.kv .box b{font-size:18px}
 .hr{height:1px;background:var(--line);margin:10px 0}
 
-/* Footer */
-.footer{
-  border-top:1px solid var(--line); padding:12px 16px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:center;
-}
-.links a{color:var(--ink);font-weight:700;text-decoration:none;margin-right:12px}
-.links a:hover{text-decoration:underline}
-
-.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+/* CTAs */
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 .btn{
   display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:800;
-  border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;cursor:pointer
+  border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;cursor:pointer;transition:.15s
 }
 .btn:hover{box-shadow:0 8px 18px rgba(0,0,0,.08);transform:translateY(-1px)}
 .btn.gold{background:var(--gold);border-color:var(--gold);color:#0b1e27}
 .btn.ghost{background:transparent}
+
+/* Footer */
+.foot{border-top:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.links a{color:var(--ink);font-weight:700;text-decoration:none;margin-right:12px}
+.links a:hover{text-decoration:underline}
 .small{font-size:12px;color:var(--muted)}
 
 @media(max-width:980px){ .grid{grid-template-columns:1fr} }
-
 @media print{
-  .wrapper{margin:0;padding:0}
-  .slide{border:none;box-shadow:none;border-radius:0}
-  .no-print{display:none !important}
+  .wrap{margin:0;padding:0}
+  .slide{border:none;border-radius:0;box-shadow:none}
+  .no-print{display:none!important}
 }
 </style>
 </head>
 <body>
 
-<div class="wrapper">
+<div class="wrap">
   <div class="slide">
 
     <!-- HEADER -->
-    <div class="header">
+    <div class="head">
       <div class="brand">
-        <!-- If you have a logo at docs/assets/images/logo-dark.png it will show; else the text below remains -->
+        <!-- Show logo if present; fallback to text -->
         <img src="assets/images/logo-dark.png" alt="FundGuard" onerror="this.style.display='none'">
-        <div class="title">
-          <b>FundGuard Africa</b>
-          <small>Africa’s First Fraud Detection & Fund Recovery Platform</small>
+        <div>
+          <div class="t1">FundGuard Africa</div>
+          <div class="t2">AI-Powered Fraud Detection & Fund Recovery</div>
         </div>
       </div>
       <span class="badge">Investor Snapshot</span>
@@ -112,15 +98,15 @@ ul.clean li{margin:6px 0}
     <div class="body">
       <div class="grid">
 
-        <!-- LEFT -->
+        <!-- LEFT COLUMN -->
         <div class="stack">
           <div class="card">
             <h3>Problem</h3>
-            <p>Digital fraud drains billions from African users and institutions. Most tools only flag suspicious activity — very few help victims <strong>recover funds</strong> or produce <strong>admissible evidence</strong> for action.</p>
+            <p>Digital fraud drains billions across Africa. Most tools stop at flagging anomalies — victims lack a trusted path to <strong>recover funds</strong> or produce <strong>admissible evidence</strong> for banks, regulators, and courts.</p>
             <ul class="clean">
-              <li>Rising fraud across payments, mobile money, wallets, crypto</li>
-              <li>Fragmented reporting; slow, manual recovery processes</li>
-              <li>Trust gap limits financial inclusion and digital adoption</li>
+              <li>Fraud across payments, mobile money, wallets, crypto</li>
+              <li>Manual, fragmented recovery workflows</li>
+              <li>Trust gap limits digital adoption & inclusion</li>
             </ul>
           </div>
 
@@ -129,11 +115,11 @@ ul.clean li{margin:6px 0}
             <ul class="clean">
               <li><strong>Fraud Detection</strong> — live stream of alerts & anomalies</li>
               <li><strong>Fund Tracking</strong> — trace bank → wallet → exchange</li>
-              <li><strong>Recovery Workflow</strong> — freeze & KYC requests, tickets</li>
+              <li><strong>Recovery Workflow</strong> — freeze/hold, KYC requests</li>
               <li><strong>Evidence Reports</strong> — downloadable, time-stamped</li>
               <li><strong>APIs</strong> — for banks, fintechs, insurers</li>
             </ul>
-            <div class="cta-row" style="margin-top:8px">
+            <div class="cta-row">
               <a class="btn" href="mvp.html">▶️ View MVP Demo</a>
               <a class="btn" href="fundrecovery.html">📑 Generate Report</a>
             </div>
@@ -144,39 +130,39 @@ ul.clean li{margin:6px 0}
             <ul class="clean">
               <li>MVP launched — alerts, KPIs, ticker, recovery trend working</li>
               <li>Early conversations with banks/fintechs & compliance partners</li>
-              <li>Footprint: Nigeria, Kenya, South Africa, Ghana, Uganda, Tanzania</li>
+              <li>Presence: Nigeria, Kenya, South Africa, Ghana, Uganda, Tanzania</li>
             </ul>
           </div>
         </div>
 
-        <!-- RIGHT -->
+        <!-- RIGHT COLUMN -->
         <div class="stack">
           <div class="card">
             <h3>Market & Moat</h3>
-            <p><strong>Nigeria first</strong> (Africa’s largest economy) → Pan-Africa → Global.</p>
+            <p><strong>Nigeria-first</strong> (largest African economy) → Pan-Africa → Global.</p>
             <ul class="clean">
-              <li>RegTech & fraud tooling = $40B+ global market</li>
-              <li>CBN licensing = regulatory moat for bank partnerships</li>
-              <li>APIs + compliance dashboards for institutions</li>
+              <li>RegTech & fraud tooling: $40B+ global market</li>
+              <li>Regulatory moat: <strong>CBN licensing</strong> for bank partnerships</li>
+              <li>Enterprise dashboards & APIs for compliance teams</li>
             </ul>
             <div class="hr"></div>
             <span class="pill">Built in Africa • Scaling Globally</span>
           </div>
 
           <div class="card">
-            <h3>Use of Funds — ₦200M / $200K (SAFE)</h3>
+            <h3>Raise — ₦200M / $200K (SAFE)</h3>
             <div class="kv">
               <div class="box"><b>50%</b><div>CBN License (Regulatory)</div></div>
-              <div class="box"><b>25%</b><div>Product (MVP → production)</div></div>
-              <div class="box"><b>15%</b><div>Go-to-Market & Partnerships</div></div>
-              <div class="box"><b>10%</b><div>Ops & Compliance Hires</div></div>
+              <div class="box"><b>25%</b><div>MVP → Production</div></div>
+              <div class="box"><b>15%</b><div>Go-to-Market</div></div>
+              <div class="box"><b>10%</b><div>Ops & Compliance hires</div></div>
             </div>
             <div class="hr"></div>
             <ul class="clean" style="margin-top:0">
-              <li>SAFE • Cap: <strong>$2M</strong> • Discount: <strong>20%</strong></li>
+              <li>SAFE • Valuation Cap: <strong>$2M</strong> • Discount: <strong>20%</strong></li>
             </ul>
-            <div class="cta-row" style="margin-top:8px">
-              <a class="btn gold" href="pitch.html">📊 View Seed Deck</a>
+            <div class="cta-row">
+              <a class="btn gold" href="pitch.html">📊 Seed Pitch Deck</a>
               <a class="btn" href="onepager.html">📄 One Pager</a>
             </div>
           </div>
@@ -184,7 +170,7 @@ ul.clean li{margin:6px 0}
           <div class="card">
             <h3>Team</h3>
             <p><strong>Victor Kolawole Omojuwa</strong> — Founder & CEO. Public health professional, peace advocate, and tech entrepreneur leading the mission to protect Africa’s digital economy from fraud.</p>
-            <p class="small">Advisory network across regulation, banking, compliance, security. Hiring plan post-seed: CTO, Compliance Lead, Growth.</p>
+            <p class="small">Advisory network in regulation, banking, compliance, and security. Post-seed hires: CTO, Compliance Lead, Growth.</p>
           </div>
         </div>
 
@@ -192,7 +178,7 @@ ul.clean li{margin:6px 0}
     </div>
 
     <!-- FOOTER -->
-    <div class="footer">
+    <div class="foot">
       <div class="links">
         <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a>
         <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
