@@ -40,3 +40,52 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:I
 .foot-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
 .foot-links a{color:#cfe3ea;margin-left:12px;text-decoration:none}
 .foot-links a:hover{color:#fff}
+/* ===== Quick Actions (Floating Menu) ===== */
+.qa{
+  position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+  font-family: inherit;
+}
+
+.qa-toggle{
+  width: 54px; height: 54px; border-radius: 14px; border: none; cursor: pointer;
+  font-size: 22px; font-weight: 900; line-height: 1; color: #0b1e27;
+  background: #d4af37; /* gold */
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.qa-toggle:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(0,0,0,.22); }
+.qa[aria-expanded="true"] .qa-toggle{ background:#b9972b; }
+
+.qa-panel{
+  position: absolute; right: 0; bottom: 66px; width: 300px; max-height: 70vh; overflow:auto;
+  background: #ffffff; color:#0b1e27; border: 1px solid #e6edf2; border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.18);
+  padding: 12px 12px 6px 12px;
+  transform-origin: 90% 100%;
+  transform: scale(.98) translateY(6px);
+  opacity: 0; pointer-events: none; transition: .16s ease;
+}
+.qa[aria-expanded="true"] .qa-panel{
+  transform: scale(1) translateY(0);
+  opacity: 1; pointer-events: auto;
+}
+
+.qa-panel h4{
+  margin: 6px 6px 8px 6px; font-size: 14px; font-weight: 900; color:#0b1e27;
+}
+
+.qa-panel ul{ list-style: none; margin: 0; padding: 0 4px 6px 4px; }
+.qa-panel li{ margin: 0; padding: 0; }
+
+.qa-panel a{
+  display: block; text-decoration: none; color:#0b1e27; font-weight: 700; font-size: 14px;
+  padding: 10px 10px; border-radius: 10px; border: 1px solid transparent;
+}
+.qa-panel a:hover{
+  background: #f7f9fb; border-color: #e6edf2;
+}
+@media (max-width: 520px){
+  .qa-panel{ width: 92vw; right: 50%; transform: translateX(50%) scale(.98) translateY(6px); }
+  .qa[aria-expanded="true"] .qa-panel{ transform: translateX(50%) scale(1) translateY(0); }
+}
+
