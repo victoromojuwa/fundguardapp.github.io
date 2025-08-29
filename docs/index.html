@@ -323,6 +323,58 @@ a{text-decoration:none;color:inherit}
   setTimeout(()=>{ add(); setInterval(add,1800); },500);
 })();
 </script>
+  <!-- Quick Actions Floating Menu -->
+<div class="qa" id="qa" aria-expanded="false">
+  <button class="qa-toggle" id="qaToggle" aria-controls="qaPanel" aria-label="Open quick actions">
+    ☰
+  </button>
+
+  <nav class="qa-panel" id="qaPanel" aria-label="Quick actions">
+    <h4>Quick Actions</h4>
+    <ul>
+      <li><a href="onepager.html">📄 Investor One Pager</a></li>
+      <li><a href="pitch.html">📊 Seed Pitch Deck</a></li>
+      <li><a href="investor-slide.html">🖼️ Investor Slide</a></li>
+      <li><a href="mvp.html">🧪 MVP Demo (Live)</a></li>
+      <li><a href="demo.html">🚨 Investor Demo (Preview)</a></li>
+      <li><a href="fundrecovery.html">💸 Fund Recovery</a></li>
+      <li><a href="access.html">📝 Early Access</a></li>
+      <li><a href="api.html">🔌 API Docs</a></li>
+      <li><a href="privacy.html">🔐 Privacy</a></li>
+      <li><a href="terms.html">⚖️ Terms</a></li>
+      <li><a href="mailto:invest@fundguardafrica.com">✉️ invest@fundguardafrica.com</a></li>
+      <li><a href="mailto:support@fundguardafrica.com">✉️ support@fundguardafrica.com</a></li>
+      <li><a href="mailto:fundguardafrica@gmail.com">✉️ fundguardafrica@gmail.com</a></li>
+    </ul>
+  </nav>
+</div>
+
+<script>
+(function(){
+  const qa = document.getElementById('qa');
+  const btn = document.getElementById('qaToggle');
+  const panel = document.getElementById('qaPanel');
+
+  function toggle(open){
+    const isOpen = (open !== undefined) ? open : qa.getAttribute('aria-expanded') !== 'true';
+    qa.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.setAttribute('aria-label', isOpen ? 'Close quick actions' : 'Open quick actions');
+  }
+
+  btn.addEventListener('click', () => toggle());
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') toggle(false);
+  });
+
+  // Close if clicking outside
+  document.addEventListener('click', (e) => {
+    if(!qa.contains(e.target)) toggle(false);
+  });
+})();
+</script>
+
 
 </body>
 </html>
