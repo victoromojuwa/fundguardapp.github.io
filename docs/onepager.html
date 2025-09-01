@@ -4,272 +4,203 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — Investor One Pager</title>
-<meta name="description" content="FundGuard Africa: Africa’s first fraud detection & fund recovery platform. Built in Africa, scaling globally." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="FundGuard Africa is Africa’s first AI-powered fraud detection & fund recovery platform. MVP live, 6-country presence, scaling globally." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0b1e27;      /* deep slate */
-  --muted:#5b6a78;    /* secondary text */
-  --gold:#d4af37;     /* brand gold */
-  --gold-2:#b9972b;
-  --blue:#0f2530;     /* header gradient start */
-  --blue-2:#0b1e27;   /* header gradient end */
-  --bg:#ffffff;
-  --card:#f7f9fb;
-  --line:#e5ebef;
+  --ink:#0b1e27; --muted:#5b6a78; --line:#e6edf2; --bg:#ffffff;
+  --gold:#d4af37; --gold-2:#b9972b; --blue:#102431; --pane:#f7f9fb;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
+html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
 a{color:var(--ink);text-decoration:none}
-.container{max-width:1080px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 18px 32px}
 
-/* HERO */
-.hero{
-  background:linear-gradient(180deg,var(--blue),var(--blue-2));
-  color:#eaf3f6;border-bottom:1px solid rgba(255,255,255,.1);
-  padding:56px 0 40px 0;
+.header{
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;margin-top:12px;
+  box-shadow:0 14px 34px rgba(0,0,0,.06)
 }
-.hero .container{text-align:center}
-.badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.3px;margin-bottom:10px}
-.hero h1{margin:6px 0 8px;color:#fff;font-size:40px;font-weight:900;letter-spacing:.2px}
-.hero h2{margin:0 0 12px;color:#eaf3f6;font-size:22px;font-weight:800}
-.hero h2 span{color:var(--gold)}
-.lead{max-width:860px;margin:0 auto 18px;color:#cfe3ea}
-.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;font-weight:800;border:1px solid var(--line);background:#fff;color:var(--ink)}
-.btn:hover{box-shadow:0 8px 18px rgba(0,0,0,.08);transform:translateY(-1px)}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:#0b1e27}
-.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
-.btn.ghost:hover{background:rgba(255,255,255,.08)}
+.head-top{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#eaf3f6;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .name{font-size:20px;font-weight:900;color:#fff;letter-spacing:.2px}
+.brand .tag{font-weight:700;font-size:12px;color:#cfe3ea}
+.badge{display:inline-block;background:var(--gold);color:#0b1e27;font-weight:900;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
+.head-body{padding:16px 20px;background:#fff;border-top:1px solid rgba(255,255,255,.08)}
 
-/* SECTIONS */
-.section{padding:42px 0;border-top:1px solid var(--line)}
-.section h3{font-size:22px;font-weight:900;margin:0 0 12px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
-.card h4{margin:0 0 6px;font-size:16px;font-weight:800}
-.strip{background:var(--card)}
-.highlight{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
-ul.clean{padding-left:18px;margin:8px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.card h3{margin:0 0 8px;font-size:16px;font-weight:900}
+.card p{margin:6px 0}
+ul.clean{margin:6px 0 0 18px;padding:0}
 ul.clean li{margin:6px 0}
-.pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:800;font-size:12px}
 
-/* USE OF FUNDS */
-.funds{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
-.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.kv .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kv .box{background:#fdfefe;border:1px solid var(--line);border-radius:10px;padding:12px}
 .kv .box b{font-size:18px}
 
-/* FOOTER */
-.footer{background:#0b1e27;color:#cfe3ea;border-top:1px solid #102a36;padding:20px 0}
-.footer .links{display:flex;gap:12px;flex-wrap:wrap}
-.footer a{color:#cfe3ea}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:800;
+  border:1px solid var(--line);background:#fff;color:var(--ink);transition:.15s
+}
+.btn:hover{box-shadow:0 10px 20px rgba(0,0,0,.08);transform:translateY(-1px)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#0b1e27}
+.note{font-size:12px;color:var(--muted)}
 
-/* RESPONSIVE */
-@media(max-width:980px){
-  .grid-2{grid-template-columns:1fr}
-  .grid-3{grid-template-columns:1fr 1fr}
-  .funds{grid-template-columns:1fr}
+.section{margin-top:18px}
+.section h2{font-size:18px;margin:0 0 10px;font-weight:900}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:800;font-size:12px}
+
+.footer{
+  margin-top:18px;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap
 }
-@media(max-width:640px){
-  .hero h1{font-size:34px}
-}
+.footer a{font-weight:700}
+@media(max-width:980px){ .grid{grid-template-columns:1fr} }
+@media print{ .badge{display:none} .btn{display:none} .footer{border-top:none} .header{box-shadow:none} }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- HERO -->
-<header class="hero">
-  <div class="container">
-    <div class="badge">Africa’s First Fraud Detection & Fund Recovery Platform</div>
-    <h1>FundGuard Africa</h1>
-    <h2>Starting in <span>Nigeria</span>, Scaling Globally</h2>
-    <p class="lead">
-      AI-powered detection, transaction tracking, and recovery workflows — with compliance-ready evidence reports for banks, regulators, and law enforcement.
-    </p>
-    <div class="hero-cta">
-      <a class="btn gold" href="pitch.html">📊 Seed Pitch Deck</a>
-      <a class="btn" href="mvp.html">🧪 MVP Demo (Live)</a>
-      <a class="btn ghost" href="fundrecovery.html">💸 Fund Recovery</a>
+  <!-- Header -->
+  <div class="header">
+    <div class="head-top">
+      <div class="brand">
+        <div style="width:12px;height:12px;border-radius:3px;background:var(--gold)"></div>
+        <div>
+          <div class="name">FundGuard Africa</div>
+          <div class="tag">AI-Powered Fraud Detection & Fund Recovery</div>
+        </div>
+      </div>
+      <span class="badge">Investor One Pager</span>
+    </div>
+    <div class="head-body">
+      <p><strong>FundGuard Africa</strong> is Africa’s first platform that not only detects fraud — it <em>tracks and recovers</em> stolen funds across banks, wallets, and exchanges, with downloadable evidence reports for banks, regulators, and courts. MVP is live; presence in <strong>6 African countries</strong>; scaling globally.</p>
+      <div class="cta-row">
+        <a class="btn gold" href="pitch.html">📊 Seed Pitch Deck</a>
+        <a class="btn" href="mvp.html">🧪 MVP Demo (Live)</a>
+        <a class="btn" href="fundrecovery.html">💸 Generate Evidence Report</a>
+      </div>
     </div>
   </div>
-</header>
 
-<main>
-
-  <!-- PROBLEM & SOLUTION -->
-  <section class="section">
-    <div class="container grid-2">
-      <div class="card">
-        <h4>Problem</h4>
-        <p>Digital fraud drains billions from African users and institutions each year. Most tools only flag suspicious activity — very few help victims <strong>recover funds</strong> or produce <strong>admissible evidence</strong> for action.</p>
-        <ul class="clean">
-          <li>Rising fraud across payments, mobile money, wallets, and crypto</li>
-          <li>Fragmented reporting; manual, slow recovery processes</li>
-          <li>Low trust limits digital participation & financial inclusion</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>Solution</h4>
-        <p><strong>FundGuard</strong> provides real-time fraud alerts, fund-flow tracking (bank → wallet → exchange), and a guided recovery workflow that produces a <strong>time-stamped Evidence Report</strong> for compliance and legal escalation.</p>
-        <ul class="clean">
-          <li>Live alerts, KPIs, global ticker, recovery trend (MVP demo)</li>
-          <li>Case management & evidence vault with RLS security</li>
-          <li>Downloadable reports (PDF/DOC) for regulators & courts</li>
-        </ul>
-      </div>
+  <!-- Two-column value -->
+  <div class="grid">
+    <div class="card">
+      <h3>Problem</h3>
+      <p>Digital fraud drains billions across Africa. Most tools stop at flagging anomalies — victims lack a trusted path to <strong>recover funds</strong> or produce <strong>admissible evidence</strong>.</p>
+      <ul class="clean">
+        <li>Fraud across payments, mobile money, wallets, crypto</li>
+        <li>Manual, fragmented recovery workflows</li>
+        <li>Trust & compliance gaps slow digital adoption</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- PRODUCT SNAPSHOT -->
-  <section class="section strip">
-    <div class="container">
-      <h3>Product Snapshot</h3>
-      <div class="grid-3">
-        <div class="card"><h4>Fraud Detection</h4><p>Simulated live stream, anomaly flags, and recovery status: ALERT / SUSPECT / RECOVERED.</p></div>
-        <div class="card"><h4>Fund Tracking</h4><p>Trace flows across banks, wallets, and exchanges with geo + timestamps.</p></div>
-        <div class="card"><h4>Recovery & Reports</h4><p>Freeze + KYC requests; auto-generated evidence reports for compliance.</p></div>
+    <div class="card">
+      <h3>Solution (MVP Live)</h3>
+      <ul class="clean">
+        <li><strong>Fraud Detection</strong> — live alerts & anomaly scoring</li>
+        <li><strong>Fund Tracking</strong> — trace bank → wallet → exchange</li>
+        <li><strong>Recovery Workflow</strong> — freeze/hold, KYC requests</li>
+        <li><strong>Evidence Reports</strong> — downloadable, time-stamped</li>
+        <li><strong>APIs</strong> — for banks, fintechs, and insurers</li>
+      </ul>
+      <div class="pills" style="margin-top:8px">
+        <span class="pill">Built in Africa</span>
+        <span class="pill">Scaling Globally</span>
+        <span class="pill">NDPR/GDPR-ready posture</span>
       </div>
-      <div style="margin-top:14px">
-        <a class="btn" href="mvp.html">▶️ View MVP Demo</a>
-        <a class="btn" href="fundrecovery.html">📑 Generate Evidence Report</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- NIGERIA OPPORTUNITY -->
-  <section id="nigeria" class="section">
-    <div class="container">
-      <h3>🇳🇬 Why Nigeria First?</h3>
-      <div class="highlight">
-        <p>Nigeria is Africa’s <strong>largest economy</strong> with the continent’s most active fintech rails — the right launchpad for FundGuard’s scale.</p>
-        <div class="grid-2" style="margin-top:10px">
-          <div>
-            <ul class="clean">
-              <li><strong>Fintech Hub:</strong> 200M+ mobile connections; strong digital payments growth.</li>
-              <li><strong>Fraud Spike:</strong> Incidents up sharply; recovery tooling is missing.</li>
-              <li><strong>Compliance:</strong> CBN, NDPR/GDPR, AML/EFCC-aligned posture.</li>
-            </ul>
-          </div>
-          <div>
-            <ul class="clean">
-              <li><strong>Expansion Footprint:</strong> Nigeria, Kenya, South Africa, Ghana, Uganda, Tanzania.</li>
-              <li><strong>Global Roadmap:</strong> MENA → APAC → Europe → Americas.</li>
-              <li><span class="pill">Launchpad for Pan-Africa Scale</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- USE OF FUNDS (CBN MOAT) -->
-  <section class="section strip">
-    <div class="container">
-      <h3>Use of Funds — $200K (₦200M) Seed Round</h3>
-      <div class="funds">
-        <div class="card">
-          <h4>Regulatory Moat: CBN Licensing (50%)</h4>
-          <p><strong>₦100M / $100K</strong> allocated to securing a <strong>CBN license</strong> — the foundation for bank partnerships, regulatory trust, and long-term defensibility.</p>
-          <div class="kv">
-            <div class="box"><div><b>25%</b></div><div>Product (MVP → production)</div></div>
-            <div class="box"><div><b>15%</b></div><div>Go-to-Market & Partnerships</div></div>
-            <div class="box"><div><b>10%</b></div><div>Ops & Compliance hires</div></div>
-            <div class="box"><div><b>50%</b></div><div>CBN License (Regulatory)</div></div>
-          </div>
-        </div>
-        <div class="card">
-          <h4>Raise Terms (SAFE)</h4>
-          <ul class="clean">
-            <li>Amount: <strong>$200K / ₦200M</strong></li>
-            <li>Instrument: <strong>SAFE</strong></li>
-            <li>Valuation Cap: <strong>$2M</strong></li>
-            <li>Discount: <strong>20%</strong></li>
-          </ul>
-          <div style="margin-top:8px">
-            <a class="btn gold" href="pitch.html">View Seed Deck</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRACTION & ROADMAP -->
-  <section class="section">
-    <div class="container grid-2">
-      <div class="card">
-        <h4>Traction (MVP)</h4>
-        <ul class="clean">
-          <li>MVP live: alerts, KPIs, ticker, recovery trend, evidence report</li>
-          <li>Early conversations: banks/fintechs, insurers, compliance partners</li>
-          <li>Early access signups growing</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>Roadmap</h4>
-        <ul class="clean">
-          <li>Phase 1: Nigeria pilots with bank/fintech partners</li>
-          <li>Phase 2: Pan-Africa expansion (6+ markets)</li>
-          <li>Phase 3: Global integrations (MENA → APAC → EU/US)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM & COMPLIANCE -->
-  <section class="section strip">
-    <div class="container grid-2">
-      <div class="card">
-        <h4>Founder</h4>
-        <p><strong>Victor Kolawole Omojuwa</strong> — Founder & CEO. Public health professional, peace advocate, and tech entrepreneur leading the mission to protect Africa’s digital economy from fraud.</p>
-        <p>Advisory network across regulation, banking, compliance, and security.</p>
-      </div>
-      <div class="card">
-        <h4>Compliance Posture</h4>
-        <ul class="clean">
-          <li>NDPR/GDPR-ready privacy & data handling</li>
-          <li>CBN/AML/EFCC alignment for reporting & cooperation</li>
-          <li>Row Level Security (RLS) and least-privilege access</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section">
-    <div class="container">
-      <h3>Contact & Next Steps</h3>
-      <div class="card">
-        <p><strong>Investors & Partners</strong></p>
-        <p>
-          <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a> &nbsp;•&nbsp;
-          <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a> &nbsp;•&nbsp;
-          <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a>
-        </p>
-        <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn gold" href="mvp.html">Request Live Demo</a>
-          <a class="btn" href="fundrecovery.html">Try Fund Recovery</a>
-          <a class="btn" href="index.html">Back to Home</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-    <div>© 2025 FundGuard Africa — Fraud detection & fund recovery</div>
-    <div class="links">
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="mvp.html">MVP</a>
-      <a href="fundrecovery.html">Fund Recovery</a>
     </div>
   </div>
-</footer>
 
+  <!-- Revenue + ROI -->
+  <div class="grid">
+    <div class="card">
+      <h3>Revenue Model</h3>
+      <ul class="clean">
+        <li><strong>B2B SaaS</strong> — tiered subscriptions for banks/fintechs</li>
+        <li><strong>Recovery Fees</strong> — % on successful recoveries</li>
+        <li><strong>API Monetization</strong> — pay-per-call for alerts & KYC</li>
+        <li><strong>Gov/Reg Licensing</strong> — white-label compliance tools</li>
+        <li><strong>Enterprise</strong> — merchant/e-commerce fraud monitoring</li>
+        <li><strong>Freemium → Premium</strong> — ID protection & recovery help</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ROI Potential</h3>
+      <ul class="clean">
+        <li><strong>Market</strong>: Fraud losses in Africa ≈ $4B+ / year</li>
+        <li><strong>1% capture</strong> ⇒ $40M+ annual opportunity</li>
+        <li><strong>For customers</strong>: lower losses, faster recovery, compliance</li>
+        <li><strong>For investors</strong>: SaaS margins + scalable API revenue</li>
+      </ul>
+      <p class="note">Nigeria-first (largest African economy) → Pan-Africa → Global.</p>
+    </div>
+  </div>
+
+  <!-- Features + Traction -->
+  <div class="grid">
+    <div class="card">
+      <h3>Core Features</h3>
+      <ul class="clean">
+        <li>Cases & Recovery workflows</li>
+        <li>Evidence Report generator (PDF/DOC)</li>
+        <li>Transaction monitoring & risk analytics</li>
+        <li>Identity/KYC, blacklist & social graph</li>
+        <li>APIs for banks/fintechs/insurers</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Traction & Expansion</h3>
+      <ul class="clean">
+        <li>MVP live: alerts, KPIs, ticker, recovery trend working</li>
+        <li>Early conversations with banks/fintechs & compliance partners</li>
+        <li><strong>Presence</strong>: Nigeria, Kenya, South Africa, Ghana, Uganda, Tanzania</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Raise + Team -->
+  <div class="grid">
+    <div class="card">
+      <h3>Seed Round</h3>
+      <div class="kv">
+        <div class="box"><b>₦200M</b><div>~$200K SAFE</div></div>
+        <div class="box"><b>$2M</b><div>Valuation Cap</div></div>
+        <div class="box"><b>20%</b><div>Discount</div></div>
+        <div class="box"><b>12–18 mo</b><div>Runway & Targets</div></div>
+      </div>
+      <ul class="clean" style="margin-top:10px">
+        <li>Use of funds: <strong>CBN licensing</strong>, MVP→production, GTM, ops & compliance hires</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn gold" href="pitch.html">📊 View Seed Pitch Deck</a>
+        <a class="btn" href="investor-slide.html">🖼️ Investor Slide</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Team</h3>
+      <p><strong>Victor Kolawole Omojuwa</strong> — Founder & CEO. Public Health Professional, Peace Advocate, and tech entrepreneur leading the mission to protect Africa’s digital economy from fraud.</p>
+      <p class="note">Advisors across regulation, banking, compliance, and security. Post-seed hires: CTO, Compliance Lead, Growth.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>
+      <a href="mailto:invest@fundguardafrica.com">invest@fundguardafrica.com</a> •
+      <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a> •
+      <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a>
+    </div>
+    <div class="cta-row">
+      <a class="btn" href="index.html">← Home</a>
+      <a class="btn" href="mvp.html">▶️ MVP Demo</a>
+      <a class="btn" href="fundrecovery.html">📑 Evidence Report</a>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
