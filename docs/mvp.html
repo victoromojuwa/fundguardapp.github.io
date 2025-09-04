@@ -4,168 +4,136 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FundGuard Africa — MVP Demo (Investor Sandbox)</title>
-<meta name="description" content="Live investor demo for FundGuard Africa: simulated fraud alerts, transaction monitoring, KPIs, and recovery workflow preview." />
+<meta name="description" content="Live investor demo for FundGuard Africa. Real-time fraud alerts (simulated), transaction monitoring, recovery workflow, and evidence report generation." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- GA4 -->
+<!-- GA4 (keep or replace with your ID) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0PGHCN57"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config','G-GD0PGHCN57');
 </script>
 
 <style>
 :root{
-  --ink:#0b1e27; --muted:#5b6a78; --gold:#d4af37; --gold-2:#b9972b;
-  --bg:#ffffff; --pane:#ffffff; --line:#e7ecf0;
+  --ink:#0b1e27; --ink-2:#132a36; --muted:#5b6a78;
+  --gold:#d4af37; --gold-2:#b9972b;
+  --bg:#ffffff; --pane:#f6f8fa; --line:#e7edf2;
   --ok:#17a673; --warn:#ff9f1a; --bad:#e03e3e;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.container{max-width:1140px;margin:0 auto;padding:0 20px}
 
-/* Topbar */
-.topbar{background:#081a22;color:#dbe7ee;border-bottom:1px solid rgba(255,255,255,.08)}
-.topbar-inner{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+/* Header */
+header{background:linear-gradient(180deg,#0f2530 0%,#0b1e27 60%,#0b1e27 100%);color:#eaf3f6;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
 .brand{display:flex;align-items:center;gap:10px}
-.brand .dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
-.brand b{font-weight:900;color:#fff}
+.dot{width:12px;height:12px;border-radius:3px;background:var(--gold)}
+.brand b{font-weight:900;color:#fff;letter-spacing:.2px}
 .brand b span{color:var(--gold)}
-.nav a{color:#dbe7ee;margin-left:16px;font-weight:800;opacity:.92}
-.nav a:hover{opacity:1}
-
-/* Hero */
-.hero{background:linear-gradient(180deg,#0f2530,#0c1f29);color:#e9f1f5;border-bottom:1px solid rgba(255,255,255,.06);padding:40px 0 28px}
-.hero h1{margin:0 0 8px;color:#fff;font-weight:900;font-size:34px}
-.hero .lead{margin:0;color:#cfe3ea}
-
-/* KPI cards */
-.section{padding:18px 0}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:980px){.kpis{grid-template-columns:1fr 1fr}}
-.card{background:var(--pane);border:1px solid var(--line);border-radius:16px;padding:14px}
-.card h4{margin:0 6px 6px 0;font-size:12px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
-.card .num{font-weight:900;font-size:26px}
-.subtle{color:var(--muted);font-weight:600;font-size:12px;margin-top:4px}
+nav a{color:#d7e6ed;margin-left:18px;font-weight:700;opacity:.95}
+nav a:hover{opacity:1}
+.hero{padding:32px 0 20px}
+.hero h1{margin:0 0 6px;color:#fff;font-size:34px;font-weight:900}
+.hero p{margin:0;color:#cfe3ea}
 
 /* Layout */
-.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
-@media(max-width:980px){.grid{grid-template-columns:1fr}}
-
-/* Panels */
-.panel{background:var(--pane);border:1px solid var(--line);border-radius:16px;padding:14px}
-.panel h3{margin:0 0 10px}
-
-/* Controls */
+.section{padding:26px 0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
 .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:900;
-  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s
-}
-.btn:hover{box-shadow:0 6px 14px rgba(0,0,0,.08);transform:translateY(-1px)}
-.btn.primary{background:var(--gold);border-color:transparent}
-.btn.primary:hover{background:var(--gold-2)}
-
-/* Table */
-.table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
-.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-.table th{background:#f9fbfd;font-size:12px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
-.table tr:last-child td{border-bottom:none}
-.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:900;font-size:12px;border:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-weight:800;border:1px solid var(--line);background:#fff;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 16px rgba(0,0,0,.06)}
+.btn-primary{background:var(--gold);border-color:transparent;color:#0b1e27}
+.btn-primary:hover{background:var(--gold-2)}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--line);background:#fff}
 .ok{color:#0d5e46;background:rgba(23,166,115,.10);border-color:rgba(23,166,115,.35)}
-.bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
 .warn{color:#7a4a00;background:rgba(255,159,26,.10);border-color:rgba(255,159,26,.35)}
+.bad{color:#7d1f1f;background:rgba(224,62,62,.10);border-color:rgba(224,62,62,.35)}
 
-/* Chart */
-canvas{width:100%;height:190px;background:#fff;border:1px solid var(--line);border-radius:12px}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:10px 0 14px}
+.card{background:var(--pane);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card h4{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.card .num{font-weight:900;font-size:24px}
+.subtle{color:#5b6a78;font-weight:600;font-size:12px;margin-top:4px}
 
-/* Ticker */
-.ticker{border:1px solid var(--line);background:#fff;border-radius:12px;overflow:hidden}
-.ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:t 24s linear infinite;padding:10px;font-weight:900}
-@keyframes t{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+/* Table + chart + ticker */
+.table{border-collapse:collapse;width:100%;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.table th,.table td{padding:9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.table th{background:#fdfdfd;font-size:11px;color:#5f6e7b;text-transform:uppercase;letter-spacing:.3px}
+.table tr:last-child td{border-bottom:none}
+canvas{width:100%;height:170px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.ticker{border:1px solid var(--line);background:#fff;border-radius:10px;overflow:hidden}
+.ticker-inner{display:flex;gap:28px;white-space:nowrap;animation:t 42s linear infinite;padding:10px}
+@keyframes t { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* Footer */
-.footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2;margin-top:22px}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 0;flex-wrap:wrap;gap:10px}
-.footer a{color:#cfe3ea}
+footer{border-top:1px solid var(--line);background:#0b1e27;color:#e6edf2}
+.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;padding:18px 0}
+.foot a{color:#cfe3ea}
+
+@media(max-width:980px){
+  .grid{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
-
-<!-- Topbar -->
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <span class="dot"></span>
-      <b>FundGuard <span>Africa</span></b>
-    </div>
-    <nav class="nav">
+<header>
+  <div class="container topbar">
+    <div class="brand"><span class="dot"></span><b>FundGuard <span>Africa</span></b></div>
+    <nav>
       <a href="index.html">Home</a>
-      <a href="onepager.html">One Pager</a>
-      <a href="pitch.html">Pitch</a>
-      <a href="fundrecovery.html">Recovery</a>
+      <a href="onepager.html">One-Pager</a>
+      <a href="pitch.html">Seed Pitch</a>
     </nav>
   </div>
-</div>
-
-<!-- Hero -->
-<header class="hero">
-  <div class="wrap">
+  <div class="container hero">
     <h1>Investor MVP Demo</h1>
-    <p class="lead">Real-time fraud alerts (simulated), transaction monitoring, KPI tracking, and recovery workflow preview.</p>
+    <p>Real-time fraud alerts (simulated), transaction monitoring, recovery workflow, and evidence report generation.</p>
   </div>
 </header>
 
-<!-- KPIs -->
-<section class="section">
-  <div class="wrap">
-    <div class="kpis">
-      <div class="card"><h4>Live Alerts</h4><div class="num" id="k_alerts">0</div></div>
-      <div class="card"><h4>Recovered (USD)</h4><div class="num" id="k_recovered">$0</div><div class="subtle" id="k_reports">Evidence reports: 0</div></div>
-      <div class="card"><h4>High-Risk Cases</h4><div class="num" id="k_high">0 <span class="tag bad">HIGH</span></div></div>
-      <div class="card"><h4>Avg. Response</h4><div class="num" id="k_sla">—</div></div>
-    </div>
-  </div>
-</section>
+<main class="container section">
+  <!-- KPI cards -->
+  <section class="kpis">
+    <div class="card"><h4>Live Alerts</h4><div class="num" id="k_alerts">0</div></div>
+    <div class="card"><h4>Recovered (USD)</h4><div class="num" id="k_recovered">$0</div><div class="subtle" id="k_reports">Evidence reports today: 0</div></div>
+    <div class="card"><h4>High-Risk Cases</h4><div class="num" id="k_high">0 <span class="tag bad">HIGH</span></div></div>
+    <div class="card"><h4>Avg. Response</h4><div class="num" id="k_sla">—</div></div>
+  </section>
 
-<!-- Main grid -->
-<section class="section">
-  <div class="wrap grid">
-
-    <!-- LEFT: Stream -->
-    <div class="panel" id="stream">
-      <h3>Live Fraud Stream</h3>
+  <div class="grid">
+    <!-- Left: Live stream -->
+    <section class="panel">
       <div class="controls">
-        <button class="btn primary" id="start">🚨 Start Simulation</button>
+        <button class="btn btn-primary" id="start">🚨 Start Simulation</button>
         <button class="btn" id="stop">⏸ Pause</button>
-        <a class="btn" href="fundrecovery.html#report" onclick="gtag('event','cta_click',{event_category:'MVP',event_label:'Evidence Link'})">📑 Evidence Report</a>
+        <a class="btn" href="fundrecovery.html#report">📑 Evidence Report</a>
       </div>
-
       <table class="table" aria-label="Fraud events">
-        <thead><tr><th>Time</th><th>Txn ID</th><th>Location</th><th>Amount</th><th>Status</th></tr></thead>
+        <thead><tr><th>Time</th><th>Txn</th><th>Location</th><th>Amount</th><th>Status</th></tr></thead>
         <tbody id="rows"></tbody>
       </table>
-    </div>
+      <div id="lastAction" style="margin-top:10px;color:#5b6a78;font-weight:600;font-size:13px">Last action — <em>waiting for events…</em></div>
+    </section>
 
-    <!-- RIGHT: Chart + ticker -->
+    <!-- Right: Chart + ticker -->
     <aside class="panel">
-      <h3>Risk & Recovery Trend</h3>
       <canvas id="chart" aria-label="Recovery trend"></canvas>
       <div style="height:10px"></div>
-      <h3>Global Ticker</h3>
       <div class="ticker"><div class="ticker-inner" id="ticker"></div></div>
     </aside>
-
   </div>
-</section>
+</main>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <span>© 2025 FundGuard Africa — www.fundguardafrica.com</span>
+<footer>
+  <div class="container foot">
+    <div>© 2025 FundGuard Technologies Ltd — Fraud detection & fund recovery</div>
     <div>
       <a href="mailto:fundguardafrica@gmail.com">fundguardafrica@gmail.com</a> •
       <a href="mailto:support@fundguardafrica.com">support@fundguardafrica.com</a> •
@@ -175,155 +143,74 @@ canvas{width:100%;height:190px;background:#fff;border:1px solid var(--line);bord
 </footer>
 
 <script>
-/* ---------- Constants & Helpers ---------- */
-const LOCS = [
-  "Lagos, Nigeria 🇳🇬","Nairobi, Kenya 🇰🇪","Accra, Ghana 🇬🇭",
-  "Cape Town, South Africa 🇿🇦","Kampala, Uganda 🇺🇬","Dar es Salaam, Tanzania 🇹🇿"
-];
-const ACTIONS = [
-  "Freeze request sent to Exchange Z",
-  "Wallet Y flagged for unusual routing",
-  "Cash-out attempt blocked",
-  "Recovery action queued",
-  "KYC verification in progress",
-  "Compliance ticket opened"
-];
-const STATUS = [
-  {k:"ALERT", cls:"bad"}, {k:"SUSPECT", cls:"warn"}, {k:"RECOVERED", cls:"ok"}
-];
+/* Data + helpers */
+const LOCS=["Lagos 🇳🇬","Nairobi 🇰🇪","Accra 🇬🇭","Cape Town 🇿🇦","Kampala 🇺🇬","Dar es Salaam 🇹🇿"];
+const STATUS=[{k:"ALERT",cls:"bad"},{k:"SUSPECT",cls:"warn"},{k:"RECOVERED",cls:"ok"}];
+const ACTIONS=["Freeze request sent","Wallet flagged","Cash-out blocked","Recovery queued","KYC in progress","Compliance ticket opened"];
+const $=s=>document.querySelector(s), rows=$("#rows"), ticker=$("#ticker");
+let running=false,timer=null,points=[],recovered=0,alerts=0,high=0,reports=0;
 
-let running=false, timer=null, alerts=0, recovered=0, high=0, reports=0;
-let points=[];
-const $ = s => document.querySelector(s);
-const rows = $('#rows');
-const kAlerts = $('#k_alerts'), kRec = $('#k_recovered'), kHigh = $('#k_high'), kSLA = $('#k_sla'), kReports = $('#k_reports');
-const ticker = $('#ticker');
+const kA=$("#k_alerts"), kR=$("#k_recovered"), kH=$("#k_high"), kS=$("#k_sla"), kRep=$("#k_reports");
 
 function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
-function now(){ return new Date().toLocaleTimeString() }
-function id(){ return "TXN-"+rand(10000,99999) }
+function now(){return new Date().toLocaleTimeString()}
+function id(){return "TXN-"+Math.random().toString(36).slice(2,7).toUpperCase()}
 
-/* ---------- Row add ---------- */
 function addRow(){
-  const loc = LOCS[rand(0,LOCS.length-1)];
-  const amt = rand(1200,450000);
-  const st  = STATUS[rand(0,STATUS.length-1)];
+  const loc=LOCS[rand(0,LOCS.length-1)], amt=rand(1200,450000), st=STATUS[rand(0,STATUS.length-1)];
+  const tr=document.createElement("tr");
+  const style = st.k==="ALERT"?'class="tag bad"':(st.k==="SUSPECT"?'class="tag warn"':'class="tag ok"');
+  tr.innerHTML=`<td>${now()}</td><td>${id()}</td><td>${loc}</td><td><b>$${amt.toLocaleString()}</b></td><td><span ${style}>${st.k}</span></td>`;
+  rows.prepend(tr); while(rows.children.length>8) rows.removeChild(rows.lastChild);
 
-  const tr  = document.createElement('tr');
-  const statusStyle =
-    st.k==='ALERT'   ? 'tag bad' :
-    st.k==='SUSPECT' ? 'tag warn' : 'tag ok';
+  alerts++; if(st.k==="RECOVERED"){ recovered+=amt; reports++; }
+  if(st.k==="ALERT" && amt>150000) high++;
+  kA.textContent=alerts.toLocaleString();
+  kR.textContent="$"+recovered.toLocaleString();
+  kH.innerHTML=high.toLocaleString()+' <span class="tag bad">HIGH</span>';
+  kS.textContent=rand(2,7)+" min";
+  kRep.textContent="Evidence reports today: "+reports.toLocaleString();
 
-  tr.innerHTML = `
-    <td>${now()}</td>
-    <td>${id()}</td>
-    <td>${loc}</td>
-    <td><b>$${amt.toLocaleString()}</b></td>
-    <td><span class="${statusStyle}">${st.k}</span></td>`;
+  document.getElementById("lastAction").innerHTML = `Last action — <strong>${loc}</strong>: ${ACTIONS[rand(0,ACTIONS.length-1)]} • Amount: <strong>$${amt.toLocaleString()}</strong> • Status: <strong>${st.k}</strong>`;
 
-  rows.prepend(tr);
-  while (rows.children.length > 8) rows.removeChild(rows.lastChild);
-
-  alerts++;
-  if(st.k==="RECOVERED"){ recovered += amt; reports++; }
-  if(st.k==="ALERT" && amt>150000){ high++; }
-  kAlerts.textContent = alerts.toLocaleString();
-  kRec.textContent = "$"+recovered.toLocaleString();
-  kHigh.innerHTML   = high.toLocaleString()+' <span class="tag bad">HIGH</span>';
-  kSLA.textContent  = rand(2,7)+" min";
-  kReports.textContent = "Evidence reports: " + reports.toLocaleString();
-
-  // update ticker
-  const chip = document.createElement('span');
-  chip.textContent = `${loc} • $${amt.toLocaleString()} ${st.k}`;
-  chip.style.marginRight='28px'; chip.style.fontWeight='900';
-  ticker.appendChild(chip);
-  if(ticker.childNodes.length>30) ticker.removeChild(ticker.firstChild);
-
-  // chart point
-  points.push({x:Date.now(), y:recovered});
-  if(points.length>60) points.shift();
+  points.push({x:Date.now(),y:recovered}); if(points.length>80) points.shift();
   drawChart();
+
+  const msg=`${loc}: ${st.k} • $${amt.toLocaleString()} • ${ACTIONS[rand(0,ACTIONS.length-1)]}`;
+  const span=document.createElement("span"); span.textContent=msg; ticker.appendChild(span);
+  if(ticker.children.length>20) ticker.removeChild(ticker.firstChild);
 }
 
-/* ---------- Controls ---------- */
-function start(){
-  if(running) return;
-  running=true;
-  gtag('event','demo_start',{event_category:'Demo',event_label:'MVP Live'});
-  timer=setInterval(addRow, 1200);
-  addRow();
+function start(){ if(running) return; running=true; timer=setInterval(addRow,1500); addRow(); }
+function stop(){ running=false; if(timer) clearInterval(timer); }
+document.getElementById("start").addEventListener("click",start);
+document.getElementById("stop").addEventListener("click",stop);
+
+/* Hi-DPI chart */
+const canvas=document.getElementById("chart"); const ctx=canvas.getContext("2d",{alpha:false});
+let DPR=1;
+function resizeChart(){
+  const r=canvas.getBoundingClientRect(); DPR=Math.max(1,Math.floor(window.devicePixelRatio||1));
+  const W=Math.max(320,Math.floor(r.width)), H=170;
+  canvas.width=W*DPR; canvas.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); drawChart();
 }
-function stop(){
-  running=false;
-  if(timer) clearInterval(timer);
+function drawChart(){
+  const W=canvas.width/DPR, H=canvas.height/DPR; ctx.clearRect(0,0,W,H);
+  ctx.fillStyle="#fff"; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle="#d7dee4"; ctx.lineWidth=1; ctx.beginPath();
+  for(let i=1;i<=3;i++){ const y=Math.round(((H-24)*i/4)+8)+.5; ctx.moveTo(28,y); ctx.lineTo(W-10,y); } ctx.stroke();
+  ctx.strokeStyle="#94a7b2"; ctx.beginPath(); ctx.moveTo(28.5,8.5); ctx.lineTo(28.5,H-14.5); ctx.lineTo(W-10.5,H-14.5); ctx.stroke();
+  if(points.length<2) return;
+  const ys=points.map(p=>p.y); const min=Math.min(...ys), max=Math.max(...ys); const span=Math.max(1,max-min);
+  const xs=points.map((_,i)=>28+(i/(points.length-1))*(W-40)); const yOf=v=>(H-14)-((v-min)/span)*(H-30);
+  ctx.lineWidth=2; ctx.strokeStyle="#0b1e27"; ctx.beginPath(); ctx.moveTo(xs[0],yOf(points[0].y));
+  for(let i=1;i<points.length;i++) ctx.lineTo(xs[i],yOf(points[i].y)); ctx.stroke();
+  const grad=ctx.createLinearGradient(0,0,0,H); grad.addColorStop(0,"rgba(23,166,115,.28)"); grad.addColorStop(1,"rgba(23,166,115,.04)");
+  ctx.fillStyle=grad; ctx.beginPath(); ctx.moveTo(xs[0],yOf(points[0].y));
+  for(let i=1;i<points.length;i++) ctx.lineTo(xs[i],yOf(points[i].y));
+  ctx.lineTo(xs[xs.length-1],H-14); ctx.lineTo(xs[0],H-14); ctx.closePath(); ctx.fill();
 }
-document.getElementById('start').addEventListener('click', start);
-document.getElementById('stop').addEventListener('click', stop);
-
-/* ---------- Hi-DPI chart (vanilla canvas) ---------- */
-const canvas = document.getElementById('chart');
-const ctx = canvas.getContext('2d', { alpha: false });
-let DPR = 1;
-
-function resizeChart() {
-  const rect = canvas.getBoundingClientRect();
-  DPR = Math.max(1, Math.floor(window.devicePixelRatio || 1));
-  const cssW = Math.max(320, Math.floor(rect.width));
-  const cssH = Math.max(130, Math.floor(rect.height || 190));
-  canvas.width  = cssW * DPR;
-  canvas.height = cssH * DPR;
-  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  drawChart();
-}
-
-function drawChart() {
-  const W = canvas.width / DPR;
-  const H = canvas.height / DPR;
-  ctx.clearRect(0, 0, W, H);
-
-  // background
-  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
-
-  // grid
-  ctx.strokeStyle = '#d7dee4'; ctx.lineWidth = 1; ctx.beginPath();
-  for (let i=1;i<=4;i++){ const y=Math.round(((H-30)*i/5)+10)+.5; ctx.moveTo(30, y); ctx.lineTo(W-10, y); }
-  ctx.stroke();
-
-  // axes
-  ctx.strokeStyle = '#94a7b2'; ctx.beginPath();
-  ctx.moveTo(30.5, 10.5); ctx.lineTo(30.5, H-20.5); ctx.lineTo(W-10.5, H-20.5); ctx.stroke();
-
-  if (points.length < 2) return;
-
-  // scale
-  const ys = points.map(p=>p.y);
-  const min = Math.min(...ys), max = Math.max(...ys);
-  const span = Math.max(1, max - min);
-  const xs = points.map((_, i) => 30 + (i / (points.length - 1)) * (W - 50));
-  const yOf = v => (H - 20) - ((v - min) / span) * (H - 40);
-
-  // line
-  ctx.lineWidth = 2; ctx.strokeStyle = '#0b1e27'; ctx.beginPath();
-  ctx.moveTo(xs[0], yOf(points[0].y));
-  for (let i=1;i<points.length;i++) ctx.lineTo(xs[i], yOf(points[i].y));
-  ctx.stroke();
-
-  // area fill (green)
-  const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, 'rgba(23,166,115,0.25)');
-  grad.addColorStop(1, 'rgba(23,166,115,0.02)');
-  ctx.fillStyle = grad; ctx.beginPath();
-  ctx.moveTo(xs[0], yOf(points[0].y));
-  for (let i=1;i<points.length;i++) ctx.lineTo(xs[i], yOf(points[i].y));
-  ctx.lineTo(W-10, H-20); ctx.lineTo(30, H-20); ctx.closePath(); ctx.fill();
-}
-window.addEventListener('resize', resizeChart);
-resizeChart();
-
-/* ---------- Auto start on load ---------- */
-document.addEventListener('DOMContentLoaded', ()=> { start(); });
+window.addEventListener("resize",resizeChart); resizeChart();
 </script>
-
 </body>
 </html>
